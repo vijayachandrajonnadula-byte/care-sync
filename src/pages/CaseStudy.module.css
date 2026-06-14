@@ -1415,8 +1415,8 @@
 /* ── Wireframes ── */
 .wfGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .wfCard {
@@ -1459,7 +1459,9 @@
 .wfSvg {
   width: 100%;
   display: block;
-  background: #F8F6F8;
+  background: #FAFAFA;
+  filter: grayscale(1) contrast(0.85);
+  opacity: 0.88;
 }
 
 /* ── UI Screenshots ── */
@@ -1635,6 +1637,130 @@
 .dsClosingStatement { font-size: 22px; font-weight: 600; color: #fff; text-align: center; max-width: 700px; margin: 0 auto; line-height: 1.5; }
 .dsClosingAccent { color: var(--color-brand-300); }
 
+/* ── UI Hero block (single-up large screenshot) ── */
+.uiHeroBlock {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.uiHeroMeta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.uiHeroLetter {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--color-brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.uiHeroTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.uiHeroTag {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+}
+
+.uiHeroFrame {
+  line-height: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.uiHeroImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.uiHeroCallouts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+/* ── UI Callout pill ── */
+.uiCallout {
+  padding: 16px 18px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  border-left: 3px solid var(--color-brand-600);
+}
+.uiCallout:last-child { border-right: none; }
+
+.uiCalloutLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-brand-300);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.uiCalloutDetail {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+
+/* ── UI Duo grid (2-up layout) ── */
+.uiDuoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.uiDuoCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.uiDuoHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.uiDuoFrame {
+  line-height: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.uiDuoImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.uiDuoNote {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+
 /* ── Misc utilities ── */
 .divider {
   height: 1px;
@@ -1703,8 +1829,11 @@
   .impactGrid { grid-template-columns: 1fr; }
   .tensionDiagram { flex-direction: column; }
   .tensionStep + .tensionStep { border-left: none; border-top: 1px solid var(--color-border-default); }
-  .wfGrid { grid-template-columns: repeat(2, 1fr); }
+  .wfGrid { grid-template-columns: 1fr; }
   .uiGrid { grid-template-columns: 1fr; }
+  .uiDuoGrid { grid-template-columns: 1fr; }
+  .uiHeroCallouts { grid-template-columns: 1fr; }
+  .uiCallout { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .directionGrid { grid-template-columns: 1fr; }
   .colorScaleGrid { grid-template-columns: repeat(4, 1fr); }
   .tokenPillGrid { grid-template-columns: repeat(3, 1fr); }
