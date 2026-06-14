@@ -1,0 +1,83 @@
+.metric {
+  padding: 12px 14px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+}
+
+.elevated {
+  background: var(--color-warning-50);
+  border-color: var(--color-warning-200);
+}
+
+.critical {
+  background: var(--color-critical-50);
+  border-color: var(--color-critical-200);
+}
+
+.label {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.value {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.elevated .value {
+  color: var(--color-warning-700);
+}
+
+.critical .value {
+  color: var(--color-critical-700);
+}
+
+.unit {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.trendIcon {
+  margin-left: 2px;
+}
+
+.trend_up { color: var(--color-warning-600); }
+.trend_down { color: var(--color-success-600); }
+.trend_stable { color: var(--color-text-muted); }
+
+.previous {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-metadata);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.change {
+  font-weight: 600;
+}
+
+.changeUp {
+  color: var(--color-warning-700);
+}
+
+.changeDown {
+  color: var(--color-success-700);
+}

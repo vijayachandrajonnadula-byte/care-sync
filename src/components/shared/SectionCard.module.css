@@ -1,0 +1,37 @@
+.card {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.compact .cardHeader {
+  padding: 12px 14px 10px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--color-border-default);
+  gap: 12px;
+}
+
+.cardTitle {
+  font-size: var(--font-size-card-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-card-title);
+}
+
+.cardAction {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cardBody {
+  padding: 16px;
+}

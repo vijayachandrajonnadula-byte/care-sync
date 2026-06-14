@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    body{margin:0;}
+    ::-webkit-scrollbar{width:6px;height:6px;}
+    ::-webkit-scrollbar-track{background:transparent;}
+    ::-webkit-scrollbar-thumb{background:#CBC5C1;border-radius:999px;}
+    ::-webkit-scrollbar-thumb:hover{background:#AAA3A5;}
+    @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
+  </style>
+</helmet>
+
+<div style="display:flex; height:100vh; font-family:'Source Sans 3',-apple-system,sans-serif; overflow:hidden; background:#F7F6F4;">
+
+  <!-- CLINICAL SIDEBAR -->
+  <nav style="width:232px; min-width:232px; background:#201C20; display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; border-right:1px solid #2A252A;">
+    <div style="padding:16px 14px 13px; border-bottom:1px solid #2A252A; display:flex; align-items:center; gap:10px; flex-shrink:0;">
+      <div style="width:30px; height:30px; background:#40233F; border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2C7 4 5 7 5 10s2 6 5 8c3-2 5-5 5-8S13 4 10 2Z" fill="#B79BB3" opacity=".7"/><circle cx="10" cy="10" r="2.5" fill="#F0EEEB"/></svg>
+      </div>
+      <div>
+        <div style="color:#F0EEEB; font-size:13px; font-weight:700; line-height:1.3; letter-spacing:-.01em;">CareSync</div>
+        <div style="color:#4E484C; font-size:10px; font-weight:500; line-height:1.4;">General Medicine</div>
+      </div>
+    </div>
+    <div style="flex:1; overflow-y:auto; padding:8px 8px 0;">
+      <sc-for list="{{ navItems }}" as="item">
+        <div onClick="{{ item.onClick }}" style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:5px; cursor:pointer; margin-bottom:1px; background:{{ item.bg }};" style-hover="background:#332E32;">
+          {{ item.iconEl }}
+          <span style="flex:1; font-size:12px; font-weight:{{ item.fw }}; color:{{ item.lc }}; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; line-height:1.4;">{{ item.label }}</span>
+          <sc-if value="{{ item.hasBadge }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:10px; font-weight:700; color:#B79BB3; background:#40233F; padding:1px 6px; border-radius:10px; flex-shrink:0;">{{ item.badge }}</span>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:12px 14px; border-top:1px solid #2A252A; flex-shrink:0; margin-top:8px;">
+      <div style="display:flex; align-items:center; gap:9px;">
+        <div style="width:30px; height:30px; border-radius:999px; background:#553052; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1.5px solid #684663;">
+          <span style="color:#EEE7ED; font-size:10px; font-weight:700;">AR</span>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div style="color:#E2DEDA; font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.4;">Dr. Ananya Rao</div>
+          <div style="color:#4E484C; font-size:10px; line-height:1.3;">General Medicine · Morning Shift</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN AREA -->
+  <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+
+    <!-- Top utility bar -->
+    <header style="height:56px; background:#FFFFFF; border-bottom:1px solid #E2DEDA; display:flex; align-items:center; padding:0 24px; gap:12px; flex-shrink:0;">
+      <div style="display:flex; align-items:center; gap:8px; padding:6px 12px; background:#F7F6F4; border:1px solid #E2DEDA; border-radius:5px; flex:1; max-width:300px; cursor:pointer;">
+        {{ searchIcon }}
+        <span style="font-size:13px; color:#AAA3A5;">Search patients, records…</span>
+        <span style="margin-left:auto; font-size:10px; color:#CBC5C1; background:#F0EEEB; padding:2px 6px; border-radius:3px; border:1px solid #E2DEDA;">⌘K</span>
+      </div>
+      <div style="width:1px; height:20px; background:#E2DEDA;"></div>
+      <div style="display:flex; align-items:center; gap:6px; padding:5px 10px; background:#FFFFFF; border:1px solid #E2DEDA; border-radius:5px; cursor:pointer;" style-hover="background:#F7F6F4;">
+        <span style="font-size:12px; font-weight:600; color:#4E484C;">General Medicine</span>
+        {{ chevronDown }}
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; padding:5px 12px; background:#E8F3EC; border:1px solid #ACD2BC; border-radius:5px;">
+        <div style="width:6px; height:6px; border-radius:50%; background:#26734D;"></div>
+        <span style="font-size:12px; font-weight:600; color:#1D5B3D;">Morning Shift</span>
+        <span style="font-size:12px; color:#26734D;">08:47</span>
+      </div>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:6px;">
+        <button onClick="{{ toggleAnn }}" style="display:flex; align-items:center; gap:5px; padding:5px 12px; background:{{ annBg }}; border:1px solid {{ annBorder }}; border-radius:5px; cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:600; color:{{ annColor }};">
+          {{ annBtn }}
+        </button>
+        <div style="width:1px; height:20px; background:#E2DEDA;"></div>
+        <div style="position:relative; cursor:pointer; padding:7px; border-radius:5px;" style-hover="background:#F7F6F4;">
+          {{ bellIcon }}
+          <div style="position:absolute; top:5px; right:5px; width:7px; height:7px; border-radius:50%; background:#B42318; border:1.5px solid white;"></div>
+        </div>
+        <div style="cursor:pointer; padding:7px; border-radius:5px;" style-hover="background:#F7F6F4;">{{ helpIcon }}</div>
+        <div style="width:30px; height:30px; border-radius:50%; background:#553052; display:flex; align-items:center; justify-content:center; cursor:pointer; border:1.5px solid #684663; margin-left:2px;">
+          <span style="font-size:10px; font-weight:700; color:#EEE7ED;">AR</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Screen content -->
+    <main style="flex:1; overflow-y:auto; overflow-x:hidden;">
+      {{ screenContent }}
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    screen: 'shift-briefing',
+    showAnn: false,
+    ackStates: { 'meera-glucose': 'new', 'arjun-wait': 'new', 'rohan-rx': 'new' },
+    flowStates: { 'CP-10482': 'checked-in', 'CP-10221': 'waiting', 'CP-10301': 'scheduled', 'CP-10118': 'pending' },
+    drawer: 'CP-10482',
+    msgThread: 'meera-glucose',
+    msgState: 'new',
+    msgComposer: 'reply',
+    taskStates: { 'review-glucose': 'new', 'approve-rx': 'pending', 'ho1': 'new', 'ho2': 'new', 'ho3': 'new' },
+    recordNav: 'summary',
+    insightsFilter: 'this-shift',
+    ptab: 'overview',
+    showAssign: false,
+  };
+
+  T = {
+    n0:'#FFFFFF',n25:'#FCFBFA',n50:'#F7F6F4',n100:'#F0EEEB',n200:'#E2DEDA',
+    n300:'#CBC5C1',n400:'#AAA3A5',n500:'#7B7477',n600:'#635C60',
+    n700:'#4E484C',n800:'#332E32',n900:'#201C20',
+    b50:'#F7F3F7',b100:'#EEE7ED',b200:'#DCCED9',b300:'#B79BB3',
+    b400:'#8C6688',b500:'#684663',b600:'#553052',b700:'#40233F',b800:'#321B31',
+    cr50:'#FDECEA',cr200:'#F0B9B5',cr600:'#B42318',cr700:'#912018',
+    wa50:'#FFF3DA',wa200:'#E9C77A',wa600:'#8A5600',wa700:'#684000',
+    su50:'#E8F3EC',su200:'#ACD2BC',su600:'#26734D',su700:'#1D5B3D',
+    in50:'#EAF2FA',in200:'#B8D0E8',in600:'#265D97',in700:'#1D4A78',
+  };
+
+  IP = {
+    home:`<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+    users:`<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>`,
+    calendar:`<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>`,
+    fileText:`<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>`,
+    messageSquare:`<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>`,
+    checkSquare:`<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`,
+    barChart2:`<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+    settings:`<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06-.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>`,
+    bell:`<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>`,
+    search:`<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`,
+    chevronDown:`<polyline points="6 9 12 15 18 9"/>`,
+    chevronRight:`<polyline points="9 18 15 12 9 6"/>`,
+    chevronLeft:`<polyline points="15 18 9 12 15 6"/>`,
+    helpCircle:`<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>`,
+    alertTriangle:`<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>`,
+    alertCircle:`<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>`,
+    checkCircle:`<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>`,
+    info:`<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>`,
+    user:`<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
+    clock:`<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,
+    trendingUp:`<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
+    trendingDown:`<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>`,
+    arrowUp:`<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>`,
+    arrowDown:`<line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>`,
+    minus:`<line x1="5" y1="12" x2="19" y2="12"/>`,
+    moreHorizontal:`<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>`,
+    plus:`<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>`,
+    x:`<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>`,
+    shield:`<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+    eye:`<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`,
+    edit:`<path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>`,
+    send:`<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>`,
+    check:`<polyline points="20 6 9 17 4 12"/>`,
+    filter:`<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>`,
+    copy:`<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>`,
+    download:`<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>`,
+    activity:`<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`,
+    pill:`<path d="M10.5 20.5L3.5 13.5a5 5 0 017-7l7 7a5 5 0 01-7 7z"/><line x1="9" y1="10" x2="15" y2="16"/>`,
+    clipboard:`<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1" ry="1"/>`,
+    lock:`<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>`,
+    repeat:`<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>`,
+    tag:`<path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>`,
+  };
+
+  ANN = {
+    'shift-briefing': [
+      {n:1, law:"Serial Position Effect", note:"Meera Iyer occupies the primacy position. Humans recall and act on items they encounter first -- the most critical case must be seen first."},
+      {n:2, law:"Fitts's Law", note:'"Review patient record" is the largest button and sits at the natural reading terminus of the card. Larger, closer targets reduce time-to-action.'},
+      {n:3, law:"Law of Proximity", note:"Glucose and BP values are in adjacent cards. Related clinical data stays spatially grouped -- no mental assembly required from the clinician."},
+      {n:4, law:"Hick's Law", note:"Three action buttons per case (Review, Assign, Acknowledge). Every additional option increases decision time logarithmically -- fewer choices act faster."},
+      {n:5, law:"Progressive Disclosure", note:"Full patient detail lives behind 'Review patient record', not on the briefing surface. Depth on demand keeps the command centre clean."},
+      {n:6, law:"Von Restorff Effect", note:"Amber left-border accent isolates the featured case from the neutral surface. The visually different element is remembered and acted on."},
+      {n:7, law:"Miller's Law", note:"Maximum 3 immediate attention items. Chunking clinical urgency to 7+/-2 items keeps working memory load manageable under shift pressure."},
+    ],
+    'patients': [
+      {n:1, law:"F-Pattern Scanpath", note:"Patient name anchors the leftmost column -- aligned with the natural F-pattern reading path. The eye lands on the most identifying data first."},
+      {n:2, law:"Status Visibility", note:"Status column is always visible without interaction. The clinician sees the full picture before deciding to open the drawer."},
+      {n:3, law:"Contextual Relevance", note:"The right drawer surfaces only what matters for the selected patient -- no blank fields, no generic form structure."},
+    ],
+    'patient-profile': [
+      {n:1, law:"Anchoring", note:"Previous glucose (118) is shown alongside current (142). The anchor makes the change (+24, +20%) immediately interpretable without mental calculation."},
+      {n:2, law:"Von Restorff Effect", note:'"Changes since review" section uses amber to isolate new clinical signals. Clinically important changes are visually distinct from stable background data.'},
+      {n:3, law:"Recognition over Recall", note:"Penicillin allergy is persistent in the sticky header. The clinician never needs to recall it -- it is always present in the viewport."},
+      {n:4, law:"Direct Manipulation", note:"The glucose trend chart shows a reference band. The target range is displayed rather than memorised, reducing clinical error risk."},
+      {n:5, law:"Law of Continuity", note:"Clinical timeline follows a vertical path -- the eye moves naturally from the most recent event downward through history."},
+    ],
+    'appointments': [
+      {n:1, law:"Goal Gradient Effect", note:"Waiting time (22m) and delay (+12m) are shown in amber. Proximity to the threshold communicates urgency -- the clinician acts before the queue worsens."},
+      {n:2, law:"Affordance", note:'"Begin consult" appears only for Checked-in patients. Contextually appropriate actions reduce noise and prevent interaction errors.'},
+      {n:3, law:"Chunking", note:"Queue health strip aggregates 8 separate metrics into 5 scannable indicators. Complex operational data is chunked into a single decision-ready summary."},
+    ],
+    'messages': [
+      {n:1, law:"Error Prevention (Nielsen)", note:"Patient message composer shows a warning strip. Preventing accidental clinical communication to patients is a safety requirement -- the warning must be impossible to miss."},
+      {n:2, law:"Affordance", note:"Three composer modes use distinct backgrounds and labels. The visual difference communicates purpose before reading the tab label."},
+      {n:3, law:"Figure-Ground (Gestalt)", note:"Active conversation on white; thread list on neutral background. Foreground/background contrast guides eye movement without explicit instructions."},
+    ],
+    'tasks': [
+      {n:1, law:"Goal Gradient Effect", note:'"Now" group appears first. Proximity to a deadline increases motivation to act -- temporal grouping creates urgency without visual panic.'},
+      {n:2, law:"Ownership Visibility", note:"Every task shows an owner inline. Ambiguous ownership is a primary cause of clinical errors -- CareSync makes responsibility explicit and auditable."},
+      {n:3, law:"Law of Closure", note:"Completed tasks remain in the list but are visually muted. Closure maintains the mental model of the full task set rather than hiding completion."},
+    ],
+    'medical-records': [
+      {n:1, law:"Information Scent", note:'"New" badge on the lab results nav item. Users follow the strongest information scent -- labelled novelty drives navigation to the right place.'},
+      {n:2, law:"Aesthetic-Usability Effect", note:"Structured audit history with clear columns reads as trustworthy. A well-organised audit trail is both clinically functional and legally required."},
+    ],
+    'operational-insights': [
+      {n:1, law:"Actionable Insights", note:"Each insight card ends with a recommended action and an owner. Data without a next step is noise -- every metric must lead to a decision."},
+      {n:2, law:"Reference Frame (Tufte)", note:"Capacity threshold is a horizontal line on the arrivals chart. Without a reference frame, data has no clinical or operational meaning."},
+      {n:3, law:"Data-Ink Ratio (Tufte)", note:"Bars, expected baseline, and capacity threshold convey three data layers in one chart -- maximum meaning from minimum ink."},
+    ],
+  };
+
+  buildAnnPanel = (screen) => {
+    const T=this.T; const e=React.createElement;
+    const anns=this.ANN[screen]||[];
+    return e('div',{style:{width:296,flexShrink:0,background:T.n0,borderLeft:`1px solid ${T.n200}`,display:'flex',flexDirection:'column',overflow:'hidden'}},
+      e('div',{style:{padding:'14px 16px',borderBottom:`1px solid ${T.n200}`,background:T.b700,flexShrink:0}},
+        e('div',{style:{fontSize:11,fontWeight:700,color:T.b300,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:3}},'Design rationale'),
+        e('div',{style:{fontSize:12,color:T.b300,opacity:.75}},'UX laws applied to this screen')
+      ),
+      e('div',{style:{flex:1,overflowY:'auto',padding:'12px 14px'}},
+        anns.length===0?e('div',{style:{padding:'20px 0',textAlign:'center',fontSize:13,color:T.n400}},'No annotations for this screen.'):
+        anns.map((a,i)=>
+          e('div',{key:a.n,style:{marginBottom:14,paddingBottom:14,borderBottom:i<anns.length-1?`1px solid ${T.n100}`:'none'}},
+            e('div',{style:{display:'flex',gap:8,marginBottom:5,alignItems:'flex-start'}},
+              e('span',{style:{width:20,height:20,borderRadius:'50%',background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontSize:10,fontWeight:700,color:T.n0}},a.n),
+              e('span',{style:{fontSize:13,fontWeight:700,color:T.n900,lineHeight:'18px'}},a.law)
+            ),
+            e('p',{style:{margin:0,fontSize:12,color:T.n600,lineHeight:'18px',paddingLeft:28}},a.note)
+          )
+        )
+      ),
+      e('div',{style:{padding:'10px 14px',borderTop:`1px solid ${T.n200}`,background:T.n50,flexShrink:0}},
+        e('div',{style:{fontSize:11,color:T.n400,lineHeight:'16px'}},'Laws: Fitts · Hick · Miller · Gestalt · Nielsen · Tufte · Von Restorff')
+      )
+    );
+  };
+
+  ic = (name, size=18, color='#7B7477') => {
+    const p = this.IP[name] || this.IP.info;
+    return React.createElement('span', {
+      dangerouslySetInnerHTML: { __html: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${p}</svg>` },
+      style: { display: 'inline-flex', alignItems: 'center', flexShrink: 0, lineHeight: 0 }
+    });
+  };
+
+  bdg = (text, v='neutral') => {
+    const T = this.T;
+    const m = { critical:{bg:T.cr50,c:T.cr700,b:T.cr200}, warning:{bg:T.wa50,c:T.wa700,b:T.wa200}, success:{bg:T.su50,c:T.su700,b:T.su200}, info:{bg:T.in50,c:T.in700,b:T.in200}, brand:{bg:T.b100,c:T.b700,b:T.b200}, neutral:{bg:T.n100,c:T.n700,b:T.n200}, subtle:{bg:T.n50,c:T.n500,b:T.n200} };
+    const s = m[v] || m.neutral;
+    return React.createElement('span', { style: { display:'inline-flex', alignItems:'center', padding:'2px 8px', borderRadius:4, background:s.bg, color:s.c, border:`1px solid ${s.b}`, fontSize:12, fontWeight:600, lineHeight:'16px', whiteSpace:'nowrap' } }, text);
+  };
+
+  sev = (level) => {
+    const T = this.T;
+    const m = { critical:{c:T.cr700,d:T.cr600,l:'Critical'}, high:{c:T.wa700,d:T.wa600,l:'High'}, moderate:{c:T.in700,d:T.in600,l:'Moderate'}, routine:{c:T.n600,d:T.n400,l:'Routine'}, stable:{c:T.su700,d:T.su600,l:'Stable'} };
+    const cf = m[level] || m.routine;
+    return React.createElement('span', { style:{display:'inline-flex',alignItems:'center',gap:5,fontSize:12,fontWeight:700,color:cf.c,whiteSpace:'nowrap'} },
+      React.createElement('span', { style:{width:7,height:7,borderRadius:'50%',background:cf.d,flexShrink:0,display:'inline-block'} }), cf.l);
+  };
+
+  divider = (my=16) => React.createElement('div', { style:{height:1,background:this.T.n200,margin:`${my}px 0`} });
+
+  // ─── SVG CHARTS ──────────────────────────────────────────────
+
+  glucoseChart = () => {
+    const T = this.T; const e = React.createElement;
+    const data = [{l:'Sep',v:115},{l:'Oct',v:118},{l:'Nov',v:122},{l:'Dec',v:119},{l:'Jan',v:125},{l:'Today',v:142}];
+    const W=440,H=190,pL=46,pR=24,pT=20,pB=34;
+    const pw=W-pL-pR,ph=H-pT-pB,minY=60,maxY=165;
+    const x=i=>pL+i/(data.length-1)*pw;
+    const y=v=>pT+(1-(v-minY)/(maxY-minY))*ph;
+    const pts=data.map((d,i)=>`${x(i)},${y(d.v)}`).join(' ');
+    const refTop=y(130),refBot=y(80);
+    const yTicks=[80,100,120,140,160];
+    return e('svg',{width:W,height:H,viewBox:`0 0 ${W} ${H}`,style:{display:'block',overflow:'visible'}},
+      e('rect',{x:pL,y:refTop,width:pw,height:refBot-refTop,fill:T.su200,opacity:.25}),
+      ...yTicks.map(v=>e('line',{key:v,x1:pL,y1:y(v),x2:W-pR,y2:y(v),stroke:T.n200,strokeWidth:1,strokeDasharray:'3 3'})),
+      e('text',{x:pL+4,y:refTop-5,fontSize:10,fill:T.su600,fontFamily:"'Source Sans 3',sans-serif"},'Management target: 80–130 mg/dL'),
+      e('polyline',{points:pts,fill:'none',stroke:T.b700,strokeWidth:2,strokeLinecap:'round',strokeLinejoin:'round'}),
+      ...data.map((d,i)=>e('circle',{key:i,cx:x(i),cy:y(d.v),r:i===data.length-1?5.5:3.5,fill:i===data.length-1?T.wa700:T.n0,stroke:i===data.length-1?T.wa700:T.b600,strokeWidth:2})),
+      e('text',{x:x(5)+9,y:y(142)-3,fontSize:12,fontWeight:'700',fill:T.wa700,fontFamily:"'Source Sans 3',sans-serif"},'142'),
+      e('text',{x:x(5)+9,y:y(142)+11,fontSize:10,fill:T.wa600,fontFamily:"'Source Sans 3',sans-serif"},'mg/dL'),
+      e('line',{x1:x(4),y1:y(125)+1,x2:x(4),y2:H-pB,stroke:T.n300,strokeWidth:1,strokeDasharray:'2 2'}),
+      e('text',{x:x(4),y:y(125)-5,fontSize:10,fill:T.n500,textAnchor:'middle',fontFamily:"'Source Sans 3',sans-serif"},'118'),
+      ...yTicks.map(v=>e('text',{key:v,x:pL-5,y:y(v)+4,fontSize:10,fill:T.n400,textAnchor:'end',fontFamily:"'Source Sans 3',sans-serif"},v)),
+      ...data.map((d,i)=>e('text',{key:i,x:x(i),y:H-6,fontSize:10,fill:T.n400,textAnchor:'middle',fontFamily:"'Source Sans 3',sans-serif"},d.l)),
+      e('line',{x1:pL,y1:pT,x2:pL,y2:H-pB,stroke:T.n200,strokeWidth:1}),
+      e('line',{x1:pL,y1:H-pB,x2:W-pR,y2:H-pB,stroke:T.n200,strokeWidth:1})
+    );
+  };
+
+  arrivalsChart = () => {
+    const T = this.T; const e = React.createElement;
+    const hours=['07','08','09','10','11','12','13','14','15','16'];
+    const actual=[4,7,12,15,14,11,10,9,8,7];
+    const expected=[5,7,8,9,9,8,7,7,6,5];
+    const W=580,H=200,pL=40,pR=20,pT=20,pB=34;
+    const pw=W-pL-pR,ph=H-pT-pB,maxY=20;
+    const bw=pw/hours.length;
+    const x=i=>pL+i*bw;
+    const y=v=>pT+(1-v/maxY)*ph;
+    const epts=expected.map((v,i)=>`${x(i)+bw/2},${y(v)}`).join(' ');
+    const yTicks=[0,5,10,15,20];
+    return e('svg',{width:'100%',viewBox:`0 0 ${W} ${H}`,style:{display:'block'}},
+      e('rect',{x:x(2),y:pT,width:bw*3,height:ph,fill:T.wa50,opacity:.8}),
+      e('text',{x:x(2)+4,y:pT+13,fontSize:10,fontWeight:'600',fill:T.wa700,fontFamily:"'Source Sans 3',sans-serif"},'Peak: 09:00–11:00'),
+      e('line',{x1:pL,y1:y(15),x2:W-pR,y2:y(15),stroke:T.cr600,strokeWidth:1.5,strokeDasharray:'5 3'}),
+      e('text',{x:W-pR+3,y:y(15)+4,fontSize:10,fill:T.cr600,fontFamily:"'Source Sans 3',sans-serif"},'Cap'),
+      ...yTicks.map(v=>e('line',{key:v,x1:pL,y1:y(v),x2:W-pR,y2:y(v),stroke:T.n200,strokeWidth:1,strokeDasharray:'3 3'})),
+      ...actual.map((v,i)=>e('rect',{key:i,x:x(i)+4,y:y(v),width:bw-8,height:ph-(y(v)-pT),fill:i>=2&&i<=4?T.wa600:T.b400,opacity:.85,rx:2})),
+      e('polyline',{points:epts,fill:'none',stroke:T.n400,strokeWidth:1.5,strokeDasharray:'4 3'}),
+      ...yTicks.map(v=>e('text',{key:v,x:pL-5,y:y(v)+4,fontSize:10,fill:T.n500,textAnchor:'end',fontFamily:"'Source Sans 3',sans-serif"},v)),
+      ...hours.map((h,i)=>e('text',{key:i,x:x(i)+bw/2,y:H-8,fontSize:10,fill:T.n500,textAnchor:'middle',fontFamily:"'Source Sans 3',sans-serif"},`${h}:00`)),
+      e('line',{x1:pL,y1:pT,x2:pL,y2:H-pB,stroke:T.n200,strokeWidth:1}),
+      e('line',{x1:pL,y1:H-pB,x2:W-pR,y2:H-pB,stroke:T.n200,strokeWidth:1})
+    );
+  };
+
+  // ─── SHIFT BRIEFING ──────────────────────────────────────────
+
+  rShiftBriefing = () => {
+    const T=this.T; const e=React.createElement;
+    const {ackStates,showAssign}=this.state;
+    const mAcked=ackStates['meera-glucose']!=='new';
+    const aAcked=ackStates['arjun-wait']!=='new';
+    const rAcked=ackStates['rohan-rx']!=='new';
+
+    const compactRow=(id,patient,info,subline,details,primaryLabel,primaryAct,acked,ackId)=>
+      e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderLeft:`3px solid ${T.in600}`,borderRadius:'0 6px 6px 0',padding:'12px 16px 12px 18px',marginBottom:8,display:'flex',gap:16,alignItems:'flex-start'}},
+        e('div',{style:{flex:1,minWidth:0}},
+          e('div',{style:{display:'flex',alignItems:'center',gap:8,marginBottom:5,flexWrap:'wrap'}},
+            e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},patient),
+            e('span',{style:{fontSize:13,color:T.n500}},info),
+            e('div',{style:{width:1,height:14,background:T.n200}}),
+            this.bdg(subline,'subtle')
+          ),
+          e('div',{style:{display:'flex',gap:10,flexWrap:'wrap',alignItems:'center'}},
+            ...details.map((d,i)=>e('div',{key:i,style:{display:'flex',alignItems:'center',gap:4}},this.ic(d.icon,13,d.c||T.n400),e('span',{style:{fontSize:12,color:d.c||T.n600,fontWeight:d.bold?600:400}},d.text)))
+          )
+        ),
+        e('div',{style:{display:'flex',gap:6,flexShrink:0,alignItems:'center'}},
+          e('button',{onClick:primaryAct,style:{padding:'6px 13px',background:T.b700,color:T.n0,border:'none',borderRadius:5,fontSize:12,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif",whiteSpace:'nowrap'}},primaryLabel),
+          e('button',{onClick:()=>this.setState({ackStates:{...this.state.ackStates,[ackId]:'acknowledged'}}),style:{padding:'6px 10px',background:acked?T.su50:'transparent',color:acked?T.su700:T.n600,border:`1px solid ${acked?T.su200:T.n200}`,borderRadius:5,fontSize:12,fontWeight:600,cursor:acked?'default':'pointer',fontFamily:"'Source Sans 3',sans-serif",display:'flex',alignItems:'center',gap:4}},
+            acked?this.ic('check',13,T.su700):null,acked?'Acknowledged':'Acknowledge'
+          )
+        )
+      );
+
+    return e('div',{style:{padding:'24px 32px',background:T.n50}},
+      // Header
+      e('div',{style:{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:14}},
+        e('div',null,
+          e('h1',{style:{margin:'0 0 4px',fontSize:22,fontWeight:700,color:T.n900,letterSpacing:'-.02em'}},'Morning shift briefing'),
+          e('div',{style:{display:'flex',gap:8,alignItems:'center'}},
+            e('span',{style:{fontSize:13,color:T.n500}},'08:47 AM'),e('span',{style:{fontSize:13,color:T.n300}},'·'),
+            e('span',{style:{fontSize:13,color:T.n500}},'General Medicine'),e('span',{style:{fontSize:13,color:T.n300}},'·'),
+            e('span',{style:{fontSize:13,color:T.n500}},'Dr. Ananya Rao')
+          )
+        ),
+        e('div',{style:{display:'flex',gap:8}},
+          e('div',{style:{padding:'5px 12px',background:T.cr50,border:`1px solid ${T.cr200}`,borderRadius:5}},e('span',{style:{fontSize:12,fontWeight:600,color:T.cr700}},'3 immediate actions')),
+          e('div',{style:{padding:'5px 12px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:5}},e('span',{style:{fontSize:12,fontWeight:600,color:T.wa700}},'4 due this shift'))
+        )
+      ),
+
+      // Info strip
+      e('div',{style:{padding:'9px 14px',background:T.in50,border:`1px solid ${T.in200}`,borderRadius:5,marginBottom:20,display:'flex',gap:8,alignItems:'center'}},
+        this.ic('info',15,T.in600),
+        e('span',{style:{fontSize:13,color:T.in700}},'Since 07:00: '),
+        e('strong',{style:{color:T.in700,fontSize:13}},'1 abnormal result'),
+        e('span',{style:{fontSize:13,color:T.in700}},', 2 new patient messages, 1 medication update and 3 inherited tasks.')
+      ),
+
+      // 2-col grid
+      e('div',{style:{display:'grid',gridTemplateColumns:'1fr 340px',gap:20,marginBottom:20}},
+
+        // Main: Immediate attention
+        e('div',null,
+          e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:12}},'Immediate clinical attention'),
+
+          // Featured case: Meera Iyer
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderLeft:`3px solid ${T.wa600}`,borderRadius:'0 6px 6px 0',padding:'16px 18px 16px 20px',marginBottom:10,position:'relative'}},
+            e('div',{style:{display:'flex',gap:18,alignItems:'flex-start'}},
+              e('div',{style:{flex:1,minWidth:0}},
+                e('div',{style:{display:'flex',alignItems:'center',gap:8,marginBottom:10,flexWrap:'wrap'}},
+                  this.sev('high'),
+                  e('div',{style:{width:1,height:14,background:T.n200}}),
+                  e('span',{style:{fontSize:15,fontWeight:700,color:T.n900}},'Meera Iyer'),
+                  e('span',{style:{fontSize:13,color:T.n500}},'42F · CP-10482 · B+'),
+                  e('div',{style:{display:'inline-flex',alignItems:'center',gap:4,padding:'2px 8px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:4}},
+                    this.ic('shield',11,T.wa600),e('span',{style:{fontSize:11,fontWeight:700,color:T.wa700}},'Allergy: Penicillin')
+                  ),
+                  e('div',{style:{display:'inline-flex',alignItems:'center',gap:4}},
+                    this.ic('calendar',12,T.n400),e('span',{style:{fontSize:12,color:T.n600}},'Appointment today at 09:00')
+                  )
+                ),
+                e('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:12}},
+                  e('div',{style:{background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:5,padding:'10px 14px'}},
+                    e('div',{style:{fontSize:11,fontWeight:600,color:T.wa600,marginBottom:4,textTransform:'uppercase',letterSpacing:'.04em'}},'Fasting glucose'),
+                    e('div',{style:{display:'flex',alignItems:'baseline',gap:6}},
+                      e('span',{style:{fontSize:24,fontWeight:700,color:T.wa700,fontVariantNumeric:'tabular-nums',lineHeight:1}},'142'),
+                      e('span',{style:{fontSize:12,color:T.wa600}},'mg/dL')
+                    ),
+                    e('div',{style:{display:'flex',alignItems:'center',gap:4,marginTop:4}},
+                      this.ic('trendingUp',13,T.wa600),
+                      e('span',{style:{fontSize:12,color:T.wa700}},'from 118 · +24 mg/dL (+20%)')
+                    )
+                  ),
+                  e('div',{style:{background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:5,padding:'10px 14px'}},
+                    e('div',{style:{fontSize:11,fontWeight:600,color:T.wa600,marginBottom:4,textTransform:'uppercase',letterSpacing:'.04em'}},'Blood pressure'),
+                    e('div',{style:{display:'flex',alignItems:'baseline',gap:6}},
+                      e('span',{style:{fontSize:24,fontWeight:700,color:T.wa700,fontVariantNumeric:'tabular-nums',lineHeight:1}},'145/90'),
+                      e('span',{style:{fontSize:12,color:T.wa600}},'mmHg')
+                    ),
+                    e('div',{style:{display:'flex',alignItems:'center',gap:4,marginTop:4}},
+                      this.ic('trendingUp',13,T.wa600),
+                      e('span',{style:{fontSize:12,color:T.wa700}},'from 140/88 · Stage 2 HTN')
+                    )
+                  )
+                ),
+                e('div',{style:{display:'flex',alignItems:'center',gap:12,flexWrap:'wrap'}},
+                  e('div',{style:{display:'flex',alignItems:'center',gap:4}},this.ic('clock',13,T.wa600),e('span',{style:{fontSize:12,fontWeight:600,color:T.wa700}},'Due before 09:00')),
+                  e('div',{style:{display:'flex',alignItems:'center',gap:4}},this.ic('user',13,T.n400),e('span',{style:{fontSize:12,color:T.n600}},'Dr. Ananya Rao')),
+                  this.bdg(mAcked?'Acknowledged':'New',mAcked?'neutral':'brand')
+                )
+              ),
+              e('div',{style:{display:'flex',flexDirection:'column',gap:6,flexShrink:0,minWidth:168}},
+                e('button',{onClick:()=>this.setState({screen:'patient-profile'}),style:{padding:'8px 14px',background:T.b700,color:T.n0,border:'none',borderRadius:5,fontSize:13,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif",whiteSpace:'nowrap',textAlign:'center'}},'Review patient record'),
+                e('button',{onClick:()=>this.setState({showAssign:true}),style:{padding:'7px 14px',background:T.n0,color:T.b700,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:13,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif",whiteSpace:'nowrap',textAlign:'center'}},'Assign to Nurse Priya'),
+                e('button',{onClick:()=>this.setState({ackStates:{...this.state.ackStates,'meera-glucose':'acknowledged'}}),style:{padding:'7px 14px',background:mAcked?T.su50:'transparent',color:mAcked?T.su700:T.n600,border:`1px solid ${mAcked?T.su200:T.n200}`,borderRadius:5,fontSize:13,fontWeight:600,cursor:mAcked?'default':'pointer',fontFamily:"'Source Sans 3',sans-serif",display:'flex',alignItems:'center',justifyContent:'center',gap:6}},
+                  mAcked?this.ic('check',14,T.su700):null,mAcked?'Acknowledged':'Acknowledge'
+                )
+              )
+            )
+          ),
+
+          // Assign popover overlay
+          showAssign?e('div',{style:{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(32,28,32,.4)',zIndex:100,display:'flex',alignItems:'center',justifyContent:'center'}},
+            e('div',{style:{background:T.n0,borderRadius:8,padding:24,width:340,boxShadow:'0 8px 32px rgba(32,28,32,.16)'}},
+              e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}},
+                e('span',{style:{fontSize:15,fontWeight:700,color:T.n900}},'Assign task'),
+                e('button',{onClick:()=>this.setState({showAssign:false}),style:{background:'none',border:'none',cursor:'pointer',padding:4,color:T.n500}},this.ic('x',18,T.n400))
+              ),
+              e('div',{style:{fontSize:13,color:T.n600,marginBottom:14}},'Review glucose result for Meera Iyer before 09:00 consultation'),
+              e('label',{style:{display:'block',fontSize:12,fontWeight:600,color:T.n700,marginBottom:5}},'Assign to'),
+              e('select',{style:{width:'100%',height:36,padding:'0 12px',border:`1px solid ${T.n300}`,borderRadius:5,fontSize:14,color:T.n800,background:T.n0,fontFamily:"'Source Sans 3',sans-serif",marginBottom:14}},
+                e('option',null,'Nurse Priya — General Medicine'),
+                e('option',null,'Dr. Vikram Patel — Cardiology'),
+                e('option',null,'Care Coordinator A. Shah')
+              ),
+              e('label',{style:{display:'block',fontSize:12,fontWeight:600,color:T.n700,marginBottom:5}},'Note (optional)'),
+              e('textarea',{rows:2,placeholder:'Add context for the assignee…',style:{width:'100%',padding:'8px 12px',border:`1px solid ${T.n300}`,borderRadius:5,fontSize:13,color:T.n800,background:T.n0,fontFamily:"'Source Sans 3',sans-serif",resize:'none',marginBottom:16}}),
+              e('div',{style:{display:'flex',gap:8}},
+                e('button',{onClick:()=>this.setState({showAssign:false}),style:{flex:1,padding:'8px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:14,fontWeight:600,cursor:'pointer',color:T.n700,fontFamily:"'Source Sans 3',sans-serif"}},'Cancel'),
+                e('button',{onClick:()=>this.setState({showAssign:false,ackStates:{...this.state.ackStates,'meera-glucose':'assigned'}}),style:{flex:1,padding:'8px',background:T.b700,border:'none',borderRadius:5,fontSize:14,fontWeight:600,cursor:'pointer',color:T.n0,fontFamily:"'Source Sans 3',sans-serif"}},'Assign task')
+              )
+            )
+          ):null,
+
+          // Compact row: Arjun Nair
+          compactRow('arjun','Arjun Nair','CP-10221 · 34M','General consultation',
+            [{icon:'check',text:'Checked in 09:08'},{icon:'clock',text:'Waiting 22m',c:T.wa700,bold:true},{icon:'alertTriangle',text:'Delay +12m',c:T.wa600,bold:true},{icon:'tag',text:'Queue #2'}],
+            'Open visit',()=>this.setState({screen:'appointments',drawer:'CP-10221'}),aAcked,'arjun-wait'
+          ),
+
+          // Compact row: Rohan Das
+          compactRow('rohan','Rohan Das','CP-10118 · 52M','Prescription request',
+            [{icon:'pill',text:'Lisinopril 10 mg refill'},{icon:'user',text:'Requested by Nurse Priya'},{icon:'clock',text:'Due 09:15',c:T.cr700,bold:true}],
+            'Review prescription',()=>this.setState({screen:'tasks'}),rAcked,'rohan-rx'
+          )
+        ),
+
+        // Right: Next 90 minutes
+        e('div',null,
+          e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:12}},'Next 90 minutes'),
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden'}},
+            ...[
+              {time:'09:00',patient:'Meera Iyer',visit:'Diabetes & HTN follow-up',state:'⚠ Review required',stateV:'warning',action:'Begin review',act:()=>this.setState({screen:'patient-profile'})},
+              {time:'09:30',patient:'Arjun Nair',visit:'General consultation',state:'Checked in · Waiting',stateV:'info',action:'Open visit',act:()=>this.setState({screen:'appointments'})},
+              {time:'10:00',patient:'Kavya Menon',visit:'Diagnostic review',state:'⚠ Report available',stateV:'warning',action:'View report',act:()=>this.setState({screen:'medical-records'})},
+            ].map((row,i,arr)=>
+              e('div',{key:row.time,style:{padding:'12px 16px',borderBottom:i<arr.length-1?`1px solid ${T.n100}`:'none',cursor:'pointer'}},
+                e('div',{style:{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:5}},
+                  e('span',{style:{fontSize:14,fontWeight:700,color:T.n800,fontVariantNumeric:'tabular-nums'}},row.time),
+                  e('button',{onClick:row.act,style:{fontSize:12,fontWeight:600,color:T.b700,background:'none',border:'none',cursor:'pointer',padding:'2px 0',fontFamily:"'Source Sans 3',sans-serif"}},row.action)
+                ),
+                e('div',{style:{fontSize:14,fontWeight:600,color:T.n900,marginBottom:2}},row.patient),
+                e('div',{style:{fontSize:12,color:T.n500,marginBottom:3}},row.visit),
+                e('div',{style:{fontSize:12,fontWeight:600,color:row.stateV==='warning'?T.wa700:T.in700}},row.state)
+              )
+            )
+          )
+        )
+      ),
+
+      // Shift follow-through
+      e('div',null,
+        e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:12}},'Shift follow-through'),
+        e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden'}},
+          e('div',{style:{display:'grid',gridTemplateColumns:'1fr 70px 130px 160px 160px',padding:'8px 16px',background:T.n50,borderBottom:`1px solid ${T.n200}`,gap:12}},
+            ...['Workstream','Items','Oldest item','Owner','Next action'].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+          ),
+          ...[
+            {ws:'Missed follow-ups',n:2,oldest:'4 days',owner:'Dr. Ananya Rao',action:'Review list',act:()=>this.setState({screen:'tasks'}),c:T.wa700},
+            {ws:'Pending lab reviews',n:4,oldest:'2 days',owner:'Dr. Ananya Rao',action:'Open lab queue',act:()=>this.setState({screen:'medical-records'}),c:T.wa700},
+            {ws:'Handover tasks',n:3,oldest:'Night shift',owner:'Night shift → Morning shift',action:'Acknowledge all',act:()=>this.setState({screen:'tasks'}),c:T.in700},
+            {ws:'No-show change',n:'+2 pp',oldest:'This week',owner:'Care Coordination',action:'Review reminder workflow',act:()=>this.setState({screen:'operational-insights'}),c:T.n700},
+          ].map((r,i,arr)=>
+            e('div',{key:r.ws,style:{display:'grid',gridTemplateColumns:'1fr 70px 130px 160px 160px',padding:'11px 16px',borderBottom:i<arr.length-1?`1px solid ${T.n100}`:'none',gap:12,alignItems:'center'}},
+              e('span',{style:{fontSize:14,fontWeight:500,color:T.n900}},r.ws),
+              e('span',{style:{fontSize:14,fontWeight:700,color:r.c,fontVariantNumeric:'tabular-nums'}},r.n),
+              e('span',{style:{fontSize:13,color:T.n500}},r.oldest),
+              e('span',{style:{fontSize:13,color:T.n600}},r.owner),
+              e('button',{onClick:r.act,style:{fontSize:13,fontWeight:600,color:T.b700,background:'none',border:'none',cursor:'pointer',padding:0,fontFamily:"'Source Sans 3',sans-serif",textAlign:'left'}},r.action)
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── PATIENTS ─────────────────────────────────────────────────
+
+  rPatients = () => {
+    const T=this.T; const e=React.createElement;
+    const {drawer}=this.state;
+    const patients=[
+      {id:'CP-10482',name:'Meera Iyer',age:'42F',cond:'Hypertension, T2 Diabetes',next:'Today 09:00',concern:'⚠ Glucose 142 mg/dL',clinician:'Dr. Ananya Rao',status:'needs-review'},
+      {id:'CP-10221',name:'Arjun Nair',age:'34M',cond:'Annual check-up',next:'Today 09:30',concern:'Waiting 22m',clinician:'Dr. Ananya Rao',status:'checked-in'},
+      {id:'CP-10301',name:'Kavya Menon',age:'29F',cond:'Thyroid follow-up',next:'Today 10:00',concern:'New report available',clinician:'Dr. Ananya Rao',status:'report-ready'},
+      {id:'CP-10118',name:'Rohan Das',age:'52M',cond:'Hypertension',next:'—',concern:'Prescription pending',clinician:'Dr. Ananya Rao',status:'pending'},
+      {id:'CP-10399',name:'Lakshmi Nair',age:'67F',cond:'Osteoarthritis, HTN',next:'Tomorrow',concern:'—',clinician:'Dr. Ananya Rao',status:'stable'},
+      {id:'CP-10288',name:'Sushila Devi',age:'74F',cond:'CKD Stage 2, T2D',next:'Thu 10:30',concern:'—',clinician:'Dr. Ananya Rao',status:'stable'},
+    ];
+    const sm={'needs-review':'warning','checked-in':'info','report-ready':'warning','pending':'neutral','stable':'success'};
+    const sl={'needs-review':'Needs review','checked-in':'Checked in','report-ready':'Report ready','pending':'Pending','stable':'Stable'};
+
+    return e('div',{style:{display:'flex',height:'100%',overflow:'hidden'}},
+      e('div',{style:{flex:1,padding:'24px 32px',overflowY:'auto',background:T.n50}},
+        e('div',{style:{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:4}},
+          e('div',null,
+            e('h1',{style:{margin:'0 0 3px',fontSize:22,fontWeight:700,color:T.n900,letterSpacing:'-.02em'}},'Patients'),
+            e('p',{style:{margin:0,fontSize:13,color:T.n500}},'Search, review and continue patient care')
+          ),
+          e('button',{style:{padding:'8px 16px',background:T.b700,color:T.n0,border:'none',borderRadius:5,fontSize:13,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},'+ New patient')
+        ),
+        e('div',{style:{display:'flex',gap:8,margin:'16px 0',flexWrap:'wrap',alignItems:'center'}},
+          e('div',{style:{display:'flex',alignItems:'center',gap:8,padding:'7px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,flex:1,maxWidth:280}},
+            this.ic('search',14,T.n400),e('input',{type:'text',placeholder:'Search patients…',style:{border:'none',outline:'none',fontSize:13,color:T.n700,background:'transparent',width:'100%',fontFamily:"'Source Sans 3',sans-serif"}})
+          ),
+          e('button',{style:{display:'flex',alignItems:'center',gap:6,padding:'7px 14px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:13,fontWeight:600,color:T.n700,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},this.ic('filter',14,T.n500),'Filters'),
+          ...['Assigned to me','Needs review','Upcoming today','Recent activity'].map(f=>e('button',{key:f,style:{padding:'6px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:12,fontWeight:500,color:T.n600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},f))
+        ),
+        e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden'}},
+          e('div',{style:{display:'grid',gridTemplateColumns:'1fr 100px 70px 200px 140px 140px 130px 110px 100px',padding:'8px 16px',background:T.n50,borderBottom:`1px solid ${T.n200}`,gap:12}},
+            ...['Patient','ID','Age','Conditions','Next appt','Concern','Clinician','Status','Action'].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+          ),
+          ...patients.map((p,i)=>
+            e('div',{key:p.id,onClick:()=>this.setState({drawer:p.id}),style:{display:'grid',gridTemplateColumns:'1fr 100px 70px 200px 140px 140px 130px 110px 100px',padding:'11px 16px',borderBottom:i<patients.length-1?`1px solid ${T.n100}`:'none',gap:12,alignItems:'center',cursor:'pointer',background:p.id===drawer?T.b50:T.n0}},
+              e('span',{style:{fontSize:14,fontWeight:600,color:T.n900}},p.name),
+              e('span',{style:{fontSize:12,color:T.n400,fontFamily:'monospace',fontVariantNumeric:'tabular-nums'}},p.id),
+              e('span',{style:{fontSize:13,color:T.n600}},p.age),
+              e('span',{style:{fontSize:13,color:T.n600,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}},p.cond),
+              e('span',{style:{fontSize:13,color:T.n700,fontVariantNumeric:'tabular-nums'}},p.next),
+              e('span',{style:{fontSize:13,color:p.concern.includes('⚠')?T.wa700:T.n500,fontWeight:p.concern.includes('⚠')?600:400}},p.concern),
+              e('span',{style:{fontSize:13,color:T.n600}},p.clinician),
+              this.bdg(sl[p.status]||p.status,sm[p.status]||'neutral'),
+              e('button',{onClick:(ev)=>{ev.stopPropagation();this.setState({screen:'patient-profile',drawer:p.id})},style:{fontSize:12,fontWeight:600,color:T.b700,background:'none',border:'none',cursor:'pointer',padding:0,fontFamily:"'Source Sans 3',sans-serif"}},'Open profile')
+            )
+          )
+        )
+      ),
+      drawer?e('div',{style:{width:360,flexShrink:0,background:T.n0,borderLeft:`1px solid ${T.n200}`,display:'flex',flexDirection:'column',overflow:'hidden'}},
+        e('div',{style:{padding:'16px 18px',borderBottom:`1px solid ${T.n200}`,display:'flex',justifyContent:'space-between',alignItems:'center',flexShrink:0}},
+          e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},'Patient context'),
+          e('button',{onClick:()=>this.setState({drawer:null}),style:{background:'none',border:'none',cursor:'pointer',padding:4}},this.ic('x',16,T.n400))
+        ),
+        e('div',{style:{flex:1,overflowY:'auto',padding:'16px 18px'}},
+          e('div',{style:{display:'flex',gap:12,alignItems:'flex-start',marginBottom:16}},
+            e('div',{style:{width:44,height:44,borderRadius:'50%',background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},e('span',{style:{fontSize:15,fontWeight:700,color:T.b200}},'MI')),
+            e('div',null,
+              e('div',{style:{fontSize:16,fontWeight:700,color:T.n900,marginBottom:3}},'Meera Iyer'),
+              e('div',{style:{fontSize:13,color:T.n500}},'42 years · Female · B+'),
+              e('div',{style:{fontSize:12,color:T.n400,fontFamily:'monospace'}},'CP-10482')
+            )
+          ),
+          e('div',{style:{padding:'9px 12px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:5,marginBottom:12,display:'flex',gap:8,alignItems:'center'}},
+            this.ic('shield',14,T.wa600),
+            e('span',{style:{fontSize:13,fontWeight:700,color:T.wa700}},'Allergy: Penicillin'),
+            e('span',{style:{fontSize:12,color:T.wa600}},'— Anaphylaxis risk')
+          ),
+          e('div',{style:{marginBottom:14}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:8}},'Active conditions'),
+            ...['Hypertension','Type 2 diabetes'].map(c=>e('div',{key:c,style:{display:'flex',alignItems:'center',gap:6,marginBottom:5}},e('div',{style:{width:6,height:6,borderRadius:'50%',background:T.wa600,flexShrink:0}}),e('span',{style:{fontSize:13,color:T.n700}},c)))
+          ),
+          e('div',{style:{marginBottom:14}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:8}},'Clinical warnings'),
+            e('div',{style:{padding:'8px 12px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:4,fontSize:13,color:T.wa700}},'Glucose 142 mg/dL · above range · review before 09:00')
+          ),
+          e('div',{style:{marginBottom:14}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:8}},'Upcoming appointment'),
+            e('div',{style:{fontSize:13,color:T.n700}},'Today at 09:00 · Diabetes & HTN follow-up')
+          ),
+          e('div',{style:{marginBottom:16}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:8}},'Last contact'),
+            e('div',{style:{fontSize:13,color:T.n500}},'14 Jan 2026 · Nurse Priya')
+          ),
+          e('button',{onClick:()=>this.setState({screen:'patient-profile'}),style:{width:'100%',padding:'9px',background:T.b700,color:T.n0,border:'none',borderRadius:5,fontSize:14,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},'Open patient profile')
+        )
+      ):null
+    );
+  };
+
+  // ─── PATIENT PROFILE ─────────────────────────────────────────
+
+  rProfile = () => {
+    const T=this.T; const e=React.createElement; const {ptab}=this.state;
+    const tabs=['overview','clinical','medications','documents','messages','timeline'];
+    const tl={overview:'Overview',clinical:'Clinical',medications:'Medications',documents:'Documents',messages:'Messages',timeline:'Timeline'};
+
+    return e('div',{style:{background:T.n50}},
+      // Sticky header
+      e('div',{style:{background:T.n0,borderBottom:`1px solid ${T.n200}`,padding:'0 32px',position:'sticky',top:0,zIndex:10}},
+        e('div',{style:{padding:'14px 0 0',display:'flex',gap:16,alignItems:'flex-start'}},
+          e('div',{style:{width:46,height:46,borderRadius:'50%',background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},e('span',{style:{fontSize:15,fontWeight:700,color:T.b200}},'MI')),
+          e('div',{style:{flex:1}},
+            e('div',{style:{display:'flex',alignItems:'baseline',gap:12,marginBottom:4}},
+              e('h1',{style:{margin:0,fontSize:20,fontWeight:700,color:T.n900,letterSpacing:'-.01em'}},'Meera Iyer'),
+              e('span',{style:{fontSize:14,color:T.n500}},'42 years · Female · B+'),
+              e('span',{style:{fontSize:12,color:T.n400,fontFamily:'monospace'}},'CP-10482'),
+              e('span',{style:{fontSize:13,color:T.n500}},'· Outpatient Clinic, General Medicine')
+            ),
+            e('div',{style:{display:'flex',alignItems:'center',gap:10}},
+              e('div',{style:{display:'inline-flex',alignItems:'center',gap:5,padding:'3px 10px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:4}},
+                this.ic('shield',13,T.wa600),e('span',{style:{fontSize:12,fontWeight:700,color:T.wa700}},'Allergy: Penicillin'),e('span',{style:{fontSize:12,color:T.wa600}},'— Anaphylaxis risk')
+              ),
+              e('div',{style:{display:'inline-flex',alignItems:'center',gap:5,padding:'3px 10px',background:T.cr50,border:`1px solid ${T.cr200}`,borderRadius:4}},
+                e('span',{style:{fontSize:12,fontWeight:700,color:T.cr700}},'Needs review before consultation')
+              )
+            )
+          ),
+          e('div',{style:{display:'flex',gap:8,flexShrink:0}},
+            e('button',{style:{padding:'7px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:13,fontWeight:600,color:T.n700,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif",display:'flex',alignItems:'center',gap:5}},this.ic('edit',14,T.n500),'Add note'),
+            e('button',{onClick:()=>this.setState({screen:'messages'}),style:{padding:'7px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:13,fontWeight:600,color:T.n700,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif",display:'flex',alignItems:'center',gap:5}},this.ic('messageSquare',14,T.n500),'Message'),
+            e('button',{onClick:()=>this.setState({screen:'appointments'}),style:{padding:'7px 16px',background:T.b700,border:'none',borderRadius:5,fontSize:13,fontWeight:600,color:T.n0,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},'Review & begin consultation')
+          )
+        ),
+        e('div',{style:{display:'flex',marginTop:10}},
+          ...tabs.map(tab=>e('button',{key:tab,onClick:()=>this.setState({ptab:tab}),style:{padding:'8px 14px',background:'none',border:'none',cursor:'pointer',fontSize:13,fontWeight:tab===ptab?600:400,color:tab===ptab?T.b700:T.n600,borderBottom:tab===ptab?`2px solid ${T.b700}`:'2px solid transparent',marginBottom:-1,fontFamily:"'Source Sans 3',sans-serif"}},tl[tab]))
+        )
+      ),
+
+      e('div',{style:{padding:'20px 32px 32px'}},
+        // Changes since review banner
+        e('div',{style:{background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:6,padding:'12px 16px',marginBottom:20,display:'flex',gap:12,alignItems:'flex-start'}},
+          this.ic('trendingUp',16,T.wa600),
+          e('div',null,
+            e('div',{style:{fontSize:13,fontWeight:700,color:T.wa700,marginBottom:6}},'Changes since previous review (14 Jan 2026)'),
+            e('div',{style:{display:'flex',gap:24,flexWrap:'wrap'}},
+              ...[['Fasting glucose','118 → 142 mg/dL','↑ +24 mg/dL'],['Blood pressure','140/88 → 145/90 mmHg','↑ Stage 2'],['Metformin','1000 mg dose updated','5 days ago']].map(([k,v,c])=>
+                e('div',{key:k},e('div',{style:{fontSize:11,color:T.wa600,fontWeight:600,textTransform:'uppercase',letterSpacing:'.04em',marginBottom:2}},k),e('div',{style:{fontSize:13,fontWeight:700,color:T.wa700,marginBottom:1}},v),e('div',{style:{fontSize:12,color:T.wa600}},c))
+              )
+            )
+          )
+        ),
+
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 300px',gap:20}},
+          // Main: Clinical trends
+          e('div',null,
+            // Glucose chart
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px',marginBottom:16}},
+              e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:12}},
+                e('div',null,
+                  e('div',{style:{fontSize:14,fontWeight:700,color:T.n900,marginBottom:2}},'Fasting glucose'),
+                  e('div',{style:{fontSize:12,color:T.n400}},'Source: Central Laboratory · Updated today 07:45')
+                ),
+                e('div',{style:{textAlign:'right'}},
+                  e('div',{style:{fontSize:24,fontWeight:700,color:T.wa700,fontVariantNumeric:'tabular-nums',lineHeight:1}},'142 mg/dL'),
+                  e('div',{style:{fontSize:12,color:T.wa600}},'↑ +24 from 118 (+20%)')
+                )
+              ),
+              this.glucoseChart(),
+              e('div',{style:{fontSize:12,color:T.n500,marginTop:8,padding:'8px 10px',background:T.n50,borderRadius:4,border:`1px solid ${T.n200}`}},'Screen-reader summary: Fasting glucose has increased over 6 months from 115 to 142 mg/dL. Today\'s reading of 142 mg/dL is above the management target of 80–130 mg/dL.')
+            ),
+
+            // BP section
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px',marginBottom:16}},
+              e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:12}},
+                e('div',null,
+                  e('div',{style:{fontSize:14,fontWeight:700,color:T.n900,marginBottom:2}},'Blood pressure'),
+                  e('div',{style:{fontSize:12,color:T.n400}},'Source: Nursing station · Updated today 07:50')
+                ),
+                e('div',{style:{textAlign:'right'}},
+                  e('div',{style:{fontSize:24,fontWeight:700,color:T.wa700,fontVariantNumeric:'tabular-nums',lineHeight:1}},'145/90 mmHg'),
+                  e('div',{style:{fontSize:12,color:T.wa600}},'Stage 2 HTN · ↑ from 140/88')
+                )
+              ),
+              e('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8}},
+                ...[{l:'Systolic',v:'145',ref:'<130 mmHg',change:'+5'},{l:'Diastolic',v:'90',ref:'<80 mmHg',change:'+2'},{l:'Previous systolic',v:'140',ref:'',change:''},{l:'Previous diastolic',v:'88',ref:'',change:''}].map(m=>
+                  e('div',{key:m.l,style:{background:m.change?T.wa50:T.n50,border:`1px solid ${m.change?T.wa200:T.n200}`,borderRadius:5,padding:'10px 12px'}},
+                    e('div',{style:{fontSize:10,fontWeight:600,color:m.change?T.wa600:T.n500,marginBottom:3,textTransform:'uppercase',letterSpacing:'.04em'}},m.l),
+                    e('div',{style:{fontSize:20,fontWeight:700,color:m.change?T.wa700:T.n700,fontVariantNumeric:'tabular-nums',lineHeight:1}},m.v),
+                    m.ref?e('div',{style:{fontSize:10,color:T.wa600,marginTop:2}},`Ref: ${m.ref}`):null,
+                    m.change?e('div',{style:{fontSize:10,color:T.wa600,marginTop:2}},`↑ ${m.change} mmHg`):null
+                  )
+                )
+              )
+            ),
+
+            // Clinical timeline (brief)
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px'}},
+              e('div',{style:{fontSize:14,fontWeight:700,color:T.n900,marginBottom:14}},'Clinical timeline'),
+              ...[
+                {time:'Today 07:45',event:'Lab results received','detail':'Fasting glucose 142, HbA1c 7.4%',type:'critical'},
+                {time:'5 days ago',event:'Medication update','detail':'Metformin dose increased to 1000 mg BD','type':'info'},
+                {time:'14 Jan 2026',event:'Outpatient consultation','detail':'Diabetes & HTN review · Dr. Ananya Rao','type':'neutral'},
+                {time:'10 Jan 2026',event:'BP reading','detail':'140/88 mmHg · Stage 2 HTN confirmed','type':'warning'},
+              ].map((ev,i)=>
+                e('div',{key:i,style:{display:'flex',gap:12,marginBottom:12,paddingBottom:i<3?12:0,borderBottom:i<3?`1px solid ${T.n100}`:'none'}},
+                  e('div',{style:{marginTop:4,width:8,height:8,borderRadius:'50%',background:ev.type==='critical'?T.cr600:ev.type==='warning'?T.wa600:ev.type==='info'?T.in600:T.n300,flexShrink:0}}),
+                  e('div',null,
+                    e('div',{style:{fontSize:13,fontWeight:600,color:T.n800,marginBottom:2}},ev.event),
+                    e('div',{style:{fontSize:12,color:T.n500,marginBottom:2}},ev.detail),
+                    e('div',{style:{fontSize:11,color:T.n400}},ev.time)
+                  )
+                )
+              )
+            )
+          ),
+
+          // Side column
+          e('div',{style:{display:'flex',flexDirection:'column',gap:14}},
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'14px 16px'}},
+              e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:10}},'Active conditions'),
+              ...['Hypertension (Essential)','Type 2 Diabetes Mellitus','Dyslipidaemia'].map(c=>e('div',{key:c,style:{display:'flex',gap:6,alignItems:'center',marginBottom:8}},e('div',{style:{width:6,height:6,borderRadius:'50%',background:T.wa600,flexShrink:0}}),e('span',{style:{fontSize:13,color:T.n800}},c)))
+            ),
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'14px 16px'}},
+              e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:10}},'Current medications'),
+              ...[{m:'Metformin',d:'1000 mg · BD',note:'Updated 5 days ago'},{m:'Amlodipine',d:'5 mg · OD',note:''},{m:'Losartan',d:'50 mg · OD',note:''}].map(({m,d,note})=>
+                e('div',{key:m,style:{marginBottom:9,paddingBottom:9,borderBottom:`1px solid ${T.n100}`}},
+                  e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center'}},
+                    e('div',null,e('div',{style:{fontSize:13,fontWeight:600,color:T.n900}},m),e('div',{style:{fontSize:12,color:T.n500}},d)),
+                    note?e('span',{style:{fontSize:10,fontWeight:700,color:T.in700,background:T.in50,padding:'1px 6px',borderRadius:3,border:`1px solid ${T.in200}`}},'Updated'):null
+                  )
+                )
+              )
+            ),
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'14px 16px'}},
+              e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:10}},'Care team'),
+              ...[{n:'Dr. Ananya Rao',r:'Attending Physician',av:true},{n:'Nurse Priya',r:'Assigned Nurse',av:true},{n:'Dr. V. Patel',r:'Consulting — Cardiology',av:false}].map(m=>
+                e('div',{key:m.n,style:{display:'flex',gap:9,marginBottom:10}},
+                  e('div',{style:{width:28,height:28,borderRadius:'50%',background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,opacity:m.av?1:.5}},e('span',{style:{fontSize:10,fontWeight:700,color:T.b200}},m.n.split(' ').map(x=>x[0]).slice(0,2).join(''))),
+                  e('div',null,e('div',{style:{fontSize:12,fontWeight:600,color:T.n900}},m.n),e('div',{style:{fontSize:11,color:T.n500}},m.r))
+                )
+              )
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── APPOINTMENTS ─────────────────────────────────────────────
+
+  rAppointments = () => {
+    const T=this.T; const e=React.createElement;
+    const {drawer,flowStates}=this.state;
+    const appts=[
+      {id:'CP-10482',time:'09:00',name:'Meera Iyer',age:'42F',visit:'Diabetes & HTN follow-up',status:'checked-in',wait:'Ready',room:'OPD 3',prep:'⚠ Review required',clinician:'Dr. Ananya Rao'},
+      {id:'CP-10221',time:'09:30',name:'Arjun Nair',age:'34M',visit:'General consultation',status:'waiting',wait:'22m',room:'Pending',prep:'Vitals done',clinician:'Dr. Ananya Rao'},
+      {id:'CP-10301',time:'10:00',name:'Kavya Menon',age:'29F',visit:'Thyroid follow-up',status:'scheduled',wait:'—',room:'—',prep:'Report available',clinician:'Dr. Ananya Rao'},
+      {id:'CP-10118',time:'10:30',name:'Rohan Das',age:'52M',visit:'Prescription review',status:'pending',wait:'—',room:'—',prep:'Prescription pending',clinician:'Nurse Priya'},
+    ];
+    const sm={'checked-in':'info','waiting':'warning','scheduled':'neutral','pending':'neutral','in-consultation':'brand','completed':'success'};
+    const sl={'checked-in':'Checked in','waiting':'Waiting','scheduled':'Scheduled','pending':'Pending','in-consultation':'In consultation','completed':'Completed'};
+    const cur=flowStates['CP-10482'];
+
+    return e('div',{style:{display:'flex',height:'100%',overflow:'hidden'}},
+      e('div',{style:{flex:1,padding:'24px 32px',overflowY:'auto',background:T.n50}},
+        e('div',{style:{marginBottom:16}},
+          e('h1',{style:{margin:'0 0 3px',fontSize:22,fontWeight:700,color:T.n900,letterSpacing:'-.02em'}},'Appointments and patient flow'),
+          e('p',{style:{margin:0,fontSize:13,color:T.n500}},'Live outpatient queue and consultation readiness')
+        ),
+
+        // Queue health strip
+        e('div',{style:{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:8,marginBottom:16}},
+          ...[{l:'Waiting',v:'8',c:T.wa700,bg:T.wa50,b:T.wa200},{l:'Delayed',v:'2',c:T.cr700,bg:T.cr50,b:T.cr200},{l:'Longest wait',v:'22m',c:T.wa700,bg:T.wa50,b:T.wa200},{l:'Capacity',v:'90%',c:T.wa700,bg:T.wa50,b:T.wa200},{l:'No-shows',v:'2',c:T.n700,bg:T.n0,b:T.n200}].map(s=>
+            e('div',{key:s.l,style:{padding:'10px 14px',background:s.bg,border:`1px solid ${s.b}`,borderRadius:5,textAlign:'center'}},
+              e('div',{style:{fontSize:22,fontWeight:700,color:s.c,fontVariantNumeric:'tabular-nums',lineHeight:1,marginBottom:3}},s.v),
+              e('div',{style:{fontSize:11,color:s.c,opacity:.8}},s.l)
+            )
+          )
+        ),
+
+        // Filter bar
+        e('div',{style:{display:'flex',gap:8,marginBottom:14,flexWrap:'wrap',alignItems:'center'}},
+          e('div',{style:{display:'flex',alignItems:'center',gap:8,padding:'7px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,flex:1,maxWidth:280}},
+            this.ic('search',14,T.n400),e('input',{type:'text',placeholder:'Search appointments…',style:{border:'none',outline:'none',fontSize:13,color:T.n700,background:'transparent',width:'100%',fontFamily:"'Source Sans 3',sans-serif"}})
+          ),
+          ...['All','Checked in','Waiting','In consultation','Completed'].map(f=>e('button',{key:f,style:{padding:'6px 12px',background:f==='All'?T.b700:T.n0,border:`1px solid ${f==='All'?T.b700:T.n200}`,borderRadius:5,fontSize:12,fontWeight:600,color:f==='All'?T.n0:T.n600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},f))
+        ),
+
+        // Table
+        e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden'}},
+          e('div',{style:{display:'grid',gridTemplateColumns:'80px 1fr 1fr 120px 60px 72px 140px 120px 120px',padding:'8px 16px',background:T.n50,borderBottom:`1px solid ${T.n200}`,gap:10}},
+            ...['Time','Patient','Visit','Status','Wait','Room','Preparation','Clinician',''].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+          ),
+          ...appts.map((a,i)=>{
+            const fs=flowStates[a.id]||a.status;
+            return e('div',{key:a.id,onClick:()=>this.setState({drawer:a.id}),style:{display:'grid',gridTemplateColumns:'80px 1fr 1fr 120px 60px 72px 140px 120px 120px',padding:'11px 16px',borderBottom:i<appts.length-1?`1px solid ${T.n100}`:'none',gap:10,alignItems:'center',cursor:'pointer',background:a.id===drawer?T.b50:T.n0}},
+              e('span',{style:{fontSize:14,fontWeight:700,color:T.n800,fontVariantNumeric:'tabular-nums'}},a.time),
+              e('div',null,e('div',{style:{fontSize:14,fontWeight:600,color:T.n900}},a.name),e('span',{style:{fontSize:12,color:T.n400}},a.age)),
+              e('span',{style:{fontSize:13,color:T.n600,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}},a.visit),
+              this.bdg(sl[fs]||fs,sm[fs]||'neutral'),
+              e('span',{style:{fontSize:13,fontWeight:a.wait!=='—'&&a.wait!=='Ready'?600:400,color:a.wait==='22m'?T.wa700:T.n600}},a.wait),
+              e('span',{style:{fontSize:13,color:T.n500}},a.room),
+              e('span',{style:{fontSize:12,color:a.prep.includes('⚠')?T.wa700:T.n500,fontWeight:a.prep.includes('⚠')?600:400}},a.prep),
+              e('span',{style:{fontSize:12,color:T.n600}},a.clinician),
+              e('button',{onClick:(ev)=>{ev.stopPropagation();a.id==='CP-10482'?this.setState({screen:'patient-profile'}):null},style:{padding:'5px 12px',background:fs==='checked-in'?T.b700:T.n0,color:fs==='checked-in'?T.n0:T.n700,border:`1px solid ${fs==='checked-in'?T.b700:T.n200}`,borderRadius:5,fontSize:12,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif",whiteSpace:'nowrap'}},fs==='checked-in'?'Begin consult':'View')
+            );
+          })
+        )
+      ),
+
+      // Appointment drawer
+      drawer?e('div',{style:{width:380,flexShrink:0,background:T.n0,borderLeft:`1px solid ${T.n200}`,display:'flex',flexDirection:'column',overflow:'hidden'}},
+        e('div',{style:{padding:'14px 18px',borderBottom:`1px solid ${T.n200}`,display:'flex',justifyContent:'space-between',alignItems:'center',flexShrink:0}},
+          e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},'Meera Iyer — 09:00'),
+          e('button',{onClick:()=>this.setState({drawer:null}),style:{background:'none',border:'none',cursor:'pointer',padding:4}},this.ic('x',16,T.n400))
+        ),
+        e('div',{style:{flex:1,overflowY:'auto',padding:'16px 18px'}},
+          // Identity
+          e('div',{style:{display:'flex',gap:10,marginBottom:14}},
+            e('div',{style:{width:40,height:40,borderRadius:'50%',background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},e('span',{style:{fontSize:13,fontWeight:700,color:T.b200}},'MI')),
+            e('div',null,e('div',{style:{fontSize:14,fontWeight:700,color:T.n900}},'Meera Iyer'),e('div',{style:{fontSize:12,color:T.n500}},'42F · CP-10482 · B+'))
+          ),
+          e('div',{style:{padding:'8px 12px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:5,marginBottom:14,display:'flex',gap:7,alignItems:'center'}},
+            this.ic('shield',13,T.wa600),e('span',{style:{fontSize:12,fontWeight:700,color:T.wa700}},'Allergy: Penicillin — Anaphylaxis risk')
+          ),
+
+          // Visit reason
+          e('div',{style:{marginBottom:14}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:7}},'Visit reason'),
+            e('div',{style:{fontSize:14,color:T.n800}},'Diabetes and hypertension follow-up')
+          ),
+
+          // Clinical preparation
+          e('div',{style:{marginBottom:14,padding:'12px 14px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:5}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.wa700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:7}},'Clinical warnings'),
+            e('div',{style:{fontSize:13,fontWeight:600,color:T.wa700,marginBottom:3}},'Fasting glucose: 142 mg/dL (↑ from 118)'),
+            e('div',{style:{fontSize:13,color:T.wa700}},'Blood pressure: 145/90 mmHg (↑ from 140/88)')
+          ),
+
+          // Preparation checklist
+          e('div',{style:{marginBottom:14}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:8}},'Preparation checklist'),
+            ...[{t:'Glucose result reviewed',done:false},{t:'BP recorded',done:true},{t:'Weight recorded',done:true},{t:'Allergy confirmed',done:true},{t:'Medication list current',done:true}].map(it=>
+              e('div',{key:it.t,style:{display:'flex',gap:8,alignItems:'center',marginBottom:7}},
+                e('div',{style:{width:18,height:18,borderRadius:4,background:it.done?T.su600:T.n100,border:`1.5px solid ${it.done?T.su600:T.n300}`,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},
+                  it.done?this.ic('check',11,T.n0):null
+                ),
+                e('span',{style:{fontSize:13,color:it.done?T.n600:T.cr700,fontWeight:it.done?400:600,textDecoration:it.done?'line-through':'none'}},it.t)
+              )
+            )
+          ),
+
+          // Flow timeline
+          e('div',{style:{marginBottom:16}},
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:8}},'Flow timeline'),
+            e('div',{style:{display:'flex',gap:0,alignItems:'center'}},
+              ...['Scheduled','Checked in','Consultation','Discharge'].map((s,i,arr)=>[
+                e('div',{key:s,style:{flex:1,textAlign:'center'}},
+                  e('div',{style:{width:28,height:28,borderRadius:'50%',background:i<=1?T.b700:T.n100,border:`2px solid ${i<=1?T.b700:T.n200}`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 4px'}},
+                    i<=1?this.ic('check',13,T.n0):e('span',{style:{fontSize:10,color:T.n400}},i+1)
+                  ),
+                  e('div',{style:{fontSize:10,color:i<=1?T.b700:T.n400,fontWeight:i===1?600:400}},s)
+                ),
+                i<arr.length-1?e('div',{key:s+'l',style:{width:20,height:2,background:i<1?T.b700:T.n200,marginBottom:18,flexShrink:0}}):null
+              ]).flat().filter(Boolean)
+            )
+          ),
+
+          e('button',{onClick:()=>this.setState({screen:'patient-profile',flowStates:{...this.state.flowStates,'CP-10482':'in-consultation'}}),style:{width:'100%',padding:'10px',background:T.b700,color:T.n0,border:'none',borderRadius:5,fontSize:14,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},'Review and begin consultation')
+        )
+      ):null
+    );
+  };
+
+  // ─── MESSAGES ─────────────────────────────────────────────────
+
+  rMessages = () => {
+    const T=this.T; const e=React.createElement;
+    const {msgThread,msgState,msgComposer}=this.state;
+    const threads=[
+      {id:'meera-glucose',from:'Nurse Priya',pt:'Meera Iyer',sub:'Abnormal glucose result — review before 09:00',t:'07:52',unread:true,urgent:true,state:'new'},
+      {id:'rohan-rx',from:'Nurse Priya',pt:'Rohan Das',sub:'Prescription approval needed — Lisinopril 10mg',t:'08:10',unread:true,urgent:false,state:'pending'},
+      {id:'kavya-report',from:'Lab System',pt:'Kavya Menon',sub:'Thyroid panel results available',t:'08:22',unread:false,urgent:false,state:'new'},
+      {id:'handover-msg',from:'Dr. Preethi Nair',pt:'Multiple patients',sub:'Night shift handover — 3 tasks pending',t:'07:02',unread:false,urgent:false,state:'read'},
+    ];
+    const active=threads.find(t=>t.id===msgThread)||threads[0];
+    const acked=msgState==='acknowledged'||msgState==='resolved';
+
+    return e('div',{style:{display:'flex',height:'100%',overflow:'hidden',background:T.n50}},
+      // Col 1: Inbox nav
+      e('div',{style:{width:220,flexShrink:0,background:T.n0,borderRight:`1px solid ${T.n200}`,overflow:'hidden',display:'flex',flexDirection:'column'}},
+        e('div',{style:{padding:'14px 14px 10px',borderBottom:`1px solid ${T.n200}`,display:'flex',justifyContent:'space-between',alignItems:'center'}},
+          e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},'Messages'),
+          e('button',{style:{background:'none',border:'none',cursor:'pointer',padding:4}},this.ic('plus',16,T.b700))
+        ),
+        e('div',{style:{flex:1,overflowY:'auto',padding:'8px 8px'}},
+          ...[{l:'Needs action',ic:'zap',count:2},{l:'Assigned to me',ic:'user',count:3},{l:'Unread',ic:'messageSquare',count:2},{},{l:'Patients',ic:'users'},{l:'Care team',ic:'activity'},{l:'Labs',ic:'clipboard'},{l:'Resolved',ic:'checkCircle'}].map((item,i)=>
+            !item.l?e('div',{key:i,style:{height:1,background:T.n200,margin:'8px 0'}}):
+            e('div',{key:item.l,style:{display:'flex',alignItems:'center',gap:8,padding:'7px 10px',borderRadius:4,cursor:'pointer',marginBottom:1}},
+              this.ic(item.ic||'messageSquare',14,T.n500),
+              e('span',{style:{flex:1,fontSize:13,color:T.n700}},item.l),
+              item.count?e('span',{style:{fontSize:11,fontWeight:700,color:T.n0,background:T.b600,padding:'1px 7px',borderRadius:10}},item.count):null
+            )
+          )
+        )
+      ),
+
+      // Col 2: Thread list
+      e('div',{style:{width:320,flexShrink:0,background:T.n25,borderRight:`1px solid ${T.n200}`,display:'flex',flexDirection:'column',overflow:'hidden'}},
+        e('div',{style:{padding:'12px 14px',borderBottom:`1px solid ${T.n200}`,display:'flex',gap:8}},
+          e('div',{style:{flex:1,display:'flex',alignItems:'center',gap:7,padding:'6px 10px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5}},
+            this.ic('search',13,T.n400),e('span',{style:{fontSize:12,color:T.n400}},'Search messages…')
+          )
+        ),
+        e('div',{style:{flex:1,overflowY:'auto'}},
+          ...threads.map(t=>
+            e('div',{key:t.id,onClick:()=>this.setState({msgThread:t.id}),style:{padding:'12px 14px',borderBottom:`1px solid ${T.n200}`,cursor:'pointer',background:t.id===msgThread?T.b50:T.n0,borderLeft:t.id===msgThread?`3px solid ${T.b700}`:'3px solid transparent'}},
+              e('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:3}},
+                e('span',{style:{fontSize:13,fontWeight:t.unread?700:500,color:T.n900}},t.from),
+                e('div',{style:{display:'flex',alignItems:'center',gap:5}},
+                  e('span',{style:{fontSize:11,color:T.n400}},t.t),
+                  t.unread?e('div',{style:{width:7,height:7,borderRadius:'50%',background:T.b700}}):null
+                )
+              ),
+              e('div',{style:{fontSize:13,fontWeight:t.unread?600:400,color:T.n700,marginBottom:2,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}},t.sub),
+              e('div',{style:{display:'flex',gap:6,alignItems:'center'}},
+                this.ic('user',11,T.n400),
+                e('span',{style:{fontSize:11,color:T.n400}},t.pt),
+                t.urgent?e('span',{style:{marginLeft:4,fontSize:10,fontWeight:700,color:T.cr700,background:T.cr50,border:`1px solid ${T.cr200}`,padding:'1px 5px',borderRadius:3}},'Urgent'):null
+              )
+            )
+          )
+        )
+      ),
+
+      // Col 3: Active conversation
+      e('div',{style:{flex:1,display:'flex',flexDirection:'column',overflow:'hidden',background:T.n0}},
+        // Thread header
+        e('div',{style:{padding:'14px 20px',borderBottom:`1px solid ${T.n200}`,flexShrink:0}},
+          e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:8}},
+            e('div',null,
+              e('div',{style:{fontSize:15,fontWeight:700,color:T.n900,marginBottom:5}},'Meera Iyer · Abnormal glucose result'),
+              e('div',{style:{display:'flex',gap:8,alignItems:'center'}},
+                this.sev('high'),
+                e('div',{style:{width:1,height:14,background:T.n200}}),
+                this.bdg(acked?'Acknowledged':'New',acked?'neutral':'brand'),
+                e('div',{style:{width:1,height:14,background:T.n200}}),
+                e('div',{style:{display:'flex',alignItems:'center',gap:4}},this.ic('user',13,T.n400),e('span',{style:{fontSize:12,color:T.n600}},'Dr. Ananya Rao'))
+              )
+            ),
+            e('div',{style:{display:'flex',gap:6}},
+              e('button',{onClick:()=>this.setState({msgState:'acknowledged'}),style:{padding:'6px 12px',background:acked?T.su50:T.n0,border:`1px solid ${acked?T.su200:T.n200}`,borderRadius:5,fontSize:12,fontWeight:600,cursor:'pointer',color:acked?T.su700:T.n700,fontFamily:"'Source Sans 3',sans-serif",display:'flex',alignItems:'center',gap:5}},acked?this.ic('check',13,T.su700):null,acked?'Acknowledged':'Acknowledge'),
+              e('button',{style:{padding:'6px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:12,fontWeight:600,cursor:'pointer',color:T.n700,fontFamily:"'Source Sans 3',sans-serif"}},'Create task'),
+              e('button',{style:{padding:'6px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,fontSize:12,fontWeight:600,cursor:'pointer',color:T.n700,fontFamily:"'Source Sans 3',sans-serif"}},'Resolve'),
+              e('button',{style:{padding:'6px 8px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,cursor:'pointer'}},this.ic('moreHorizontal',14,T.n500))
+            )
+          )
+        ),
+
+        // Messages
+        e('div',{style:{flex:1,overflowY:'auto',padding:'20px',background:T.n25}},
+          e('div',{style:{maxWidth:640,margin:'0 auto'}},
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 18px',marginBottom:14}},
+              e('div',{style:{display:'flex',gap:10,marginBottom:12}},
+                e('div',{style:{width:32,height:32,borderRadius:'50%',background:T.b600,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},e('span',{style:{fontSize:11,fontWeight:700,color:T.b200}},'NP')),
+                e('div',null,
+                  e('div',{style:{fontSize:13,fontWeight:600,color:T.n900}},'Nurse Priya'),
+                  e('div',{style:{fontSize:12,color:T.n400}},'Today 07:52 · Secure clinical message')
+                )
+              ),
+              e('p',{style:{margin:'0 0 12px',fontSize:14,color:T.n800,lineHeight:'21px'}},'Meera Iyer\'s fasting glucose returned at 142 mg/dL, increased from 118 mg/dL. Please review the result before her 09:00 follow-up. She is already checked in and waiting in OPD 3.'),
+              e('div',{style:{background:T.in50,border:`1px solid ${T.in200}`,borderRadius:5,padding:'10px 14px',display:'flex',gap:10,alignItems:'center'}},
+                this.ic('download',14,T.in600),
+                e('div',null,
+                  e('div',{style:{fontSize:13,fontWeight:600,color:T.in700}},'Comprehensive Metabolic Panel'),
+                  e('div',{style:{fontSize:12,color:T.in600}},'Lab result · Collected today 07:45 · PDF, 84 KB')
+                ),
+                e('button',{style:{marginLeft:'auto',padding:'5px 12px',background:T.in600,color:T.n0,border:'none',borderRadius:4,fontSize:12,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},'View report')
+              )
+            )
+          )
+        ),
+
+        // Composer
+        e('div',{style:{flexShrink:0,borderTop:`1px solid ${T.n200}`,background:T.n0}},
+          e('div',{style:{display:'flex',gap:0,borderBottom:`1px solid ${T.n200}`,padding:'0 16px'}},
+            ...['reply','internal','patient'].map(mode=>{
+              const ls={reply:'Reply to Nurse Priya',internal:'Internal note',patient:'Patient message'};
+              const active=msgComposer===mode;
+              return e('button',{key:mode,onClick:()=>this.setState({msgComposer:mode}),style:{padding:'10px 14px',background:'none',border:'none',cursor:'pointer',fontSize:12,fontWeight:active?600:400,color:active?T.b700:T.n500,borderBottom:active?`2px solid ${T.b700}`:'2px solid transparent',fontFamily:"'Source Sans 3',sans-serif"}},ls[mode]);
+            })
+          ),
+          msgComposer==='patient'?e('div',{style:{padding:'8px 16px',background:'#FFFBEB',borderBottom:`1px solid ${T.wa200}`,display:'flex',gap:7,alignItems:'center'}},this.ic('alertTriangle',14,T.wa600),e('span',{style:{fontSize:12,color:T.wa700,fontWeight:500}},'This message will be sent to the patient. Review carefully before sending.')):
+          msgComposer==='internal'?e('div',{style:{padding:'8px 16px',background:T.in50,borderBottom:`1px solid ${T.in200}`,display:'flex',gap:7,alignItems:'center'}},this.ic('lock',14,T.in600),e('span',{style:{fontSize:12,color:T.in700}},'Internal note — visible to care team only, not to the patient.')):null,
+          e('div',{style:{padding:'12px 16px',display:'flex',gap:8,alignItems:'flex-end'}},
+            e('textarea',{rows:2,placeholder:msgComposer==='patient'?'Write a message to the patient…':msgComposer==='internal'?'Write an internal note for the care team…':'Reply to Nurse Priya…',style:{flex:1,padding:'8px 12px',border:`1px solid ${T.n300}`,borderRadius:5,fontSize:13,color:T.n800,resize:'none',fontFamily:"'Source Sans 3',sans-serif",background:msgComposer==='patient'?'#FFFEF5':T.n0}}),
+            e('button',{style:{padding:'9px 16px',background:T.b700,color:T.n0,border:'none',borderRadius:5,fontSize:13,fontWeight:600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif",display:'flex',alignItems:'center',gap:6,flexShrink:0}},this.ic('send',14,T.n0),'Send')
+          )
+        )
+      )
+    );
+  };
+
+  // ─── TASKS & HANDOVERS ────────────────────────────────────────
+
+  rTasks = () => {
+    const T=this.T; const e=React.createElement; const {taskStates}=this.state;
+    const grp=(label,count,tasks)=>e('div',{style:{marginBottom:20}},
+      e('div',{style:{display:'flex',alignItems:'center',gap:8,marginBottom:10}},
+        e('span',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.07em'}},label),
+        e('span',{style:{fontSize:11,color:T.n400}},`${count} task${count!==1?'s':''}`),
+      ),
+      e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden'}},
+        ...tasks.map((t,i)=>{
+          const done=taskStates[t.id]==='completed';
+          return e('div',{key:t.id,style:{display:'flex',gap:14,padding:'13px 16px',borderBottom:i<tasks.length-1?`1px solid ${T.n100}`:'none',alignItems:'flex-start',background:t.mine&&!done?T.b50:T.n0,opacity:done?.7:1}},
+            e('div',{style:{marginTop:5,width:8,height:8,borderRadius:'50%',background:t.prio==='critical'?T.cr600:t.prio==='high'?T.wa600:t.prio==='moderate'?T.in600:T.n300,flexShrink:0}}),
+            e('div',{style:{flex:1,minWidth:0}},
+              e('div',{style:{fontSize:14,color:T.n900,fontWeight:t.mine?600:400,marginBottom:4,textDecoration:done?'line-through':'none'}},t.task),
+              e('div',{style:{display:'flex',gap:8,flexWrap:'wrap',alignItems:'center'}},
+                e('span',{style:{fontSize:12,fontWeight:600,color:T.n700}},t.pt),
+                t.source?[e('span',{key:'d',style:{fontSize:12,color:T.n400}},'·'),e('span',{key:'s',style:{fontSize:12,color:T.n500}},t.source)]:null,
+                t.due?[e('span',{key:'dd',style:{fontSize:12,color:T.n400}},'·'),e('div',{key:'dv',style:{display:'inline-flex',alignItems:'center',gap:4}},this.ic('clock',12,t.overdue?T.cr600:T.n400),e('span',{style:{fontSize:12,fontWeight:t.overdue?600:400,color:t.overdue?T.cr700:T.n500}},t.due))]:null
+              )
+            ),
+            e('div',{style:{display:'flex',gap:6,flexShrink:0,alignItems:'center'}},
+              done?this.bdg('Completed','success'):this.bdg(t.status||'New',t.status==='Pending approval'?'warning':t.mine?'brand':'info'),
+              done?null:e('button',{onClick:()=>this.setState({taskStates:{...this.state.taskStates,[t.id]:'completed'}}),style:{padding:'5px 10px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:4,fontSize:11,fontWeight:600,color:T.n700,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},t.action||'Open')
+            )
+          );
+        })
+      )
+    );
+
+    return e('div',{style:{padding:'24px 32px',background:T.n50}},
+      e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14}},
+        e('div',null,
+          e('h1',{style:{margin:'0 0 3px',fontSize:22,fontWeight:700,color:T.n900,letterSpacing:'-.02em'}},'Tasks and handovers'),
+          e('div',{style:{display:'flex',gap:14}},
+            e('span',{style:{fontSize:13,color:T.n500}},'Shift handover · Generated 07:45'),
+            ...[[3,'completed',T.su700],[2,'continuing',T.in700],[1,'escalation',T.cr700]].map(([n,l,c])=>e('div',{key:l,style:{display:'flex',alignItems:'center',gap:5}},e('span',{style:{fontSize:13,fontWeight:700,color:c}},n),e('span',{style:{fontSize:13,color:T.n500}},l)))
+          )
+        )
+      ),
+      grp('Now',1,[{id:'review-glucose',task:'Review fasting glucose result before 09:00 consultation',pt:'Meera Iyer · CP-10482',source:'Lab Result #CMP-492',due:'Before 09:00 — due now',overdue:false,prio:'high',mine:true,status:'New',action:'Review now'}]),
+      grp('Due this shift',2,[
+        {id:'approve-rx',task:'Approve Lisinopril 10mg prescription refill',pt:'Rohan Das · CP-10118',source:'Requested by Nurse Priya',due:'By 09:15',overdue:false,prio:'moderate',mine:true,status:'Pending approval',action:'Review request'},
+        {id:'kavya-report',task:'Review new diagnostic report before consultation',pt:'Kavya Menon · CP-10301',source:'Lab system',due:'Before 10:00',overdue:false,prio:'routine',mine:true,status:'New',action:'Open report'},
+      ]),
+      grp('Handed over to me',3,[
+        {id:'ho1',task:'Review overnight blood panel and renal function',pt:'Arvind Menon · CP-10347',source:'Night shift · Dr. Preethi Nair',due:'Before 10:00',overdue:false,prio:'high',mine:false,status:'Handed over',action:'Acknowledge'},
+        {id:'ho2',task:'Confirm discharge plan and complete discharge summary',pt:'Sushila Devi · CP-10288',source:'Night shift · Dr. Preethi Nair',due:'Before 12:00',overdue:false,prio:'moderate',mine:false,status:'Handed over',action:'Acknowledge'},
+        {id:'ho3',task:'Follow up on cardiology consultation request',pt:'James Kurian · CP-10203',source:'Night shift · Dr. Preethi Nair',due:'Before 14:00',overdue:false,prio:'routine',mine:false,status:'Handed over',action:'Acknowledge'},
+      ])
+    );
+  };
+
+  // ─── MEDICAL RECORDS ──────────────────────────────────────────
+
+  rMedRecords = () => {
+    const T=this.T; const e=React.createElement; const {recordNav}=this.state;
+    const navItems=['Summary','Consultations','Diagnoses','Medications','Lab results','Imaging','Procedures','Documents','Audit history'];
+
+    return e('div',{style:{display:'flex',height:'100%',overflow:'hidden',background:T.n50}},
+      // Left nav
+      e('div',{style:{width:200,flexShrink:0,background:T.n0,borderRight:`1px solid ${T.n200}`,padding:'16px 8px',overflowY:'auto'}},
+        e('div',{style:{padding:'12px 10px',marginBottom:8}},
+          e('div',{style:{display:'flex',gap:10,alignItems:'center'}},
+            e('div',{style:{width:32,height:32,borderRadius:'50%',background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},e('span',{style:{fontSize:11,fontWeight:700,color:T.b200}},'MI')),
+            e('div',null,e('div',{style:{fontSize:13,fontWeight:700,color:T.n900}},'Meera Iyer'),e('div',{style:{fontSize:11,color:T.n400}},'CP-10482'))
+          )
+        ),
+        e('div',{style:{height:1,background:T.n200,marginBottom:8}}),
+        ...navItems.map(item=>
+          e('div',{key:item,onClick:()=>this.setState({recordNav:item.toLowerCase()}),style:{padding:'8px 10px',borderRadius:4,cursor:'pointer',marginBottom:1,background:recordNav===item.toLowerCase()?T.b50:T.n0,color:recordNav===item.toLowerCase()?T.b700:T.n700,fontSize:13,fontWeight:recordNav===item.toLowerCase()?600:400,display:'flex',alignItems:'center',justifyContent:'space-between'}},
+            item,
+            item==='Lab results'?e('span',{style:{fontSize:10,fontWeight:700,color:T.wa700,background:T.wa50,padding:'1px 6px',borderRadius:3,border:`1px solid ${T.wa200}`}},'New'):null
+          )
+        )
+      ),
+
+      // Main content
+      e('div',{style:{flex:1,padding:'24px 28px',overflowY:'auto'}},
+        e('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:16}},
+          e('div',null,
+            e('h1',{style:{margin:'0 0 3px',fontSize:20,fontWeight:700,color:T.n900}},'Medical Records'),
+            e('div',{style:{fontSize:13,color:T.n500}},'Meera Iyer · CP-10482 · Outpatient Clinic, General Medicine')
+          ),
+          e('div',{style:{padding:'6px 10px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:4,fontSize:12,fontWeight:600,color:T.wa700}},'2 new since previous review')
+        ),
+
+        // Lab results section
+        e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden',marginBottom:16}},
+          e('div',{style:{padding:'12px 18px',borderBottom:`1px solid ${T.n200}`,display:'flex',justifyContent:'space-between',alignItems:'center',background:T.n50}},
+            e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},'Lab results — Today, 12 Jun 2026'),
+            e('span',{style:{fontSize:12,color:T.in700,fontWeight:600,cursor:'pointer'}},'View full lab history')
+          ),
+          e('div',{style:{display:'grid',gridTemplateColumns:'1fr 80px 70px 120px 60px 80px 90px',padding:'8px 18px',background:T.n50,borderBottom:`1px solid ${T.n100}`,gap:10}},
+            ...['Test','Value','Unit','Reference','Trend','Time','Status'].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+          ),
+          ...[{t:'Fasting glucose',v:'142',u:'mg/dL',r:'70–100',tr:'up',time:'07:45',s:'High'},{t:'HbA1c',v:'7.4',u:'%',r:'<7.0',tr:'up',time:'07:45',s:'High'},{t:'Creatinine',v:'0.9',u:'mg/dL',r:'0.6–1.2',tr:'stable',time:'07:45',s:'Normal'},{t:'BUN',v:'18',u:'mg/dL',r:'7–25',tr:'stable',time:'07:45',s:'Normal'}].map((l,i)=>
+            e('div',{key:l.t,style:{display:'grid',gridTemplateColumns:'1fr 80px 70px 120px 60px 80px 90px',padding:'10px 18px',borderBottom:i<3?`1px solid ${T.n100}`:'none',gap:10,alignItems:'center'}},
+              e('span',{style:{fontSize:14,fontWeight:500,color:T.n900}},l.t),
+              e('span',{style:{fontSize:14,fontWeight:700,color:l.s==='High'?T.wa700:T.n900,fontVariantNumeric:'tabular-nums'}},l.v),
+              e('span',{style:{fontSize:13,color:T.n500}},l.u),
+              e('span',{style:{fontSize:12,color:T.n500,fontVariantNumeric:'tabular-nums'}},l.r),
+              e('span',{style:{display:'inline-flex',alignItems:'center'}},this.ic(l.tr==='up'?'arrowUp':l.tr==='down'?'arrowDown':'minus',14,l.tr==='up'?T.wa600:T.n400)),
+              e('span',{style:{fontSize:12,color:T.n400,fontVariantNumeric:'tabular-nums'}},l.time),
+              e('span',{style:{padding:'2px 8px',borderRadius:4,background:l.s==='High'?T.wa50:T.su50,color:l.s==='High'?T.wa700:T.su700,border:`1px solid ${l.s==='High'?T.wa200:T.su200}`,fontSize:12,fontWeight:600}},l.s)
+            )
+          )
+        ),
+
+        // Audit history
+        e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden'}},
+          e('div',{style:{padding:'12px 18px',borderBottom:`1px solid ${T.n200}`,background:T.n50}},
+            e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},'Audit history')
+          ),
+          e('div',{style:{display:'grid',gridTemplateColumns:'130px 1fr 1fr 1fr 150px',padding:'8px 18px',background:T.n50,borderBottom:`1px solid ${T.n100}`,gap:10}},
+            ...['Actor','Action','Previous state','New state','Date & time'].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+          ),
+          ...[
+            {actor:'Lab System',action:'Result received',prev:'Pending',next:'142 mg/dL',dt:'Today 07:45'},
+            {actor:'Dr. Ananya Rao',action:'Medication updated',prev:'Metformin 500mg',next:'Metformin 1000mg',dt:'5 days ago'},
+            {actor:'Nurse Priya',action:'Vitals recorded',prev:'—',next:'BP 145/90, Wt 68kg',dt:'Today 07:50'},
+          ].map((r,i)=>
+            e('div',{key:i,style:{display:'grid',gridTemplateColumns:'130px 1fr 1fr 1fr 150px',padding:'10px 18px',borderBottom:i<2?`1px solid ${T.n100}`:'none',gap:10,alignItems:'center'}},
+              e('span',{style:{fontSize:13,fontWeight:600,color:T.n800}},r.actor),
+              e('span',{style:{fontSize:13,color:T.n700}},r.action),
+              e('span',{style:{fontSize:12,color:T.n500}},r.prev),
+              e('span',{style:{fontSize:12,fontWeight:500,color:T.n800}},r.next),
+              e('span',{style:{fontSize:12,color:T.n400,fontVariantNumeric:'tabular-nums'}},r.dt)
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── OPERATIONAL INSIGHTS ────────────────────────────────────
+
+  rInsights = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:{padding:'24px 32px',background:T.n50}},
+      e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14}},
+        e('div',null,
+          e('h1',{style:{margin:'0 0 3px',fontSize:22,fontWeight:700,color:T.n900,letterSpacing:'-.02em'}},'Operational insights'),
+          e('div',{style:{display:'flex',gap:8,alignItems:'center'}},
+            e('span',{style:{fontSize:13,color:T.n500}},'This shift · General Medicine'),
+            e('span',{style:{fontSize:13,color:T.n300}},'·'),
+            e('span',{style:{fontSize:13,color:T.n400}},'Updated 08:45')
+          )
+        ),
+        e('div',{style:{display:'flex',gap:6}},
+          ...['This shift','Today','Last 7 days'].map(f=>e('button',{key:f,style:{padding:'6px 12px',background:f==='This shift'?T.b700:T.n0,border:`1px solid ${f==='This shift'?T.b700:T.n200}`,borderRadius:5,fontSize:12,fontWeight:600,color:f==='This shift'?T.n0:T.n600,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},f))
+        )
+      ),
+
+      // Insight cards
+      e('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,marginBottom:20}},
+        ...[
+          {icon:'alertTriangle',ic:T.wa600,bg:T.wa50,b:T.wa200,title:'Queue pressure',metric:'22%',sub:'more unscheduled arrivals',owner:'Charge Nurse M. Patel',action:'Deploy float nurse',actionAct:()=>{}},
+          {icon:'clock',ic:T.cr600,bg:T.cr50,b:T.cr200,title:'Wait time',metric:'42m',sub:'8 min above last week avg · Peak 09:00–11:00',owner:'Dr. Ananya Rao',action:'Review triage allocation',actionAct:()=>{}},
+          {icon:'trendingUp',ic:T.in600,bg:T.in50,b:T.in200,title:'Follow-up risk',metric:'+2pp',sub:'no-show rate increase this week',owner:'Care Coordination',action:'Review reminder workflow',actionAct:()=>this.setState({screen:'tasks'})},
+        ].map(ins=>
+          e('div',{key:ins.title,style:{background:ins.bg,border:`1px solid ${ins.b}`,borderRadius:6,padding:'16px 18px'}},
+            e('div',{style:{display:'flex',gap:10,alignItems:'flex-start',marginBottom:10}},
+              this.ic(ins.icon,18,ins.ic),
+              e('div',null,
+                e('div',{style:{fontSize:12,fontWeight:600,color:T.n500,textTransform:'uppercase',letterSpacing:'.04em',marginBottom:3}},ins.title),
+                e('div',{style:{fontSize:28,fontWeight:700,color:T.n900,fontVariantNumeric:'tabular-nums',lineHeight:1,marginBottom:3}},ins.metric),
+                e('div',{style:{fontSize:13,color:T.n700}},ins.sub)
+              )
+            ),
+            e('div',{style:{height:1,background:'rgba(0,0,0,.06)',margin:'10px 0'}}),
+            e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center'}},
+              e('span',{style:{fontSize:12,color:T.n500}},'Owner: ',e('strong',{style:{color:T.n700}},ins.owner)),
+              e('button',{onClick:ins.actionAct,style:{padding:'5px 12px',background:T.n0,border:`1px solid ${ins.b}`,borderRadius:5,fontSize:12,fontWeight:600,color:T.n700,cursor:'pointer',fontFamily:"'Source Sans 3',sans-serif"}},ins.action)
+            )
+          )
+        )
+      ),
+
+      // Chart
+      e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px',marginBottom:16}},
+        e('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:12}},
+          e('div',null,
+            e('div',{style:{fontSize:14,fontWeight:700,color:T.n900,marginBottom:2}},'Patient arrivals — Today'),
+            e('div',{style:{fontSize:12,color:T.n400}},'Source: Queue management system · Updated 08:45')
+          ),
+          e('div',{style:{display:'flex',gap:12,alignItems:'center'}},
+            e('div',{style:{display:'flex',alignItems:'center',gap:5}},e('div',{style:{width:12,height:8,borderRadius:2,background:T.b400}}),e('span',{style:{fontSize:11,color:T.n500}},'Actual arrivals')),
+            e('div',{style:{display:'flex',alignItems:'center',gap:5}},e('div',{style:{width:12,height:2,background:T.n400,borderTop:'2px dashed'}}),e('span',{style:{fontSize:11,color:T.n500}},'Expected baseline')),
+            e('div',{style:{display:'flex',alignItems:'center',gap:5}},e('div',{style:{width:12,height:2,background:T.cr600}}),e('span',{style:{fontSize:11,color:T.n500}},'Capacity threshold'))
+          )
+        ),
+        this.arrivalsChart(),
+        e('div',{style:{fontSize:12,color:T.n500,marginTop:8,padding:'8px 10px',background:T.n50,borderRadius:4,border:`1px solid ${T.n200}`}},'Screen-reader summary: Patient arrivals peaked at 15 between 10:00–11:00, reaching the capacity threshold. The 09:00–11:00 peak period shows 22% more arrivals than the expected baseline.')
+      ),
+
+      // Department table
+      e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden'}},
+        e('div',{style:{padding:'12px 18px',borderBottom:`1px solid ${T.n200}`,background:T.n50}},e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},'Department workload')),
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 140px 100px 100px 110px 1fr',padding:'8px 18px',background:T.n50,borderBottom:`1px solid ${T.n100}`,gap:12}},
+          ...['Department','Active appts','Capacity','Avg wait','Status','Recommended action'].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+        ),
+        ...[
+          {dept:'General Medicine',appts:18,cap:'90%',wait:'42m',status:'pressure',action:'Deploy float nurse'},
+          {dept:'Cardiology',appts:12,cap:'75%',wait:'28m',status:'normal',action:'No action needed'},
+          {dept:'Orthopaedics',appts:8,cap:'60%',wait:'18m',status:'normal',action:'No action needed'},
+        ].map((r,i)=>
+          e('div',{key:r.dept,style:{display:'grid',gridTemplateColumns:'1fr 140px 100px 100px 110px 1fr',padding:'11px 18px',borderBottom:i<2?`1px solid ${T.n100}`:'none',gap:12,alignItems:'center'}},
+            e('span',{style:{fontSize:14,fontWeight:500,color:T.n900}},r.dept),
+            e('span',{style:{fontSize:13,fontVariantNumeric:'tabular-nums',color:T.n700}},r.appts),
+            e('span',{style:{fontSize:13,fontWeight:600,color:r.status==='pressure'?T.wa700:T.su700,fontVariantNumeric:'tabular-nums'}},r.cap),
+            e('span',{style:{fontSize:13,fontWeight:r.status==='pressure'?600:400,color:r.status==='pressure'?T.wa700:T.n600,fontVariantNumeric:'tabular-nums'}},r.wait),
+            r.status==='pressure'?this.bdg('Pressure','warning'):this.bdg('Normal','success'),
+            e('span',{style:{fontSize:13,color:r.status==='pressure'?T.n800:T.n500}},r.action)
+          )
+        )
+      )
+    );
+  };
+
+  // ─── SETTINGS (stub) ──────────────────────────────────────────
+
+  rSettings = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:{padding:'32px',background:T.n50}},
+      e('h1',{style:{margin:'0 0 8px',fontSize:22,fontWeight:700,color:T.n900}},'Settings'),
+      e('p',{style:{margin:0,fontSize:14,color:T.n500}},'Profile, notifications, preferences and department configuration.')
+    );
+  };
+
+  // ─── RENDER VALS ─────────────────────────────────────────────
+
+  renderVals() {
+    const {screen,showAnn}=this.state; const T=this.T;
+    const e=React.createElement;
+
+    const navDef=[
+      {id:'shift-briefing',l:'Shift Briefing',ic:'home'},
+      {id:'patients',l:'Patients',ic:'users'},
+      {id:'appointments',l:'Appointments',ic:'calendar'},
+      {id:'medical-records',l:'Medical Records',ic:'fileText'},
+      {id:'messages',l:'Messages',ic:'messageSquare',badge:2},
+      {id:'tasks',l:'Tasks',ic:'checkSquare',badge:3},
+      {id:'operational-insights',l:'Operational Insights',ic:'barChart2'},
+      {id:'settings',l:'Settings',ic:'settings'},
+    ];
+
+    const navItems=navDef.map(s=>({
+      label:s.l, isActive:s.id===screen,
+      bg:s.id===screen?T.n800:'transparent',
+      lc:s.id===screen?T.n100:T.n600,
+      fw:s.id===screen?600:400,
+      hasBadge:!!s.badge,
+      badge:s.badge?String(s.badge):'',
+      onClick:()=>this.setState({screen:s.id}),
+      iconEl:this.ic(s.ic,15,s.id===screen?T.b300:T.n600),
+    }));
+
+    const rr={
+      'shift-briefing':this.rShiftBriefing,
+      'patients':this.rPatients,
+      'patient-profile':this.rProfile,
+      'appointments':this.rAppointments,
+      'messages':this.rMessages,
+      'tasks':this.rTasks,
+      'medical-records':this.rMedRecords,
+      'operational-insights':this.rInsights,
+      'settings':this.rSettings,
+    };
+
+    const renderer=rr[screen]||rr['shift-briefing'];
+    const rawContent=renderer.call(this);
+    const screenContent=showAnn
+      ? e('div',{style:{display:'flex',height:'100%',overflow:'hidden'}},
+          e('div',{style:{flex:1,overflowY:'auto',overflow:'auto'}},rawContent),
+          this.buildAnnPanel(screen)
+        )
+      : rawContent;
+
+    return {
+      navItems,
+      screenContent,
+      searchIcon:this.ic('search',15,T.n400),
+      bellIcon:this.ic('bell',18,T.n600),
+      helpIcon:this.ic('helpCircle',18,T.n500),
+      chevronDown:this.ic('chevronDown',14,T.n400),
+      toggleAnn:()=>this.setState({showAnn:!showAnn}),
+      annBg:showAnn?T.b700:T.n0,
+      annBorder:showAnn?T.b700:T.n200,
+      annColor:showAnn?T.n0:T.n700,
+      annBtn:showAnn?'✕ Annotations':'⊕ Annotations',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+.chartCard {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: 16px 16px 12px;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.chartTitle {
+  font-size: var(--font-size-card-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-card-title);
+}
+
+.chartMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-metadata);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.metaSep {
+  color: var(--color-border-strong);
+}
+
+.chartCurrentValue {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.currentVal {
+  font-size: 22px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.currentUnit {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.currentBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 10px;
+  font-size: var(--font-size-metadata);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chartLegend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--font-size-metadata);
+  color: var(--color-text-muted);
+}
+
+.legendLine {
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.legendDash {
+  width: 16px;
+  height: 0;
+  border-top: 2px dashed;
+}
+
+.legendArea {
+  width: 16px;
+  height: 8px;
+  border-radius: 2px;
+}

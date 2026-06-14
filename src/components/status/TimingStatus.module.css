@@ -1,0 +1,49 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.compact {
+  height: 18px;
+  padding: 0 7px;
+  font-size: var(--font-size-metadata);
+}
+
+.overdue {
+  background: var(--color-critical-50);
+  color: var(--color-critical-700);
+  border-color: var(--color-critical-200);
+}
+
+.dueNow {
+  background: var(--color-warning-50);
+  color: var(--color-warning-700);
+  border-color: var(--color-warning-200);
+}
+
+.dueSoon {
+  background: var(--color-info-50);
+  color: var(--color-info-700);
+  border-color: var(--color-info-200);
+}
+
+.dueLater {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-muted);
+  border-color: var(--color-border-default);
+}
+
+.noDue {
+  background: transparent;
+  color: var(--color-text-muted);
+  border-color: transparent;
+}

@@ -1,0 +1,691 @@
+/* Messages is a full-height 4-column layout.
+   AppShell .content has display:flex + flex-direction:column.
+   This layout uses flex:1 to fill that column, then escapes its 32px padding. */
+
+.layout {
+  flex: 1;
+  min-height: 0;
+  margin: calc(-1 * var(--layout-content-padding));
+  display: flex;
+  overflow: hidden;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+}
+
+/* ── Column 1: Inbox navigation ── */
+.col1 {
+  width: 180px;
+  min-width: 180px;
+  border-right: 1px solid var(--color-border-default);
+  background: var(--color-surface-secondary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.col1Header {
+  padding: 14px 16px 12px;
+  font-size: var(--font-size-card-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border-default);
+  flex-shrink: 0;
+}
+
+.inboxList {
+  list-style: none;
+  padding: 6px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.inboxItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background 0.12s, color 0.12s;
+  text-align: left;
+  min-height: 34px;
+}
+
+.inboxItem:hover {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+}
+
+.inboxItem:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.inboxItemActive {
+  background: var(--color-brand-100);
+  color: var(--color-brand-700);
+  font-weight: 600;
+}
+
+.inboxItemActive:hover {
+  background: var(--color-brand-100);
+}
+
+.inboxLabel { flex: 1; }
+
+/* Count badge — neutral when inactive, brand when active */
+.inboxCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.inboxCountActive {
+  background: var(--color-brand-600);
+  border-color: var(--color-brand-600);
+  color: #ffffff;
+}
+
+/* ── Column 2: Conversation list ── */
+.col2 {
+  width: 264px;
+  min-width: 264px;
+  border-right: 1px solid var(--color-border-default);
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  background: var(--color-surface-primary);
+}
+
+.convRow {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--color-border-default);
+  cursor: pointer;
+  transition: background 0.1s;
+  position: relative;
+}
+
+.convRow:last-child { border-bottom: none; }
+
+.convRow:hover { background: var(--color-surface-secondary); }
+
+.convRow:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-brand-600);
+}
+
+/* Selected row — aubergine left accent, consistent with tables */
+.convRowActive {
+  background: var(--color-brand-50);
+  box-shadow: inset 3px 0 0 var(--color-brand-600);
+}
+
+.convRowActive:hover { background: var(--color-brand-50); }
+
+/* Unread indicator */
+.convRowUnread::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-brand-600);
+  border-radius: 0 2px 2px 0;
+}
+
+.convRowActive.convRowUnread::before { display: none; }
+
+.convRowUnread .convSubject {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.convHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.convFrom {
+  font-size: var(--font-size-supporting);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.convTime {
+  font-size: var(--font-size-metadata);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.convPatient {
+  font-size: var(--font-size-metadata);
+  color: var(--color-brand-700);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.convSubject {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.convTags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* ── Column 3: Active conversation ── */
+.col3 {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.convPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Thread header — vertical: info on top, actions toolbar below */
+.convPanelHeader {
+  padding: 12px 18px 0;
+  border-bottom: 1px solid var(--color-border-default);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background: var(--color-surface-primary);
+}
+
+.convPanelLeft { padding-bottom: 10px; }
+
+.convPanelTitle {
+  font-size: var(--font-size-subsection);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 3px;
+  line-height: var(--line-height-subsection);
+}
+
+/* Due-before urgency line */
+.convPanelDue {
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-warning-700);
+  margin-bottom: 5px;
+}
+
+.convPanelMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.convPanelOwner {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+/* Action toolbar — sits below info area, separated by a border */
+.convPanelActions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--color-border-default);
+  padding: 7px 0 9px;
+}
+
+/* Separator between main actions and Resolve */
+.actionSep {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background: var(--color-border-default);
+  flex-shrink: 0;
+  align-self: center;
+  margin: 0 2px;
+}
+
+/* ── Thread ── */
+.thread {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--color-bg-app);
+}
+
+/* Message card */
+.message {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+}
+
+/* High severity: warm left accent */
+.messageHigh {
+  border-left: 3px solid var(--color-warning-600);
+}
+
+.messageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+
+.messageSenderRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.messageSender {
+  font-weight: 600;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.messageSep {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.messagePatientRef {
+  font-size: var(--font-size-body);
+  color: var(--color-brand-700);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.messageTime {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.messageBody {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-body);
+}
+
+/* Attachment card */
+.attachment {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+}
+
+.attachIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--color-brand-100);
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.attachIcon { color: var(--color-brand-600); }
+
+.attachBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.attachName {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.attachMeta {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.attachKeyResult {
+  margin-top: 4px;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+}
+
+.attachKeyResultValue {
+  color: var(--color-warning-700);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.attachActions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* ── Composer ── */
+.composer {
+  border-top: 1px solid var(--color-border-default);
+  padding: 0 16px 12px;
+  flex-shrink: 0;
+  background: var(--color-surface-primary);
+}
+
+.composerTabs {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--color-border-default);
+  margin-bottom: 10px;
+}
+
+.composerTab {
+  height: 36px;
+  padding: 0 13px;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-family);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+
+.composerTab:hover { color: var(--color-text-primary); }
+
+.composerTab:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.composerTabActive {
+  color: var(--color-brand-700);
+  font-weight: 600;
+  border-bottom-color: var(--color-brand-600);
+}
+
+/* Context hint sits on the right side of the tab row */
+.composerHint {
+  margin-left: auto;
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+  align-self: center;
+  padding-bottom: 1px;
+  white-space: nowrap;
+}
+
+/* Patient message warning */
+.patientWarning {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--color-warning-50);
+  border: 1px solid var(--color-warning-200);
+  border-radius: 4px;
+  font-size: var(--font-size-supporting);
+  color: var(--color-warning-700);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.patientWarnIcon { flex-shrink: 0; margin-top: 2px; }
+
+/* Internal note indicator — neutral, not blue */
+.noteInfo {
+  padding: 7px 10px;
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: 4px;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.composerArea {
+  width: 100%;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-input);
+  padding: 9px 12px;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  resize: none;
+  background: var(--color-surface-secondary);
+  transition: border-color 0.15s;
+  line-height: var(--line-height-body);
+  box-sizing: border-box;
+}
+
+.composerArea:focus {
+  outline: none;
+  border-color: var(--color-brand-600);
+  background: var(--color-surface-primary);
+  box-shadow: var(--focus-ring);
+}
+
+.composerFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+/* ── Resolve confirmation overlay ── */
+.confirmOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(32, 28, 32, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.confirmDialog {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: var(--shadow-modal);
+}
+
+.confirmTitle {
+  font-size: var(--font-size-subsection);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.confirmBody {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+  line-height: var(--line-height-body);
+}
+
+.confirmActions { display: flex; gap: 8px; }
+
+/* ── Column 4: Patient context panel ── */
+.contextPanel {
+  width: 224px;
+  min-width: 224px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--color-border-default);
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--color-surface-secondary);
+}
+
+.contextHeader {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border-default);
+  flex-shrink: 0;
+}
+
+/* Clinical sections with dividers */
+.contextSection {
+  border-top: 1px solid var(--color-border-default);
+  padding-top: 10px;
+}
+
+.contextSectionTitle {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.contextClinicalRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: var(--font-size-supporting);
+  padding: 3px 0;
+}
+
+.contextLabel {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* Stack value + delta vertically, right-aligned */
+.contextClinicalValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.contextValueWarning {
+  font-weight: 700;
+  color: var(--color-warning-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.contextValueSecondary {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.contextValueMeta {
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.contextDue {
+  margin-top: 7px;
+  font-size: var(--font-size-supporting);
+  font-weight: 600;
+  color: var(--color-warning-700);
+}
+
+.contextSource {
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* Open patient profile sits at the bottom */
+.contextFooter {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .contextPanel { display: none; }
+}
+
+@media (max-width: 900px) {
+  .col1 { width: 160px; min-width: 160px; }
+  .col2 { width: 230px; min-width: 230px; }
+}
+
+@media (max-width: 680px) {
+  .col1 { display: none; }
+  .col2 { width: 210px; min-width: 210px; }
+}

@@ -1,0 +1,111 @@
+:root {
+  /* Backgrounds */
+  --color-bg-app: #F7F6F4;
+  --color-surface-primary: #FFFFFF;
+  --color-surface-secondary: #FCFBFA;
+  --color-surface-subtle: #F0EEEB;
+
+  /* Borders */
+  --color-border-default: #E2DEDA;
+  --color-border-strong: #CBC5C1;
+
+  /* Text */
+  --color-text-primary: #201C20;
+  --color-text-secondary: #4E484C;
+  --color-text-muted: #7B7477;
+  --color-text-disabled: #AAA3A5;
+  --color-text-inverse: #FFFFFF;
+
+  /* Brand */
+  --color-brand-50: #F7F3F7;
+  --color-brand-100: #EEE7ED;
+  --color-brand-300: #B79BB3;
+  --color-brand-600: #553052;
+  --color-brand-700: #40233F;
+  --color-brand-800: #321B31;
+  --color-brand-900: #251324;
+
+  /* Critical */
+  --color-critical-50: #FDECEA;
+  --color-critical-200: #F0B9B5;
+  --color-critical-600: #B42318;
+  --color-critical-700: #912018;
+
+  /* Warning */
+  --color-warning-50: #FFF3DA;
+  --color-warning-200: #E9C77A;
+  --color-warning-600: #8A5600;
+  --color-warning-700: #684000;
+
+  /* Success */
+  --color-success-50: #E8F3EC;
+  --color-success-200: #ACD2BC;
+  --color-success-600: #26734D;
+  --color-success-700: #1D5B3D;
+
+  /* Info */
+  --color-info-50: #EAF2FA;
+  --color-info-200: #B8D0E8;
+  --color-info-600: #265D97;
+  --color-info-700: #1D4A78;
+
+  /* Typography scale */
+  --font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+
+  --font-size-page-title: 28px;
+  --line-height-page-title: 36px;
+
+  --font-size-section-title: 20px;
+  --line-height-section-title: 28px;
+
+  --font-size-subsection: 17px;
+  --line-height-subsection: 24px;
+
+  --font-size-card-title: 15px;
+  --line-height-card-title: 22px;
+
+  --font-size-body: 14px;
+  --line-height-body: 21px;
+
+  --font-size-supporting: 13px;
+  --line-height-supporting: 18px;
+
+  --font-size-label: 12px;
+  --line-height-label: 16px;
+
+  --font-size-metadata: 11px;
+  --line-height-metadata: 16px;
+
+  /* Layout */
+  --layout-sidebar-width: 232px;
+  --layout-topbar-height: 56px;
+  --layout-content-padding: 32px;
+  --layout-drawer-width: 380px;
+
+  /* Radius */
+  --radius-card: 10px;
+  --radius-button: 8px;
+  --radius-input: 8px;
+  --radius-pill: 999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgba(32, 28, 32, 0.04), 0 1px 3px rgba(32, 28, 32, 0.06);
+  --shadow-card-raised: 0 2px 4px rgba(32, 28, 32, 0.04), 0 4px 12px rgba(32, 28, 32, 0.07);
+  --shadow-drawer: 0 8px 32px rgba(32, 28, 32, 0.16), 0 2px 8px rgba(32, 28, 32, 0.08);
+  --shadow-modal: 0 16px 48px rgba(32, 28, 32, 0.2);
+  --shadow-menu: 0 4px 16px rgba(32, 28, 32, 0.12);
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(85, 48, 82, 0.4);
+}

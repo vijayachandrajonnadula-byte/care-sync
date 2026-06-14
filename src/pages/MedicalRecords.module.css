@@ -1,0 +1,368 @@
+/* ── Page ── */
+.page {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* ── Summary chips ── */
+.summaryRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: var(--font-size-supporting);
+  font-weight: 600;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.chip_warning {
+  background: var(--color-warning-50);
+  border-color: var(--color-warning-200);
+  color: var(--color-warning-700);
+}
+
+.chip_brand {
+  background: var(--color-brand-100);
+  border-color: var(--color-brand-300);
+  color: var(--color-brand-700);
+}
+
+.chip_muted {
+  background: var(--color-surface-subtle);
+  border-color: var(--color-border-default);
+  color: var(--color-text-muted);
+}
+
+/* ── Filter bar wrapper ── */
+.controlRow {
+  margin-bottom: 14px;
+}
+
+/* ── Records table ── */
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-primary);
+  box-shadow: var(--shadow-card);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 960px;
+}
+
+.th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-default);
+  white-space: nowrap;
+}
+
+.tr {
+  border-bottom: 1px solid var(--color-border-default);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.tr:last-child { border-bottom: none; }
+
+.tr:hover { background: var(--color-surface-secondary); }
+
+.tr:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-brand-600);
+}
+
+/* Meera's rows: needs-review = warning tint */
+.trNeedsReview { background: var(--color-warning-50); }
+.trNeedsReview:hover { background: #fff5df; }
+
+/* Rohan's row: pending = subtler tint */
+.trPending { background: var(--color-surface-secondary); }
+.trPending:hover { background: var(--color-surface-subtle); }
+
+/* Selected row: aubergine left accent */
+.trSelected {
+  box-shadow: inset 3px 0 0 var(--color-brand-600);
+  background: var(--color-brand-50);
+}
+
+.trNeedsReview.trSelected { background: var(--color-warning-50); }
+.trNeedsReview.trSelected:hover { background: #fff5df; }
+.trPending.trSelected { background: var(--color-surface-secondary); }
+
+.td {
+  padding: 12px 14px;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+/* Patient column */
+.patientCell {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.patientName {
+  font-weight: 600;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+.patientMeta {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Record type badge */
+.recordTypeBadge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: var(--font-size-label);
+  font-weight: 500;
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.itemText {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Current value column */
+.tdValue {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.valueNeedsReview { color: var(--color-warning-700); }
+
+/* Context / updated / owner columns */
+.contextText {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+}
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+.updatedText {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.ownerText {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+/* Review status badges */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.status_needs_review {
+  background: var(--color-warning-50);
+  border-color: var(--color-warning-200);
+  color: var(--color-warning-700);
+}
+
+.status_new {
+  background: var(--color-brand-100);
+  border-color: var(--color-brand-300);
+  color: var(--color-brand-700);
+}
+
+.status_pending_approval {
+  background: var(--color-warning-50);
+  border-color: var(--color-warning-200);
+  color: var(--color-warning-700);
+}
+
+.status_completed {
+  background: var(--color-success-50);
+  border-color: var(--color-success-200);
+  color: var(--color-success-700);
+}
+
+/* ── Table footer ── */
+.tableFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  padding: 0 2px;
+}
+
+.tableFooterSep { color: var(--color-border-strong); }
+
+/* ── Empty state ── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  gap: 6px;
+}
+
+.emptyTitle {
+  font-size: var(--font-size-subsection);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.emptySub {
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+}
+
+/* ── Placeholder for unimplemented tabs ── */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  gap: 6px;
+}
+
+.placeholderTitle {
+  font-size: var(--font-size-subsection);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.placeholderSub {
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+}
+
+/* ── Record detail drawer ── */
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Clinical record detail card */
+.recordCard {
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: 12px;
+}
+
+.recordCardHeader {
+  margin-bottom: 10px;
+}
+
+.recordField {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: var(--font-size-supporting);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.recordField:last-of-type { border-bottom: none; }
+
+.recordFieldLabel {
+  min-width: 76px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.recordFieldValue {
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  flex: 1;
+}
+
+.recordFieldBold {
+  font-weight: 700;
+}
+
+.recordInterpretation {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid var(--color-border-default);
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-warning-700);
+}
+
+.recordSource {
+  margin-top: 5px;
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+}
+
+/* Drawer sections and actions */
+.drawerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawerLabel {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.drawerValue {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.drawerActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}

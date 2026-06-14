@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    body{margin:0;}
+    ::-webkit-scrollbar{width:6px;}
+    ::-webkit-scrollbar-track{background:transparent;}
+    ::-webkit-scrollbar-thumb{background:#CBC5C1;border-radius:999px;}
+  </style>
+</helmet>
+
+<div style="display:flex; height:100vh; font-family:'Source Sans 3',-apple-system,sans-serif; overflow:hidden; background:#F7F6F4;">
+
+  <!-- Sidebar nav -->
+  <nav style="width:220px; min-width:220px; background:#FFFFFF; border-right:1px solid #E2DEDA; display:flex; flex-direction:column; overflow:hidden; flex-shrink:0;">
+    <div style="padding:18px 16px 14px; border-bottom:1px solid #E2DEDA; flex-shrink:0;">
+      <div style="display:flex; align-items:center; gap:9px; margin-bottom:10px;">
+        <div style="width:28px; height:28px; background:#40233F; border-radius:5px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 2C7 4 5 7 5 10s2 6 5 8c3-2 5-5 5-8S13 4 10 2Z" fill="#B79BB3" opacity=".8"/><circle cx="10" cy="10" r="2.5" fill="#F0EEEB"/></svg>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:700; color:#201C20; line-height:1.3;">CareSync</div>
+          <div style="font-size:10px; color:#7B7477; line-height:1.3;">UX/UI Case Study</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1; overflow-y:auto; padding:8px 8px;">
+      <sc-for list="{{ navItems }}" as="item">
+        <div onClick="{{ item.onClick }}" style="display:flex; align-items:flex-start; gap:8px; padding:8px 10px; border-radius:5px; cursor:pointer; margin-bottom:1px; background:{{ item.bg }};" style-hover="background:#F7F6F4;">
+          <span style="font-size:10px; font-weight:700; color:{{ item.nc }}; margin-top:2px; flex-shrink:0; min-width:18px; font-variant-numeric:tabular-nums;">{{ item.num }}</span>
+          <span style="font-size:12px; font-weight:{{ item.fw }}; color:{{ item.lc }}; line-height:1.4;">{{ item.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:12px 14px; border-top:1px solid #E2DEDA; flex-shrink:0;">
+      <div style="font-size:11px; color:#7B7477;">Dr. Ananya Rao · General Medicine</div>
+      <div style="font-size:10px; color:#AAA3A5; margin-top:2px;">UX/UI Assignment 2026</div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main style="flex:1; overflow-y:auto; overflow-x:hidden;">
+    {{ sectionContent }}
+  </main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sec: '01' };
+
+  T = {
+    n0:'#FFFFFF',n25:'#FCFBFA',n50:'#F7F6F4',n100:'#F0EEEB',n200:'#E2DEDA',
+    n300:'#CBC5C1',n400:'#AAA3A5',n500:'#7B7477',n600:'#635C60',n700:'#4E484C',n900:'#201C20',
+    b50:'#F7F3F7',b100:'#EEE7ED',b200:'#DCCED9',b300:'#B79BB3',b400:'#8C6688',
+    b600:'#553052',b700:'#40233F',b800:'#321B31',
+    cr50:'#FDECEA',cr200:'#F0B9B5',cr600:'#B42318',cr700:'#912018',
+    wa50:'#FFF3DA',wa200:'#E9C77A',wa600:'#8A5600',wa700:'#684000',
+    su50:'#E8F3EC',su200:'#ACD2BC',su600:'#26734D',su700:'#1D5B3D',
+    in50:'#EAF2FA',in200:'#B8D0E8',in600:'#265D97',in700:'#1D4A78',
+  };
+
+  pg = {padding:'40px 48px',background:'#F7F6F4',minHeight:'100%'};
+
+  h1 = (text) => React.createElement('h1',{style:{margin:'0 0 8px',fontSize:30,fontWeight:700,color:this.T.n900,letterSpacing:'-.03em',lineHeight:1.1}},text);
+  h2 = (text) => React.createElement('h2',{style:{margin:'0 0 6px',fontSize:20,fontWeight:700,color:this.T.n900,letterSpacing:'-.01em',lineHeight:1.2}},text);
+  h3 = (text) => React.createElement('h3',{style:{margin:'0 0 5px',fontSize:15,fontWeight:700,color:this.T.n900}},text);
+  label = (text) => React.createElement('div',{style:{fontSize:11,fontWeight:700,color:this.T.n500,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:8}},text);
+  body = (text,mb=16) => React.createElement('p',{style:{margin:`0 0 ${mb}px`,fontSize:14,color:this.T.n700,lineHeight:'22px'}},text);
+  card = (children,style={}) => React.createElement('div',{style:{background:this.T.n0,border:`1px solid ${this.T.n200}`,borderRadius:6,padding:'20px 24px',...style}},children);
+  divider = (my=28) => React.createElement('div',{style:{height:1,background:this.T.n200,margin:`${my}px 0`}});
+
+  // ─── 01: COVER ───────────────────────────────────────────────
+  r01 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:{background:T.n0,minHeight:'100%'}},
+      // Hero
+      e('div',{style:{background:T.b700,padding:'64px 48px 56px',position:'relative',overflow:'hidden'}},
+        e('div',{style:{position:'absolute',top:-60,right:-60,width:400,height:400,borderRadius:'50%',background:T.b600,opacity:.3}}),
+        e('div',{style:{position:'absolute',bottom:-80,right:120,width:280,height:280,borderRadius:'50%',background:T.b800,opacity:.4}}),
+        e('div',{style:{position:'relative',maxWidth:700}},
+          e('div',{style:{display:'flex',alignItems:'center',gap:10,marginBottom:24}},
+            e('div',{style:{width:38,height:38,background:T.b600,borderRadius:7,display:'flex',alignItems:'center',justifyContent:'center'}},
+              e('svg',{width:20,height:20,viewBox:'0 0 20 20',fill:'none'},e('path',{d:'M10 2C7 4 5 7 5 10s2 6 5 8c3-2 5-5 5-8S13 4 10 2Z',fill:'#B79BB3',opacity:.8}),e('circle',{cx:10,cy:10,r:2.5,fill:'white'}))
+            ),
+            e('span',{style:{fontSize:12,fontWeight:700,color:T.b300,letterSpacing:'.1em',textTransform:'uppercase'}},'CareSync · Case Study')
+          ),
+          e('h1',{style:{margin:'0 0 12px',fontSize:42,fontWeight:700,color:T.n0,letterSpacing:'-.03em',lineHeight:1.05}},'A Shift-Based Clinical Command Centre'),
+          e('p',{style:{margin:'0 0 32px',fontSize:16,color:T.b300,lineHeight:1.65,maxWidth:560}},'A complete UX/UI design assignment for an enterprise healthcare SaaS platform — from problem framing through final product.'),
+          e('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16,maxWidth:600}},
+            ...[{l:'Product type',v:'Enterprise SaaS · Healthcare'},{l:'Role',v:'UX/UI Designer (solo)'},{l:'Duration',v:'Full assignment cycle'},{l:'Key outcome',v:'8 hi-fi screens + DS + case study'}].map(m=>
+              e('div',{key:m.l,style:{background:'rgba(255,255,255,.08)',borderRadius:5,padding:'12px 14px'}},
+                e('div',{style:{fontSize:10,fontWeight:700,color:T.b300,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:5}},m.l),
+                e('div',{style:{fontSize:13,fontWeight:600,color:T.n0,lineHeight:1.4}},m.v)
+              )
+            )
+          )
+        )
+      ),
+
+      // Tools & deliverables
+      e('div',{style:{padding:'40px 48px',background:T.n50}},
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20,maxWidth:760}},
+          e('div',null,
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:12}},'Tools'),
+            e('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},
+              ...['Source Sans 3','Lucide Icons','HTML/CSS/JS DC','Claude AI','SVG Charts'].map(t=>
+                e('span',{key:t,style:{padding:'4px 12px',background:T.n0,border:`1px solid ${T.n200}`,borderRadius:4,fontSize:13,color:T.n700}},t)
+              )
+            )
+          ),
+          e('div',null,
+            e('div',{style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.07em',marginBottom:12}},'Deliverables'),
+            e('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},
+              ...['User journey','Workflow map','Lo-fi wireframes','Design system','8 hi-fi screens','Prototype','Case study','AI process'].map(d=>
+                e('span',{key:d,style:{padding:'4px 12px',background:T.b50,border:`1px solid ${T.b200}`,borderRadius:4,fontSize:13,color:T.b700,fontWeight:500}},d)
+              )
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 02: BRIEF & CHALLENGE ────────────────────────────────────
+  r02 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:this.pg},
+      e('div',{style:{maxWidth:760}},
+        this.label('The assignment'),
+        this.h1('Brief & challenge'),
+        this.body('Design a modern healthcare-provider dashboard for a SaaS platform that enables healthcare professionals to review patients, prioritise clinical alerts, manage appointments, monitor patient flow, review medical records, communicate securely, manage tasks and handovers, and monitor clinical and operational performance.'),
+        this.divider(),
+
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:28}},
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'20px 22px'}},
+            e('div',{style:{fontSize:13,fontWeight:700,color:T.cr700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:12}},'Why ordinary healthcare dashboards fail'),
+            ...['Too much information displayed simultaneously','Weak or absent prioritisation — everything looks equal','Workflows are disconnected across separate views','Clinical alerts appear without actionable next steps','Ownership and due time are absent or unclear','Severity and workflow status are merged into one chip'].map(p=>
+              e('div',{key:p,style:{display:'flex',gap:8,alignItems:'flex-start',marginBottom:8}},
+                e('div',{style:{width:4,height:4,borderRadius:'50%',background:T.cr600,marginTop:7,flexShrink:0}}),
+                e('span',{style:{fontSize:14,color:T.n700,lineHeight:'21px'}},p)
+              )
+            )
+          ),
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'20px 22px'}},
+            e('div',{style:{fontSize:13,fontWeight:700,color:T.b700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:12}},'How might we'),
+            e('p',{style:{margin:'0 0 14px',fontSize:15,color:T.n800,lineHeight:'23px',fontStyle:'italic'}},'How might we help healthcare professionals understand their shift in under 30 seconds and move from information to action without losing patient context?'),
+            e('div',{style:{padding:'12px 16px',background:T.b50,border:`1px solid ${T.b200}`,borderRadius:5}},
+              e('div',{style:{fontSize:11,fontWeight:700,color:T.b700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:4}},'Core insight'),
+              e('p',{style:{margin:0,fontSize:14,fontWeight:600,color:T.b700,lineHeight:'21px'}},'The problem is not a lack of information. The problem is a lack of prioritisation.')
+            )
+          )
+        ),
+
+        this.label('Initial exploration'),
+        this.h2('First direction: a predictable path'),
+        this.body('The first instinct was familiar: blue palette, card-based layout, prominent statistics at the top. A clean, professional healthcare dashboard. The kind of output that could be generated quickly — and recognised immediately as "healthcare design".'),
+        this.card(
+          e('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:10,marginBottom:12}},
+            ...['Total patients today','Lab results pending','Appointments today','Active alerts'].map((l,i)=>
+              e('div',{key:l,style:{padding:'14px 16px',background:'#EAF2FA',border:'1px solid #B8D0E8',borderRadius:5}},
+                e('div',{style:{fontSize:22,fontWeight:700,color:'#1D4A78',fontVariantNumeric:'tabular-nums',lineHeight:1,marginBottom:4}},[18,6,12,3][i]),
+                e('div',{style:{fontSize:12,color:'#265D97'}},l)
+              )
+            )
+          ),
+          e('div',{style:{padding:'10px 14px',background:'#EAF2FA',border:'1px solid #B8D0E8',borderRadius:5,display:'flex',alignItems:'center',gap:10}},
+            e('div',{style:{width:32,height:32,borderRadius:'50%',background:'#265D97',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},e('span',{style:{fontSize:11,fontWeight:700,color:'white'}},'AR')),
+            e('span',{style:{fontSize:14,color:'#1D4A78',fontWeight:600}},'Good morning, Dr. Ananya Rao. You have 18 patients today.'),
+          ),
+          {marginBottom:16}
+        ),
+        e('div',{style:{padding:'12px 16px',background:T.wa50,border:`1px solid ${T.wa200}`,borderRadius:5,marginBottom:28,display:'flex',gap:10}},
+          e('div',{style:{fontSize:20,flexShrink:0}},'→'),
+          e('div',null,
+            e('div',{style:{fontSize:13,fontWeight:700,color:T.wa700,marginBottom:3}},'Feedback: this felt too generic'),
+            e('p',{style:{margin:0,fontSize:13,color:T.wa700,lineHeight:'20px'}},'Too blue. Too predictable. Too close to a generic AI-generated healthcare dashboard. The greeting came before the critical clinical work. Four KPI cards said nothing about what the doctor needed to do first. The design had no distinctive product story.')
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 03: REFRAMING ────────────────────────────────────────────
+  r03 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:this.pg},
+      e('div',{style:{maxWidth:760}},
+        this.label('The pivot'),
+        this.h1('Reframing the problem'),
+        this.body('The question was not "what should a healthcare dashboard look like?" It was: what does Dr. Ananya need to know — and do — in the first 30 seconds of her shift?'),
+        this.divider(),
+
+        // Scenario
+        e('div',{style:{background:T.n900,borderRadius:8,padding:'36px 40px',marginBottom:28}},
+          e('div',{style:{fontSize:13,fontWeight:700,color:T.b300,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:20}},'It is 08:47 AM.'),
+          ...['Dr. Ananya\'s first patient is waiting in OPD 3.','An abnormal lab result arrived overnight — glucose 142 mg/dL, up from 118.','A nurse is waiting for prescription approval.','Two patients missed their follow-up appointments.','The queue is already running 12 minutes behind.'].map((s,i)=>
+            e('div',{key:i,style:{display:'flex',gap:12,marginBottom:12,alignItems:'flex-start'}},
+              e('div',{style:{width:5,height:5,borderRadius:'50%',background:T.b300,marginTop:8,flexShrink:0}}),
+              e('span',{style:{fontSize:15,color:T.n200,lineHeight:'23px'}},s)
+            )
+          ),
+          e('div',{style:{marginTop:24,paddingTop:24,borderTop:`1px solid #332E32`}},
+            e('p',{style:{margin:0,fontSize:18,fontWeight:700,color:T.n0,lineHeight:1.4,letterSpacing:'-.01em'}},'The problem is not a lack of information. The problem is a lack of prioritisation.')
+          )
+        ),
+
+        this.label('Design principles'),
+        this.h2('Eight principles that shaped every decision'),
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}},
+          ...[
+            {n:1,t:'Urgency without anxiety','b':'Important information stands out without making the entire interface feel dangerous.'},
+            {n:2,t:'Action before decoration',b:'Clinical work appears before greetings, summaries or generic metrics.'},
+            {n:3,t:'Context travels with the task',b:'Messages, tasks and results stay connected to the patient, encounter and source.'},
+            {n:4,t:'One product, different priorities',b:'Doctors, nurses and coordinators share the platform but receive different prioritisation.'},
+            {n:5,t:'Show change, not only status',b:'Glucose increased from 118 to 142 mg/dL — not just "142 mg/dL".'},
+            {n:6,t:'Actions stay close to information',b:'Every clinical alert includes Review, Acknowledge, Assign or Complete inline.'},
+            {n:7,t:'Separate severity from workflow',b:'Severity, workflow status, ownership and due time are four separate concepts.'},
+            {n:8,t:'Auditability by default',b:'Important actions record who acted, what changed, when and to what state.'},
+          ].map(p=>
+            e('div',{key:p.n,style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'14px 16px',display:'flex',gap:10}},
+              e('span',{style:{width:22,height:22,borderRadius:4,background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontSize:11,fontWeight:700,color:T.b300}},p.n),
+              e('div',null,e('div',{style:{fontSize:13,fontWeight:700,color:T.n900,marginBottom:3}},p.t),e('div',{style:{fontSize:12,color:T.n600,lineHeight:'18px'}},p.b))
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 04: PERSONA ─────────────────────────────────────────────
+  r04 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:this.pg},
+      e('div',{style:{maxWidth:800}},
+        this.label('Primary persona'),
+        this.h1('Dr. Ananya Rao'),
+        e('div',{style:{display:'grid',gridTemplateColumns:'260px 1fr',gap:20,marginBottom:28}},
+          e('div',null,
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'20px',marginBottom:12}},
+              e('div',{style:{width:56,height:56,borderRadius:'50%',background:T.b700,display:'flex',alignItems:'center',justifyContent:'center',marginBottom:12}},e('span',{style:{fontSize:18,fontWeight:700,color:T.b200}},'AR')),
+              e('div',{style:{fontSize:16,fontWeight:700,color:T.n900,marginBottom:2}},'Dr. Ananya Rao'),
+              e('div',{style:{fontSize:13,color:T.n500,marginBottom:8}},'General Physician · 38'),
+              this.divider(10),
+              ...[['Dept','General Medicine'],['Experience','11 years'],['Setting','Outpatient Clinic'],['Shift','Morning (07:00–19:00)'],['Device','Desktop · Tablet']].map(([k,v])=>
+                e('div',{key:k,style:{display:'flex',justifyContent:'space-between',marginBottom:5}},
+                  e('span',{style:{fontSize:12,color:T.n400}},k),
+                  e('span',{style:{fontSize:12,color:T.n700,fontWeight:500}},v)
+                )
+              )
+            ),
+            e('div',{style:{background:T.b50,border:`1px solid ${T.b200}`,borderRadius:5,padding:'14px 16px'}},
+              e('div',{style:{fontSize:11,fontWeight:700,color:T.b700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:8}},'Quote'),
+              e('p',{style:{margin:0,fontSize:13,fontStyle:'italic',color:T.b700,lineHeight:'20px'}},'"I do not need more information. I need to know what requires my attention first and what I need to do next."')
+            )
+          ),
+          e('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px'}},
+              e('div',{style:{fontSize:12,fontWeight:700,color:T.su700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:10}},'Primary goals'),
+              ...['Understand the state of her shift in under 30 seconds','Identify patients requiring immediate attention','Review abnormal results before consultations','Coordinate with nurses and care coordinators','Complete her shift without losing task ownership'].map(g=>
+                e('div',{key:g,style:{display:'flex',gap:8,alignItems:'flex-start',marginBottom:7}},e('div',{style:{width:5,height:5,borderRadius:'50%',background:T.su600,marginTop:7,flexShrink:0}}),e('span',{style:{fontSize:13,color:T.n700,lineHeight:'20px'}},g))
+              )
+            ),
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px'}},
+              e('div',{style:{fontSize:12,fontWeight:700,color:T.cr700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:10}},'Pain points'),
+              ...['Information is spread across multiple disconnected systems','Important alerts compete with low-priority notifications','Patient context is lost when moving between messages and tasks','It is difficult to understand what changed since the previous shift','Clinical results are visible but not connected to a required action'].map(p=>
+                e('div',{key:p,style:{display:'flex',gap:8,alignItems:'flex-start',marginBottom:7}},e('div',{style:{width:5,height:5,borderRadius:'50%',background:T.cr600,marginTop:7,flexShrink:0}}),e('span',{style:{fontSize:13,color:T.n700,lineHeight:'20px'}},p))
+              )
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 05: USER JOURNEY ─────────────────────────────────────────
+  r05 = () => {
+    const T=this.T; const e=React.createElement;
+    const stages=[
+      {n:1,stage:'Starts shift',goal:'Understand shift state quickly',action:'Opens Shift Briefing',info:'Since-last-shift summary, active alerts, upcoming queue',pain:'No summary of what changed since night shift',opp:'Change summary strip + inherited task count',mood:'Focused'},
+      {n:2,stage:'Reviews changes',goal:'Know what is different from yesterday',action:'Reads the "since 07:00" strip',info:'New results, messages, medication updates, inherited tasks',pain:'Changes buried across separate modules',opp:'Compact change summary in a single scannable strip',mood:'Alert'},
+      {n:3,stage:'Identifies immediate attention',goal:'Find the most urgent clinical item',action:'Reviews "Immediate attention" section',info:'Severity, patient, clinical trigger, due time, owner',pain:'Urgency mixed with routine items',opp:'Featured clinical case with left-border severity coding',mood:'Concerned'},
+      {n:4,stage:'Reviews Meera\'s result',goal:'Understand glucose change before 09:00',action:'Clicks "Review patient record"',info:'Glucose 118→142, BP 140/88→145/90, allergy, medications',pain:'Lab result visible but not connected to the consultation',opp:'Result linked to appointment + review action',mood:'Focused'},
+      {n:5,stage:'Prepares for consultation',goal:'Arrive at the consultation ready',action:'Reviews patient profile and checklist',info:'Clinical trend, medication changes, care team, prep checklist',pain:'No pre-consultation preparation summary',opp:'Patient profile with "changes since review" above the fold',mood:'Prepared'},
+      {n:6,stage:'Handles queue delay',goal:'Manage Arjun Nair\'s wait time',action:'Reviews compact action row',info:'Wait 22m, delay 12m, room pending, queue position',pain:'Queue delays not visible alongside clinical work',opp:'Compact queue row in Shift Briefing with notify action',mood:'Stretched'},
+      {n:7,stage:'Reviews prescription request',goal:'Approve or decline Lisinopril refill',action:'Clicks "Review prescription"',info:'Patient, medication, dose, requestor, due time',pain:'Prescription requests arrive in a separate inbox',opp:'Prescription request as a compact action row with due time',mood:'Methodical'},
+      {n:8,stage:'Communicates with Nurse Priya',goal:'Reply to the glucose alert message',action:'Opens message in Clinical Communication',info:'Sender, patient, message, lab attachment, severity',pain:'Clinical messages mixed with non-urgent notifications',opp:'Three-column messaging with severity, ownership and workflow state',mood:'Coordinating'},
+      {n:9,stage:'Completes and records actions',goal:'Mark tasks complete with audit trail',action:'Completes task in Tasks & Handovers',info:'Task, patient, previous state, new state, timestamp',pain:'Completing a task does not update the patient record',opp:'Task completion triggers record update and audit entry',mood:'Relieved'},
+      {n:10,stage:'Reviews before handover',goal:'Confirm nothing is left unresolved',action:'Reviews "Shift follow-through" table',info:'Missed follow-ups, pending labs, handover tasks, no-show change',pain:'Handover relies on memory or separate handover tools',opp:'Structured handover table with outstanding items and owners',mood:'Accountable'},
+    ];
+
+    return e('div',{style:this.pg},
+      this.label('Deliverable 1'),
+      this.h1('Dr. Ananya\'s morning shift journey'),
+      this.body('Ten stages from arriving on shift to handing over — showing the information needed, the pain experienced, and the CareSync opportunity at each step.'),
+
+      e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden',marginTop:20}},
+        e('div',{style:{display:'grid',gridTemplateColumns:'32px 130px 160px 130px 160px 180px 100px',padding:'8px 16px',background:T.n50,borderBottom:`1px solid ${T.n200}`,gap:12}},
+          ...['#','Stage','User goal','User action','Pain point','CareSync opportunity','Mood'].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+        ),
+        ...stages.map((s,i)=>
+          e('div',{key:s.n,style:{display:'grid',gridTemplateColumns:'32px 130px 160px 130px 160px 180px 100px',padding:'12px 16px',borderBottom:i<stages.length-1?`1px solid ${T.n100}`:'none',gap:12,alignItems:'start'}},
+            e('span',{style:{fontSize:12,fontWeight:700,color:T.n400,fontVariantNumeric:'tabular-nums'}},s.n),
+            e('span',{style:{fontSize:13,fontWeight:600,color:T.n900}},s.stage),
+            e('span',{style:{fontSize:12,color:T.n700,lineHeight:'18px'}},s.goal),
+            e('span',{style:{fontSize:12,color:T.n600,lineHeight:'18px'}},s.action),
+            e('span',{style:{fontSize:12,color:T.cr700,lineHeight:'18px'}},s.pain),
+            e('span',{style:{fontSize:12,color:T.su700,lineHeight:'18px'}},s.opp),
+            e('span',{style:{fontSize:12,color:T.n600,fontStyle:'italic'}},s.mood)
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 06: UX MODEL & IA ────────────────────────────────────────
+  r06 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:this.pg},
+      e('div',{style:{maxWidth:800}},
+        this.label('Core UX model'),
+        this.h1('Now · Next · Later'),
+        this.body('The shift experience is organised around three temporal priorities. This model prevents important clinical work from being buried under routine information.'),
+
+        e('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,marginBottom:32}},
+          ...[
+            {t:'Now',col:T.cr600,bg:T.cr50,b:T.cr200,desc:'What requires immediate attention?',items:['Abnormal lab results','Patients beyond target wait time','Prescription approvals','Urgent nurse requests','Clinical safety alerts']},
+            {t:'Next',col:T.wa700,bg:T.wa50,b:T.wa200,desc:'What is coming in the next 90 minutes?',items:['Upcoming appointments','Patient preparation reviews','Pending consultation reports','Results needed for the next visit','Follow-ups due this shift']},
+            {t:'Later',col:T.in700,bg:T.in50,b:T.in200,desc:'What needs monitoring or follow-through?',items:['Missed follow-ups','Pending lab reviews','Handover tasks','No-show trends','Team workload and operational patterns']},
+          ].map(m=>
+            e('div',{key:m.t,style:{background:m.bg,border:`1px solid ${m.b}`,borderRadius:6,padding:'18px 20px'}},
+              e('div',{style:{fontSize:22,fontWeight:700,color:m.col,letterSpacing:'-.02em',marginBottom:5}},m.t),
+              e('div',{style:{fontSize:13,color:m.col,marginBottom:12,fontStyle:'italic'}},m.desc),
+              ...m.items.map(it=>e('div',{key:it,style:{display:'flex',gap:7,marginBottom:6}},e('div',{style:{width:4,height:4,borderRadius:'50%',background:m.col,marginTop:8,flexShrink:0}}),e('span',{style:{fontSize:13,color:m.col,lineHeight:'20px'}},it)))
+            )
+          )
+        ),
+
+        this.divider(),
+        this.label('Information architecture'),
+        this.h2('Navigation structure'),
+        this.body('The primary navigation reflects clinical workflow order — not alphabetical order or feature-set grouping.'),
+
+        e('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:10}},
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px'}},
+            e('div',{style:{fontSize:12,fontWeight:700,color:T.b700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:12}},'Primary navigation'),
+            ...[['1','Shift Briefing','The command centre — now, next, later'],['2','Patients','Full patient list and context'],['3','Appointments','Live queue and flow management'],['4','Medical Records','Clinical record workspace'],['5','Messages','Secure clinical communication'],['6','Tasks','Task and handover management'],['7','Operational Insights','Shift and department metrics'],['8','Settings','Profile and preferences']].map(([n,l,d])=>
+              e('div',{key:l,style:{display:'flex',gap:10,marginBottom:8,alignItems:'flex-start'}},
+                e('span',{style:{fontSize:10,fontWeight:700,color:T.n400,minWidth:14,fontVariantNumeric:'tabular-nums',marginTop:2}},n),
+                e('div',null,e('div',{style:{fontSize:13,fontWeight:600,color:T.n900}},l),e('div',{style:{fontSize:12,color:T.n500}},d))
+              )
+            )
+          ),
+          e('div',null,
+            e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,padding:'16px 20px',marginBottom:10}},
+              e('div',{style:{fontSize:12,fontWeight:700,color:T.b700,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:10}},'Utility bar (persistent)'),
+              ...['Global patient search (⌘K)','Department selector','Morning Shift indicator (green dot)','Notification bell with badge','Help','User avatar (Dr. Ananya Rao)'].map(i=>
+                e('div',{key:i,style:{display:'flex',gap:7,marginBottom:5}},e('div',{style:{width:4,height:4,borderRadius:'50%',background:T.b400,marginTop:7,flexShrink:0}}),e('span',{style:{fontSize:13,color:T.n700}},i))
+              )
+            ),
+            e('div',{style:{background:T.in50,border:`1px solid ${T.in200}`,borderRadius:5,padding:'12px 16px'}},
+              e('div',{style:{fontSize:12,fontWeight:700,color:T.in700,marginBottom:5}},'Key IA decision'),
+              e('p',{style:{margin:0,fontSize:13,color:T.in700,lineHeight:'20px'}},'Shift Briefing is the landing screen — not a dashboard with generic KPIs. It is the clinical command centre. The sidebar order reflects priority, not alphabet.')
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 07: LO-FI WIREFRAMES ─────────────────────────────────────
+  r07 = () => {
+    const T=this.T; const e=React.createElement;
+
+    const ann=(num,text)=>e('div',{key:num,style:{display:'flex',gap:8,marginBottom:6}},
+      e('span',{style:{width:18,height:18,borderRadius:'50%',background:'#4E484C',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontSize:9,fontWeight:700,color:'white'}},num),
+      e('span',{style:{fontSize:12,color:T.n700,lineHeight:'18px'}},text)
+    );
+
+    // Shift briefing wireframe
+    const shiftWF=()=>e('div',{style:{background:'#F0EEEB',borderRadius:6,padding:12,fontFamily:'monospace'}},
+      e('div',{style:{background:'#E2DEDA',padding:'5px 8px',borderRadius:3,marginBottom:6,display:'flex',gap:8}},
+        e('span',{style:{fontSize:9,color:'#4E484C',fontWeight:700}},'① PAGE HEADER'),
+        e('span',{style:{fontSize:9,color:'#7B7477'}},'Morning shift briefing · 08:47 · No greeting · Compact stats only')
+      ),
+      e('div',{style:{background:'#E2DEDA',padding:'4px 8px',borderRadius:3,marginBottom:6,fontSize:9,color:'#4E484C'}},'② CHANGE SUMMARY STRIP — "Since 07:00: 1 abnormal result..."'),
+      e('div',{style:{display:'grid',gridTemplateColumns:'1fr 200px',gap:6}},
+        e('div',null,
+          e('div',{style:{background:'#E2DEDA',padding:'3px 6px',borderRadius:3,marginBottom:4,fontSize:9,color:'#635C60',fontWeight:700}},'③ IMMEDIATE CLINICAL ATTENTION'),
+          e('div',{style:{background:'white',border:'2px solid #AAA3A5',borderLeft:'4px solid #635C60',borderRadius:'0 3px 3px 0',padding:'8px',marginBottom:4}},
+            e('div',{style:{fontSize:9,color:'#201C20',fontWeight:700,marginBottom:3}},'⬤ HIGH  MEERA IYER · CP-10482 · 42F'),
+            e('div',{style:{background:'#F0EEEB',height:6,borderRadius:2,marginBottom:3}}),
+            e('div',{style:{background:'#F0EEEB',height:6,borderRadius:2,width:'80%',marginBottom:6}}),
+            e('div',{style:{display:'flex',gap:4}},
+              e('div',{style:{background:'#201C20',padding:'3px 8px',borderRadius:2,fontSize:8,color:'white'}},'Review record'),
+              e('div',{style:{background:'#F0EEEB',padding:'3px 8px',borderRadius:2,fontSize:8,color:'#4E484C'}},'Assign'),
+              e('div',{style:{background:'#F0EEEB',padding:'3px 8px',borderRadius:2,fontSize:8,color:'#4E484C'}},'Acknowledge')
+            )
+          ),
+          e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderLeft:'3px solid #AAA3A5',borderRadius:'0 3px 3px 0',padding:'6px',marginBottom:4,fontSize:9,color:'#635C60'}},'④ Arjun Nair · Waiting 22m · [Open visit] [Notify]'),
+          e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderLeft:'3px solid #AAA3A5',borderRadius:'0 3px 3px 0',padding:'6px',fontSize:9,color:'#635C60'}},'⑤ Rohan Das · Prescription pending · [Review]')
+        ),
+        e('div',null,
+          e('div',{style:{background:'#E2DEDA',padding:'3px 6px',borderRadius:3,marginBottom:4,fontSize:9,color:'#635C60',fontWeight:700}},'⑥ NEXT 90 MINUTES'),
+          e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px'}},
+            ...['09:00 Meera Iyer · ⚠ Review','09:30 Arjun Nair · Waiting','10:00 Kavya Menon · Report'].map((r,i)=>e('div',{key:i,style:{fontSize:9,color:'#4E484C',padding:'4px 0',borderBottom:i<2?'1px solid #E2DEDA':'none'}},r))
+          )
+        )
+      ),
+      e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px',marginTop:6,fontSize:9,color:'#635C60'}},'⑦ SHIFT FOLLOW-THROUGH TABLE — Missed follow-ups · Pending labs · Handover tasks · No-shows')
+    );
+
+    // Patient profile wireframe
+    const profileWF=()=>e('div',{style:{background:'#F0EEEB',borderRadius:6,padding:12,fontFamily:'monospace'}},
+      e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px',marginBottom:6}},
+        e('div',{style:{fontSize:9,fontWeight:700,color:'#201C20'}},'① STICKY PATIENT HEADER — Meera Iyer · CP-10482 · 42F · B+'),
+        e('div',{style:{background:'#FFF3DA',border:'1px solid #E9C77A',borderRadius:3,padding:'3px 6px',marginTop:4,fontSize:9,color:'#684000',fontWeight:700}},'ALLERGY: PENICILLIN — visible at all times')
+      ),
+      e('div',{style:{background:'#FFF3DA',border:'1px solid #E9C77A',borderRadius:3,padding:'5px 8px',marginBottom:6,fontSize:9,color:'#684000'}},'② CHANGES SINCE REVIEW — Glucose 118→142 · BP 140/88→145/90 · Metformin updated'),
+      e('div',{style:{display:'grid',gridTemplateColumns:'1fr 140px',gap:6}},
+        e('div',null,
+          e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px',marginBottom:4}},
+            e('div',{style:{fontSize:9,color:'#635C60',fontWeight:700,marginBottom:3}},'③ GLUCOSE TREND CHART — Line chart with ref range'),
+            e('div',{style:{height:40,background:'#F0EEEB',borderRadius:2,position:'relative'},},
+              e('div',{style:{position:'absolute',bottom:'20%',left:'10%',right:'5%',height:'30%',background:'#ACD2BC',opacity:.4}}),
+              e('div',{style:{position:'absolute',left:'10%',right:'5%',height:1,background:'#E2DEDA',bottom:'50%'}}),
+              e('div',{style:{position:'absolute',bottom:4,right:6,width:6,height:6,borderRadius:'50%',background:'#8A5600'}})
+            )
+          ),
+          e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px',fontSize:9,color:'#635C60'}},'④ BP READINGS — 145/90 from 140/88 · Stage 2 HTN')
+        ),
+        e('div',null,
+          e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px',fontSize:9,color:'#635C60'}},'⑤ SIDE COLUMN\n─\nConditions\nMedications\nCare team\nOutstanding items')
+        )
+      )
+    );
+
+    // Messages wireframe
+    const msgWF=()=>e('div',{style:{background:'#F0EEEB',borderRadius:6,padding:12,fontFamily:'monospace'}},
+      e('div',{style:{display:'grid',gridTemplateColumns:'90px 130px 1fr',gap:4,height:160}},
+        e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px'}},
+          e('div',{style:{fontSize:8,fontWeight:700,color:'#635C60',marginBottom:4}},'① INBOX NAV'),
+          ...['Needs action 2','Assigned to me','Unread','—','Patients','Care team','Labs','Resolved'].map(i=>e('div',{key:i,style:{fontSize:8,color:'#7B7477',padding:'2px 0',borderBottom:i==='—'?'1px solid #E2DEDA':'none'}},i))
+        ),
+        e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px'}},
+          e('div',{style:{fontSize:8,fontWeight:700,color:'#635C60',marginBottom:4}},'② CONVERSATION LIST'),
+          ...['● Nurse Priya\nMeera Iyer\nGlucose result\nUrgent','Nurse Priya\nRohan Das\nPrescription','Lab System\nKavya Menon\nThyroid panel'].map((t,i)=>e('div',{key:i,style:{fontSize:8,color:'#4E484C',padding:'4px',borderBottom:'1px solid #F0EEEB',background:i===0?'#EEE7ED':'white',whiteSpace:'pre-line'}},t))
+        ),
+        e('div',{style:{background:'white',border:'1px solid #E2DEDA',borderRadius:3,padding:'6px',display:'flex',flexDirection:'column'}},
+          e('div',{style:{fontSize:8,fontWeight:700,color:'#635C60',marginBottom:3}},'③ ACTIVE CONVERSATION — Severity · Status · Actions'),
+          e('div',{style:{flex:1,background:'#F0EEEB',borderRadius:2,padding:'4px',fontSize:8,color:'#4E484C'}},'"Meera\'s glucose 142 mg/dL, up from 118. Review before 09:00." — Nurse Priya'),
+          e('div',{style:{marginTop:4,background:'#F0EEEB',borderRadius:2,padding:'3px',fontSize:8,color:'#635C60'}},'④ COMPOSER: [Reply] [Internal note] [Patient msg] — clearly separated modes')
+        )
+      )
+    );
+
+    return e('div',{style:this.pg},
+      this.label('Deliverable 3'),
+      this.h1('Low-fidelity wireframes'),
+      this.body('Greyscale structural layouts with annotations. Focus on information hierarchy, patient context, workflow and action placement.'),
+
+      e('div',{style:{marginBottom:32}},
+        e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},
+          this.h2('Shift Briefing'),
+          e('span',{style:{fontSize:12,color:T.b700,fontWeight:600,background:T.b50,padding:'3px 10px',borderRadius:4,border:`1px solid ${T.b200}`}},'Screen 1')
+        ),
+        shiftWF(),
+        e('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:8,marginTop:12}},
+          e('div',null,ann('①','No greeting or KPI grid. Page header is compact — just the shift time, clinician name and summary counts.'),ann('②','Change summary strip surfaces what is different since the previous shift in one scannable line.'),ann('③','Featured case uses a left-border severity indicator, not just a colour fill.')),
+          e('div',null,ann('④','Compact action rows below the featured case keep the immediate list scannable, not three large cards.'),ann('⑥','Right column is fixed — always "Next 90 minutes". Not a carousel or collapsible.'),ann('⑦','Shift follow-through uses a table, not cards — comparisons need columns, not tiles.'))
+        )
+      ),
+
+      e('div',{style:{marginBottom:32}},
+        e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},
+          this.h2('Patient Profile'),
+          e('span',{style:{fontSize:12,color:T.b700,fontWeight:600,background:T.b50,padding:'3px 10px',borderRadius:4,border:`1px solid ${T.b200}`}},'Screen 3')
+        ),
+        profileWF(),
+        e('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:8,marginTop:12}},
+          e('div',null,ann('①','Patient header is sticky — always visible as the clinician scrolls. Safety allergy never leaves the viewport.'),ann('②','"Changes since review" appears immediately below the header — the most important signal for the consultation.')),
+          e('div',null,ann('③','Glucose chart has a reference range band, not just a line. Values are labelled directly.'),ann('⑤','Side column shows context, not charts. Charts are in the main column. Context travels with the screen.'))
+        )
+      ),
+
+      e('div',null,
+        e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},
+          this.h2('Clinical Communication'),
+          e('span',{style:{fontSize:12,color:T.b700,fontWeight:600,background:T.b50,padding:'3px 10px',borderRadius:4,border:`1px solid ${T.b200}`}},'Screen 5')
+        ),
+        msgWF(),
+        e('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:8,marginTop:12}},
+          e('div',null,ann('①','Inbox navigation has clinical categories — Needs action, Patients, Labs. Not just read/unread.'),ann('②','Conversation list shows sender, patient, severity and time — four dimensions in a compact row.')),
+          e('div',null,ann('③','Active conversation sticky header shows clinical severity and workflow state alongside the patient name.'),ann('④','Three composer modes — Reply, Internal note, Patient message — are visually distinct to prevent accidental patient communication.'))
+        )
+      )
+    );
+  };
+
+  // ─── 08: DESIGN SYSTEM ────────────────────────────────────────
+  r08 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:this.pg},
+      e('div',{style:{maxWidth:800}},
+        this.label('Deliverable 5'),
+        this.h1('Design system'),
+        this.body('The CareSync Clinical Operations System (CCOS). Built on warm neutrals, dark aubergine, restrained semantic colour and compact enterprise typography.'),
+
+        // Colour
+        this.label('Colour scales'),
+        e('div',{style:{marginBottom:24}},
+          e('div',{style:{marginBottom:10}},
+            e('div',{style:{fontSize:12,fontWeight:600,color:T.n600,marginBottom:6}},'Neutral — Warm charcoal'),
+            e('div',{style:{display:'flex',gap:4,height:32}},
+              ...[T.n0,T.n100,T.n200,T.n300,T.n400,T.n500,T.n600,T.n700,T.n900].map((c,i)=>e('div',{key:i,style:{flex:1,background:c,borderRadius:i===0?'4px 0 0 4px':i===8?'0 4px 4px 0':0}}))
+            )
+          ),
+          e('div',{style:{marginBottom:10}},
+            e('div',{style:{fontSize:12,fontWeight:600,color:T.n600,marginBottom:6}},'Brand — Aubergine · brand/700 = #40233F (primary)'},),
+            e('div',{style:{display:'flex',gap:4,height:32}},
+              ...[T.b50,T.b100,T.b200,T.b300,T.b400,T.b600,T.b700,T.b800].map((c,i)=>e('div',{key:i,style:{flex:1,background:c,borderRadius:i===0?'4px 0 0 4px':i===7?'0 4px 4px 0':0}}))
+            )
+          ),
+          e('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:8}},
+            ...[{l:'Critical',cols:[T.cr50,T.cr200,T.cr600,T.cr700]},{l:'Warning',cols:[T.wa50,T.wa200,T.wa600,T.wa700]},{l:'Success',cols:[T.su50,T.su200,T.su600,T.su700]},{l:'Information',cols:[T.in50,T.in200,T.in600,T.in700]}].map(g=>
+              e('div',{key:g.l},
+                e('div',{style:{fontSize:11,fontWeight:600,color:T.n500,marginBottom:4}},g.l),
+                e('div',{style:{display:'flex',gap:2,height:20}},
+                  ...g.cols.map((c,i)=>e('div',{key:i,style:{flex:1,background:c,borderRadius:i===0?'3px 0 0 3px':i===3?'0 3px 3px 0':0}}))
+                )
+              )
+            )
+          )
+        ),
+
+        // Status system
+        this.label('Four-dimension status system'),
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:24}},
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'14px 16px'}},
+            e('div',{style:{fontSize:12,fontWeight:700,color:T.n700,marginBottom:8}},'Clinical severity'),
+            e('div',{style:{display:'flex',gap:6,flexWrap:'wrap'}},
+              ...['Critical','High','Moderate','Routine','Stable'].map((s,i)=>{
+                const cs=[[T.cr50,T.cr700,T.cr200],[T.wa50,T.wa700,T.wa200],[T.in50,T.in700,T.in200],[T.n50,T.n600,T.n200],[T.su50,T.su700,T.su200]][i];
+                return e('span',{key:s,style:{padding:'2px 8px',background:cs[0],color:cs[1],border:`1px solid ${cs[2]}`,borderRadius:4,fontSize:12,fontWeight:600,display:'inline-flex',alignItems:'center',gap:5}},e('span',{style:{width:6,height:6,borderRadius:'50%',background:cs[1],display:'inline-block'}}),s);
+              })
+            )
+          ),
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'14px 16px'}},
+            e('div',{style:{fontSize:12,fontWeight:700,color:T.n700,marginBottom:8}},'Workflow status'),
+            e('div',{style:{display:'flex',gap:6,flexWrap:'wrap'}},
+              ...['New','Acknowledged','Under review','Assigned','Waiting','Completed','Resolved'].map((s,i)=>{
+                const vs=['brand','neutral','info','info','warning','success','success'];
+                const m={brand:{bg:T.b100,c:T.b700,b:T.b200},neutral:{bg:T.n100,c:T.n700,b:T.n200},info:{bg:T.in50,c:T.in700,b:T.in200},warning:{bg:T.wa50,c:T.wa700,b:T.wa200},success:{bg:T.su50,c:T.su700,b:T.su200}};
+                const st=m[vs[i]];
+                return e('span',{key:s,style:{padding:'2px 8px',background:st.bg,color:st.c,border:`1px solid ${st.b}`,borderRadius:4,fontSize:12,fontWeight:600}},s);
+              })
+            )
+          ),
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'14px 16px'}},
+            e('div',{style:{fontSize:12,fontWeight:700,color:T.n700,marginBottom:8}},'Timing status'),
+            e('div',{style:{display:'flex',gap:6,flexWrap:'wrap'}},
+              ...[[T.cr700,T.cr50,T.cr200,'Overdue'],[T.wa700,T.wa50,T.wa200,'Due now'],[T.wa600,T.wa50,T.wa200,'Due soon'],[T.n600,T.n50,T.n200,'Due later'],[T.n400,T.n50,T.n200,'No due time']].map(([c,bg,b,l])=>
+                e('span',{key:l,style:{padding:'2px 8px',background:bg,color:c,border:`1px solid ${b}`,borderRadius:4,fontSize:12,fontWeight:600}},l)
+              )
+            )
+          ),
+          e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'14px 16px'}},
+            e('div',{style:{fontSize:12,fontWeight:700,color:T.n700,marginBottom:8}},'Ownership'),
+            e('div',{style:{display:'flex',gap:6,flexWrap:'wrap'}},
+              ...[[T.cr700,T.cr50,T.cr200,'Unassigned'],[T.b700,T.b50,T.b200,'Assigned to me'],[T.n700,T.n50,T.n200,'Assigned to teammate'],[T.wa700,T.wa50,T.wa200,'Waiting on external']].map(([c,bg,b,l])=>
+                e('span',{key:l,style:{padding:'2px 8px',background:bg,color:c,border:`1px solid ${b}`,borderRadius:4,fontSize:12,fontWeight:600}},l)
+              )
+            )
+          )
+        ),
+
+        // Typography
+        this.label('Typography — Source Sans 3'),
+        e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'16px 20px',marginBottom:24}},
+          ...[{s:28,w:700,l:'Page title',ex:'Shift Briefing'},{s:20,w:700,l:'Section title',ex:'Immediate clinical attention'},{s:17,w:600,l:'Subsection title',ex:'Next 90 minutes'},{s:15,w:600,l:'Card title',ex:'Meera Iyer — CP-10482'},{s:14,w:400,l:'Body',ex:'Fasting glucose increased from 118 to 142 mg/dL.'},{s:13,w:400,l:'Supporting text',ex:'Dr. Ananya Rao · General Medicine · 08:47'},{s:12,w:600,l:'Label',ex:'IMMEDIATE ATTENTION'},{s:11,w:500,l:'Metadata',ex:'Updated today 07:45 · Source: Central Lab'}].map(st=>
+            e('div',{key:st.l,style:{display:'grid',gridTemplateColumns:'140px 1fr',gap:12,marginBottom:10,alignItems:'baseline'}},
+              e('div',{style:{fontSize:10,color:T.n400,fontWeight:600,textTransform:'uppercase',letterSpacing:'.05em'}},`${st.s}px · ${st.w==='700'?'Bold':st.w===700?'Bold':st.w===600?'Semibold':'Regular'}`),
+              e('span',{style:{fontSize:st.s,fontWeight:st.w,color:T.n900,lineHeight:1.2,textTransform:st.l==='Label'?'uppercase':'none',letterSpacing:st.l==='Label'?'.06em':'normal'}},st.ex)
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 09: WORKFLOW MAP ─────────────────────────────────────────
+  r09 = () => {
+    const T=this.T; const e=React.createElement;
+    const steps=[
+      {n:1,l:'Alert triggered',who:'System',desc:'Lab result or clinical signal exceeds threshold and creates an alert',state:'New'},
+      {n:2,l:'Alert in Shift Briefing',who:'System',desc:'Alert surfaces in the "Immediate attention" section with severity, patient and due time',state:'New'},
+      {n:3,l:'Clinician acknowledges',who:'Doctor',desc:'Dr. Ananya reviews the alert and changes the workflow state from New to Acknowledged',state:'Acknowledged'},
+      {n:4,l:'Patient record reviewed',who:'Doctor',desc:'Patient profile opened — glucose trend, BP, medications and care team reviewed',state:'Under review'},
+      {n:5,l:'Task assigned',who:'Doctor',desc:'If action is needed, a task is created and assigned with a due time and owner',state:'Assigned'},
+      {n:6,l:'Clinical action completed',who:'Doctor / Nurse',desc:'The required clinical action is performed — result reviewed, consultation begun, prescription approved',state:'Action taken'},
+      {n:7,l:'Task marked complete',who:'Doctor',desc:'Task is completed with a completion note. Workflow state updates.',state:'Completed'},
+      {n:8,l:'Patient record updated',who:'System / Doctor',desc:'Consultation note, medication change or alert resolution is recorded',state:'Record updated'},
+      {n:9,l:'Audit history recorded',who:'System',desc:'Actor, action, previous state, new state and timestamp written to the audit log',state:'Resolved'},
+      {n:10,l:'Alert resolved',who:'System',desc:'Alert is removed from the active list. Visible in audit history only.',state:'Resolved'},
+    ];
+    const whoCols={'System':{bg:T.in50,c:T.in700,b:T.in200},'Doctor':{bg:T.b50,c:T.b700,b:T.b200},'Nurse':{bg:T.su50,c:T.su700,b:T.su200},'Doctor / Nurse':{bg:T.wa50,c:T.wa700,b:T.wa200}};
+
+    return e('div',{style:this.pg},
+      this.label('Deliverable 2'),
+      this.h1('Closing-the-loop workflow'),
+      this.body('From alert triggered to alert resolved — showing responsibility changes between the system, doctor, nurse and care coordinator at each step.'),
+
+      // Legend
+      e('div',{style:{display:'flex',gap:10,marginBottom:20,flexWrap:'wrap'}},
+        ...Object.entries(whoCols).map(([who,s])=>
+          e('div',{key:who,style:{display:'flex',alignItems:'center',gap:6,padding:'4px 10px',background:s.bg,border:`1px solid ${s.b}`,borderRadius:4}},
+            e('div',{style:{width:8,height:8,borderRadius:'50%',background:s.c}}),
+            e('span',{style:{fontSize:12,fontWeight:600,color:s.c}},who)
+          )
+        )
+      ),
+
+      e('div',{style:{display:'flex',flexDirection:'column',gap:0}},
+        ...steps.map((s,i)=>{
+          const wc=whoCols[s.who]||whoCols['System'];
+          return e('div',{key:s.n,style:{display:'flex',gap:0}},
+            // Step number + line
+            e('div',{style:{display:'flex',flexDirection:'column',alignItems:'center',width:40,flexShrink:0}},
+              e('div',{style:{width:28,height:28,borderRadius:'50%',background:wc.bg,border:`2px solid ${wc.b}`,display:'flex',alignItems:'center',justifyContent:'center',zIndex:1}},
+                e('span',{style:{fontSize:11,fontWeight:700,color:wc.c}},s.n)
+              ),
+              i<steps.length-1?e('div',{style:{width:2,height:24,background:T.n200}}):null
+            ),
+            // Content
+            e('div',{style:{flex:1,paddingBottom:i<steps.length-1?20:0,paddingLeft:12}},
+              e('div',{style:{display:'flex',gap:8,alignItems:'center',marginBottom:4}},
+                e('span',{style:{fontSize:14,fontWeight:700,color:T.n900}},s.l),
+                e('span',{style:{padding:'2px 8px',background:wc.bg,color:wc.c,border:`1px solid ${wc.b}`,borderRadius:4,fontSize:11,fontWeight:600}},s.who),
+                e('span',{style:{padding:'2px 8px',background:T.n50,color:T.n500,border:`1px solid ${T.n200}`,borderRadius:4,fontSize:11,fontWeight:600}},`State: ${s.state}`)
+              ),
+              e('div',{style:{fontSize:13,color:T.n600,lineHeight:'19px'}},s.desc)
+            )
+          );
+        })
+      )
+    );
+  };
+
+  // ─── 10: ACCESSIBILITY ────────────────────────────────────────
+  r10 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:this.pg},
+      e('div',{style:{maxWidth:760}},
+        this.label('Deliverable 5 — Accessibility'),
+        this.h1('WCAG 2.2 AA'),
+        this.body('Every design decision was made with accessibility as a requirement, not an afterthought. CareSync must work for screen reader users, keyboard-only users and users with reduced vision.'),
+
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,marginBottom:24}},
+          ...[
+            {t:'Colour contrast',items:['Brand aubergine #40233F on white: 15.2:1 (AAA)','Critical red #912018 on white: 7.8:1 (AAA)','Body text #201C20 on #F7F6F4: 16.1:1 (AAA)','Muted text #7B7477 on white: 4.7:1 (AA ✓)']},
+            {t:'Colour-independent communication',items:['Every status badge uses an icon AND text AND colour','Severity levels use a dot indicator with a text label','Trend directions use an arrow icon with a numeric label','Allergy strip uses a shield icon with text, not only colour']},
+            {t:'Keyboard and focus',items:['All interactive elements reachable by Tab','Logical focus order: utility bar → sidebar → main → drawer','Visible focus ring (2px aubergine outline, 2px offset)','Modals and drawers trap focus until dismissed']},
+            {t:'Screen readers and motion',items:['Charts have an accessible text summary below each visualisation','Announced status changes for task completion and acknowledgement','Support for prefers-reduced-motion — no mandatory animations','Minimum 36px interactive height, 40px preferred touch targets']},
+          ].map(g=>
+            e('div',{key:g.t,style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'14px 16px'}},
+              e('div',{style:{fontSize:12,fontWeight:700,color:T.n900,marginBottom:8}},g.t),
+              ...g.items.map(it=>e('div',{key:it,style:{display:'flex',gap:7,marginBottom:5}},e('div',{style:{width:4,height:4,borderRadius:'50%',background:T.su600,marginTop:7,flexShrink:0}}),e('span',{style:{fontSize:13,color:T.n700,lineHeight:'19px'}},it)))
+            )
+          )
+        ),
+
+        // Contrast examples
+        this.label('Contrast examples'),
+        e('div',{style:{display:'flex',gap:10,flexWrap:'wrap'}},
+          ...[
+            {bg:T.b700,text:T.n0,label:'Primary button','ratio':'15.2:1'},
+            {bg:T.cr50,text:T.cr700,label:'Critical alert','ratio':'7.8:1'},
+            {bg:T.wa50,text:T.wa700,label:'Warning strip','ratio':'5.2:1'},
+            {bg:T.n50,text:T.n900,label:'App background','ratio':'16.1:1'},
+            {bg:T.n0,text:T.n500,label:'Muted text','ratio':'4.7:1'},
+          ].map(c=>
+            e('div',{key:c.label,style:{background:c.bg,borderRadius:5,padding:'12px 16px',border:`1px solid ${T.n200}`,minWidth:130}},
+              e('div',{style:{fontSize:14,fontWeight:600,color:c.text,marginBottom:4}},c.label),
+              e('div',{style:{fontSize:11,color:c.text,opacity:.8}},`Ratio: ${c.ratio}`)
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 11: AI PROCESS ───────────────────────────────────────────
+  r11 = () => {
+    const T=this.T; const e=React.createElement;
+    const rows=[
+      {phase:'Problem framing',tool:'Claude AI',task:'Clarify the "why dashboards fail" problem statement. Identify the core tension between information and prioritisation.','output':'Articulated the Now/Next/Later model and the four-dimension status architecture.','human':'Validated against actual clinical workflows. Confirmed the shift scenario resonance.','changed':'Refined the HMW statement. Added "audit trail" as a core principle.','decision':'Human — clinical workflow validation requires domain judgment.'},
+      {phase:'Early exploration',tool:'Claude AI',task:'Generate multiple visual directions for the initial dashboard pass.','output':'Blue-dominated, card-based healthcare dashboard with greeting and generic KPI grid.','human':'Identified this as generic and predictable — "too blue, too close to a hundred other healthcare tools".','changed':'Rejected the visual direction entirely. Pivoted to the warm aubergine palette.','decision':'Human — aesthetic direction must be intentional and distinctive.'},
+      {phase:'Persona development',tool:'Claude AI',task:'Develop a primary persona for a hospital physician in an outpatient clinic.','output':'Draft persona with goals, pain points and behaviours.','human':'Cross-checked pain points against the HMW statement for relevance.','changed':'Removed generic pain points. Replaced with shift-specific clinical frustrations.','decision':'Human — persona must reflect domain realism, not generic UX patterns.'},
+      {phase:'IA and navigation',tool:'Claude AI',task:'Propose a navigation structure for the clinical SaaS application.','output':'Alphabetical-ish feature list with generic dashboard as home.','human':'Restructured to clinical workflow order. Replaced "Dashboard" with "Shift Briefing".','changed':'Navigation reflects shift priority, not feature categories.','decision':'Human — clinical workflow order is not obvious from general UX principles.'},
+      {phase:'Wireframe logic',tool:'Claude AI',task:'Generate low-fidelity layout logic for the Shift Briefing screen.','output':'Layout with greeting, four KPI cards, then a list of alerts.','human':'Identified greeting and KPIs as adding no clinical value.','changed':'Removed greeting entirely. KPI cards replaced by compact shift stats. Action area moved above the fold.','decision':'Human — what is clinically important on a morning shift is a product decision, not an AI output.'},
+      {phase:'Status architecture',tool:'Claude AI',task:'Define a status chip system for clinical alerts.','output':'Single "Priority: High" chip combining all state dimensions.','human':'Identified that severity, workflow, timing and ownership are four separate clinical concepts.','changed':'Separated into four distinct status systems. Documented semantic colour rules for each.','decision':'Human — clinical safety requires precise semantic separation, not convenient compression.'},
+      {phase:'Component generation',tool:'Claude AI (DC)',task:'Generate React component code for all 8 clinical screens with interactions.','output':'Complete DC logic class with screen renderers, state management and SVG charts.','human':'Reviewed syntax errors, clinical data consistency, interaction fidelity.','changed':'Fixed three syntax errors. Ensured Meera Iyer\'s data was identical across all screens.','decision':'Shared — AI for speed; human for clinical data consistency.'},
+      {phase:'Content design',tool:'Claude AI',task:'Write clinical alert copy for the Meera Iyer glucose case.','output':'"Glucose result requires attention."','human':'Applied the "what happened → why it matters → action → due time" structure.','changed':'"Fasting glucose increased from 118 → 142 mg/dL. Review the result before the 09:00 consultation."','decision':'Human — clinical communication content requires precision and consequence awareness.'},
+      {phase:'Accessibility review',tool:'Claude AI',task:'Generate contrast ratios and accessibility annotations.','output':'WCAG 2.2 AA contrast ratio table for all major colour combinations.','human':'Verified key ratios. Added colour-independent status communication rules.','changed':'Added icon+text requirement for all severity and status badges.','decision':'Human — accessibility rules require domain testing, not only calculation.'},
+    ];
+    return e('div',{style:this.pg},
+      this.label('Deliverable 7'),
+      this.h1('AI-assisted workflow'),
+      e('div',{style:{padding:'14px 18px',background:T.b50,border:`1px solid ${T.b200}`,borderRadius:6,marginBottom:24}},
+        e('p',{style:{margin:0,fontSize:14,fontWeight:600,color:T.b700,lineHeight:'22px'}},'AI was used as an accelerator for exploration and production. Final decisions regarding hierarchy, clinical safety, workflow, accessibility, consistency and visual quality were made through human design judgment.')
+      ),
+      e('div',{style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:6,overflow:'hidden',overflowX:'auto'}},
+        e('div',{style:{display:'grid',gridTemplateColumns:'130px 110px 160px 160px 160px 140px 140px',minWidth:1000,padding:'8px 14px',background:T.n50,borderBottom:`1px solid ${T.n200}`,gap:10}},
+          ...['Design phase','AI tool','Prompt / task','Output received','Human review','Changes made','Final decision'].map(h=>e('span',{key:h,style:{fontSize:11,fontWeight:700,color:T.n500,textTransform:'uppercase',letterSpacing:'.05em'}},h))
+        ),
+        ...rows.map((r,i)=>
+          e('div',{key:r.phase,style:{display:'grid',gridTemplateColumns:'130px 110px 160px 160px 160px 140px 140px',minWidth:1000,padding:'11px 14px',borderBottom:i<rows.length-1?`1px solid ${T.n100}`:'none',gap:10,alignItems:'start'}},
+            e('span',{style:{fontSize:13,fontWeight:600,color:T.n900}},r.phase),
+            e('span',{style:{padding:'2px 8px',background:T.b50,color:T.b700,border:`1px solid ${T.b200}`,borderRadius:4,fontSize:11,fontWeight:600,whiteSpace:'nowrap'}},r.tool),
+            e('span',{style:{fontSize:12,color:T.n700,lineHeight:'18px'}},r.task),
+            e('span',{style:{fontSize:12,color:T.n500,lineHeight:'18px'}},r.output),
+            e('span',{style:{fontSize:12,color:T.cr700,lineHeight:'18px'}},r.human),
+            e('span',{style:{fontSize:12,color:T.su700,lineHeight:'18px'}},r.changed),
+            e('span',{style:{fontSize:12,color:T.n600,lineHeight:'18px',fontStyle:'italic'}},r.decision)
+          )
+        )
+      )
+    );
+  };
+
+  // ─── 12: OUTCOMES ─────────────────────────────────────────────
+  r12 = () => {
+    const T=this.T; const e=React.createElement;
+    return e('div',{style:this.pg},
+      e('div',{style:{maxWidth:760}},
+        this.label('Outcomes'),
+        this.h1('What was achieved'),
+
+        e('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,marginBottom:28}},
+          ...[
+            {t:'Clinical actions in first viewport',d:'Immediate attention section always appears above the fold. No greeting, no generic KPI grid.'},
+            {t:'Patient context connected',d:'Messages, tasks, results and appointments all carry the patient ID, encounter and source.'},
+            {t:'Severity and workflow separated',d:'Four distinct status systems. High severity does not imply a specific workflow state.'},
+            {t:'Ownership and timing always visible',d:'Every clinical action shows who is responsible and when it is due.'},
+            {t:'Action built into every alert',d:'Every alert includes Review, Acknowledge, Assign or Complete inline.'},
+            {t:'Distinctive visual language',d:'Warm neutrals, dark aubergine, restrained semantic colour — not a generic blue healthcare interface.'},
+          ].map(o=>
+            e('div',{key:o.t,style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'14px 16px'}},
+              e('div',{style:{display:'flex',gap:8,marginBottom:5,alignItems:'flex-start'}},
+                e('div',{style:{width:22,height:22,borderRadius:4,background:T.su50,border:`1px solid ${T.su200}`,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},
+                  e('svg',{width:12,height:12,viewBox:'0 0 24 24',fill:'none',stroke:T.su600,strokeWidth:2.5,strokeLinecap:'round',strokeLinejoin:'round'},e('polyline',{points:'20 6 9 17 4 12'}))
+                ),
+                e('span',{style:{fontSize:13,fontWeight:700,color:T.n900,lineHeight:'19px'}},o.t)
+              ),
+              e('div',{style:{fontSize:13,color:T.n600,lineHeight:'19px',paddingLeft:30}},o.d)
+            )
+          )
+        ),
+
+        this.divider(),
+        this.label('Reflection — what to validate next'),
+        this.h2('Testing priorities'),
+        e('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:8}},
+          ...[
+            {p:'Usability testing','d':'Can clinicians identify their most urgent task in under 30 seconds on first use?'},
+            {p:'Alert comprehension','d':'Does the "what happened → why it matters → action → due time" structure reduce cognitive load?'},
+            {p:'Task completion rate','d':'What percentage of acknowledged alerts are resolved within the shift with an audit record?'},
+            {p:'Handover accuracy','d':'Are handed-over tasks acknowledged and acted on with greater reliability than the current process?'},
+            {p:'Accessibility testing','d':'Does the interface function correctly with VoiceOver, NVDA and keyboard-only navigation in clinical conditions?'},
+            {p:'Mobile and tablet field testing','d':'Can nurses use the task and messaging views on a tablet in a ward environment?'},
+          ].map(r=>
+            e('div',{key:r.p,style:{background:T.n0,border:`1px solid ${T.n200}`,borderRadius:5,padding:'12px 14px'}},
+              e('div',{style:{fontSize:13,fontWeight:700,color:T.n900,marginBottom:3}},r.p),
+              e('div',{style:{fontSize:13,color:T.n600,lineHeight:'19px'}},r.d)
+            )
+          )
+        )
+      )
+    );
+  };
+
+  // ─── RENDER VALS ─────────────────────────────────────────────
+
+  renderVals() {
+    const {sec}=this.state; const T=this.T;
+    const sections=[
+      {id:'01',n:'01',l:'Cover'},
+      {id:'02',n:'02',l:'Brief & challenge'},
+      {id:'03',n:'03',l:'Reframing'},
+      {id:'04',n:'04',l:'Persona'},
+      {id:'05',n:'05',l:'User journey'},
+      {id:'06',n:'06',l:'UX model & IA'},
+      {id:'07',n:'07',l:'Lo-fi wireframes'},
+      {id:'08',n:'08',l:'Design system'},
+      {id:'09',n:'09',l:'Workflow map'},
+      {id:'10',n:'10',l:'Accessibility'},
+      {id:'11',n:'11',l:'AI process'},
+      {id:'12',n:'12',l:'Outcomes'},
+    ];
+    const navItems=sections.map(s=>({
+      num:s.n,label:s.l,
+      isActive:s.id===sec,
+      bg:s.id===sec?T.b50:'transparent',
+      lc:s.id===sec?T.b700:T.n600,
+      nc:s.id===sec?T.b700:T.n400,
+      fw:s.id===sec?600:400,
+      onClick:()=>this.setState({sec:s.id}),
+    }));
+    const rr={
+      '01':this.r01,'02':this.r02,'03':this.r03,'04':this.r04,
+      '05':this.r05,'06':this.r06,'07':this.r07,'08':this.r08,
+      '09':this.r09,'10':this.r10,'11':this.r11,'12':this.r12,
+    };
+    return {
+      navItems,
+      sectionContent:(rr[sec]||rr['01']).call(this),
+    };
+  }
+}
+</script>
+</body>
+</html>

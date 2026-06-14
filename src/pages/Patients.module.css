@@ -1,0 +1,236 @@
+.page { flex: 1; min-height: 0; width: 100%; }
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.patientName {
+  font-weight: 600;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+.patientId {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+.tabular { font-variant-numeric: tabular-nums; font-size: var(--font-size-body); }
+
+.conditions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.condition {
+  display: inline-block;
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+}
+
+.concern {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+}
+
+.concernHigh {
+  font-size: var(--font-size-supporting);
+  color: var(--color-warning-700);
+  font-weight: 500;
+}
+
+.clinician {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+}
+
+/* Drawer */
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drawerWarning {
+  background: var(--color-warning-50);
+  border: 1px solid var(--color-warning-200);
+  border-radius: var(--radius-card);
+  padding: 12px;
+}
+
+.drawerWarningTitle {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-warning-700);
+  margin-bottom: 8px;
+}
+
+.drawerWarningRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+  padding: 4px 0;
+}
+
+.valueHigh {
+  font-weight: 600;
+  color: var(--color-warning-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.drawerSection {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.drawerSection:last-of-type { border-bottom: none; }
+
+.drawerSectionTitle {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.drawerItem {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  padding: 3px 0;
+}
+
+.drawerActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ── Drawer: current concern ── */
+.drawerConcern {
+  padding: 10px 12px;
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-default);
+  border-left: 3px solid var(--color-warning-600);
+  border-radius: 6px;
+}
+
+.drawerConcernLabel {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 3px;
+}
+
+.drawerConcernText {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Drawer: clinical findings value column ── */
+.drawerWarningValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.valueDelta {
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Drawer: clinical findings footer ── */
+.drawerWarningFooter {
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid var(--color-warning-200);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.drawerWarningInterp {
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-warning-700);
+}
+
+.drawerWarningSource {
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+}
+
+/* ── Drawer: appointment detail ── */
+.drawerItemStrong {
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  padding: 2px 0;
+}
+
+.drawerItemMuted {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  padding: 2px 0;
+}
+
+/* ── Drawer: care team ── */
+.drawerOwnershipRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-supporting);
+  padding: 3px 0;
+}
+
+.drawerOwnerLabel {
+  color: var(--color-text-muted);
+}
+
+.drawerOwnerValue {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.drawerActivity {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  padding-top: 6px;
+  margin-top: 4px;
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* ── Table footer ── */
+.tableFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  padding: 0 2px;
+}
+
+.tableFooterSep {
+  color: var(--color-border-strong);
+}
