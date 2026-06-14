@@ -221,4 +221,7 @@
   .deptSelector { display: none; }
   .shiftBadge { display: none; }
   .userName { display: none; }
+  .searchInput { font-size: 16px; } /* prevents iOS zoom on focus */
+  .topBar { padding: 0 12px; gap: 8px; }
+  .searchKbd { display: none; }
 }
