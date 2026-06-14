@@ -1,4 +1,4 @@
-// Central data source — all screens import from here
+﻿// Central data source — all screens import from here
 // Do not hard-code patient data inside individual components.
 
 export const CURRENT_USER = {
@@ -109,12 +109,12 @@ export interface Task {
   acknowledged?: boolean
 }
 
-// ── Primary patient: Meera Iyer ──────────────────────────────────
+// ── Primary patient: Varsha Varadwaj ──────────────────────────────────
 
 export const MEERA_IYER: Patient = {
-  id: 'meera-iyer',
+  id: 'varsha-varadwaj',
   patientId: 'CP-10482',
-  name: 'Meera Iyer',
+  name: 'Varsha Varadwaj',
   age: 42,
   sex: 'Female',
   bloodGroup: 'B+',
@@ -226,9 +226,9 @@ export const MEERA_APPOINTMENT: Appointment = {
 // ── Secondary patients ───────────────────────────────────────────
 
 export const ARJUN_NAIR: Patient = {
-  id: 'arjun-nair',
+  id: 'bhargav-sai',
   patientId: 'CP-10221',
-  name: 'Arjun Nair',
+  name: 'Bhargav Sai',
   age: 34,
   sex: 'Male',
   bloodGroup: 'O+',
@@ -254,9 +254,9 @@ export const ARJUN_APPOINTMENT: Appointment = {
 }
 
 export const ROHAN_DAS: Patient = {
-  id: 'rohan-das',
+  id: 'sai-prasanna',
   patientId: 'CP-10118',
-  name: 'Rohan Das',
+  name: 'Sai Prasanna',
   age: 52,
   sex: 'Male',
   bloodGroup: 'A+',
@@ -269,9 +269,9 @@ export const ROHAN_DAS: Patient = {
 }
 
 export const KAVYA_MENON: Patient = {
-  id: 'kavya-menon',
+  id: 'sucheta-bharati',
   patientId: 'CP-10301',
-  name: 'Kavya Menon',
+  name: 'Sucheta Bharati',
   age: 29,
   sex: 'Female',
   bloodGroup: 'AB+',
@@ -328,9 +328,9 @@ export const MESSAGES: Message[] = [
     id: 'msg-1',
     from: 'Nurse Priya',
     patientId: 'CP-10482',
-    patientName: 'Meera Iyer',
+    patientName: 'Varsha Varadwaj',
     subject: 'Abnormal glucose result',
-    body: "Meera Iyer's fasting glucose returned at 142 mg/dL, increased from 118 mg/dL. Please review the result before her 09:00 follow-up.",
+    body: "Varsha Varadwaj's fasting glucose returned at 142 mg/dL, increased from 118 mg/dL. Please review the result before her 09:00 follow-up.",
     time: '07:48 AM',
     severity: 'high',
     workflow: 'new',
@@ -342,9 +342,9 @@ export const MESSAGES: Message[] = [
     id: 'msg-2',
     from: 'Nurse Priya',
     patientId: 'CP-10118',
-    patientName: 'Rohan Das',
+    patientName: 'Sai Prasanna',
     subject: 'Lisinopril 10 mg refill request',
-    body: 'Rohan Das is requesting a refill of Lisinopril 10 mg. He has been waiting 18 minutes. Please approve before 09:15.',
+    body: 'Sai Prasanna is requesting a refill of Lisinopril 10 mg. He has been waiting 18 minutes. Please approve before 09:15.',
     time: '08:30 AM',
     severity: 'moderate',
     workflow: 'pending-approval',
@@ -355,9 +355,9 @@ export const MESSAGES: Message[] = [
     id: 'msg-3',
     from: 'Lab System',
     patientId: 'CP-10301',
-    patientName: 'Kavya Menon',
+    patientName: 'Sucheta Bharati',
     subject: 'New diagnostic report available',
-    body: 'A new thyroid panel report has been uploaded for Kavya Menon. Review is required before the 10:00 consultation.',
+    body: 'A new thyroid panel report has been uploaded for Sucheta Bharati. Review is required before the 10:00 consultation.',
     time: '08:15 AM',
     severity: 'routine',
     workflow: 'new',
@@ -385,7 +385,7 @@ export const TASKS: Task[] = [
     id: 'task-1',
     title: 'Review fasting glucose result before 09:00 consultation',
     patientId: 'CP-10482',
-    patientName: 'Meera Iyer',
+    patientName: 'Varsha Varadwaj',
     source: 'Lab Result #492',
     owner: 'Dr. Ananya Rao',
     dueTime: '09:00',
@@ -398,7 +398,7 @@ export const TASKS: Task[] = [
     id: 'task-2',
     title: 'Approve Lisinopril 10 mg prescription refill',
     patientId: 'CP-10118',
-    patientName: 'Rohan Das',
+    patientName: 'Sai Prasanna',
     source: 'Nurse Priya',
     owner: 'Dr. Ananya Rao',
     dueTime: '09:15',
@@ -411,7 +411,7 @@ export const TASKS: Task[] = [
     id: 'task-3',
     title: 'Review new diagnostic report before consultation',
     patientId: 'CP-10301',
-    patientName: 'Kavya Menon',
+    patientName: 'Sucheta Bharati',
     source: 'Lab system',
     owner: 'Dr. Ananya Rao',
     dueTime: 'Before 10:00',
@@ -553,7 +553,8 @@ export const SHIFT_SUMMARY = {
 }
 
 export const NEXT_90_MIN = [
-  { time: '09:00', patient: 'Meera Iyer', patientId: 'CP-10482', visit: 'Diabetes & HTN follow-up', note: 'Review required', severity: 'high' as ClinicalSeverity },
-  { time: '09:30', patient: 'Arjun Nair', patientId: 'CP-10221', visit: 'General consultation', note: 'Checked in, waiting', severity: 'routine' as ClinicalSeverity },
-  { time: '10:00', patient: 'Kavya Menon', patientId: 'CP-10301', visit: 'Thyroid follow-up', note: 'Report available', severity: 'routine' as ClinicalSeverity },
+  { time: '09:00', patient: 'Varsha Varadwaj', patientId: 'CP-10482', visit: 'Diabetes & HTN follow-up', note: 'Review required', severity: 'high' as ClinicalSeverity },
+  { time: '09:30', patient: 'Bhargav Sai', patientId: 'CP-10221', visit: 'General consultation', note: 'Checked in, waiting', severity: 'routine' as ClinicalSeverity },
+  { time: '10:00', patient: 'Sucheta Bharati', patientId: 'CP-10301', visit: 'Thyroid follow-up', note: 'Report available', severity: 'routine' as ClinicalSeverity },
 ]
+
