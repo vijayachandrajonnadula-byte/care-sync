@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+﻿import { useNavigate } from 'react-router-dom'
 import SeverityIndicator from '../components/status/SeverityIndicator'
 import WorkflowStatus from '../components/status/WorkflowStatus'
 import TimingStatus from '../components/status/TimingStatus'
@@ -62,24 +62,24 @@ export default function CaseStudy() {
             <div className={styles.heroPreview}>
               <div className={styles.miniCard}>
                 <div className={styles.miniCardHead}>
-                  <span className={styles.miniCardTitle}>Shift Briefing — Morning</span>
+                  <span className={styles.miniCardTitle}>Shift Briefing · Morning</span>
                   <span className={styles.miniCardMeta}>Dr. Ananya Rao · 08:47 AM</span>
                 </div>
                 <div className={styles.miniCardBody}>
                   <div className={`${styles.miniPatientRow} ${styles.miniPatientRowCrit}`}>
                     <span className={`${styles.miniChip} ${styles.miniChipCrit}`}>High</span>
-                    <span className={styles.miniPatientName}>Meera Iyer</span>
+                    <span className={styles.miniPatientName}>Varsha Varadwaj</span>
                     <span className={styles.miniPatientNote}>Glucose 142 mg/dL · Review before 09:00</span>
                     <span className={`${styles.miniChip} ${styles.miniChipWarn}`}>Due now</span>
                   </div>
                   <div className={styles.miniPatientRow}>
                     <span className={`${styles.miniChip} ${styles.miniChipWarn}`}>Due</span>
-                    <span className={styles.miniPatientName}>Rohan Das</span>
-                    <span className={styles.miniPatientNote}>Lisinopril refill — sign before 09:15</span>
+                    <span className={styles.miniPatientName}>Sai Prasanna</span>
+                    <span className={styles.miniPatientNote}>Lisinopril refill, sign before 09:15</span>
                   </div>
                   <div className={styles.miniPatientRow}>
                     <span className={`${styles.miniChip} ${styles.miniChipBrand}`}>Waiting</span>
-                    <span className={styles.miniPatientName}>Arjun Nair</span>
+                    <span className={styles.miniPatientName}>Bhargav Sai</span>
                     <span className={styles.miniPatientNote}>22m wait · Room pending</span>
                   </div>
                 </div>
@@ -88,7 +88,7 @@ export default function CaseStudy() {
               <div className={styles.miniModelRow}>
                 <div className={styles.miniModelCard}>
                   <span className={`${styles.miniModelLabel} ${styles.miniModelLabelNow}`}>Now</span>
-                  <span className={styles.miniModelText}>Immediate clinical attention — before the next patient</span>
+                  <span className={styles.miniModelText}>Immediate clinical attention before the next patient</span>
                 </div>
                 <div className={styles.miniModelCard}>
                   <span className={`${styles.miniModelLabel} ${styles.miniModelLabelNext}`}>Next</span>
@@ -143,7 +143,7 @@ export default function CaseStudy() {
             <h2 className={styles.sectionTitle}>A doctor starting a shift does not need a dashboard first</h2>
             <p className={styles.sectionDesc}>
               They need a safe operational briefing. The first minutes of a shift are the highest-risk
-              window — the most context switches, the most incomplete information, the most
+              window, the most context switches, the most incomplete information, the most
               handover gaps. An analytics dashboard at this moment is noise.
             </p>
 
@@ -152,7 +152,7 @@ export default function CaseStudy() {
                 'Which patient needs review before the 09:00 consultation?',
                 'Which lab result changed since the last visit?',
                 'Which prescription request is waiting for a signature?',
-                'Which handover item came from night shift — and was it acknowledged?',
+                'Which handover item came from night shift, and was it acknowledged?',
                 'Which appointment is delayed and does the patient know?',
                 'Which issue can safely wait until after the first consultation?',
               ].map(q => (
@@ -163,17 +163,17 @@ export default function CaseStudy() {
             <div className={styles.tensionDiagram}>
               <div className={styles.tensionStep}>
                 <div className={styles.tensionStepTitle}>Noise</div>
-                <div className={styles.tensionStepDesc}>Everything arriving at equal weight — lab results, admin, queue alerts, chat, reminders</div>
+                <div className={styles.tensionStepDesc}>Everything arriving at equal weight: lab results, admin, queue alerts, chat, reminders</div>
               </div>
               <div className={styles.tensionArrow}>→</div>
               <div className={styles.tensionStep}>
                 <div className={styles.tensionStepTitle}>Priority</div>
-                <div className={styles.tensionStepDesc}>Severity, timing, and ownership applied — critical items rise, safe items recede</div>
+                <div className={styles.tensionStepDesc}>Severity, timing, and ownership applied: critical items rise, safe items recede</div>
               </div>
               <div className={styles.tensionArrow}>→</div>
               <div className={styles.tensionStep}>
                 <div className={styles.tensionStepTitle}>Action</div>
-                <div className={styles.tensionStepDesc}>The right action surface at the right moment — review, assign, acknowledge, defer</div>
+                <div className={styles.tensionStepDesc}>The right action surface at the right moment: review, assign, acknowledge, defer</div>
               </div>
             </div>
 
@@ -231,7 +231,7 @@ export default function CaseStudy() {
                   'What does a doctor need in the first 30 seconds of a shift?',
                   'What feels urgent vs what is simply important?',
                   'How many times does a clinician switch screens before their first consultation?',
-                  'What information do they need to act — not just to be aware?',
+                  'What information do they need to act, not just to be aware?',
                   'When does red stop meaning "emergency" and start meaning "noise"?',
                   'What does "handover" actually look like in an outpatient clinic?',
                 ].map(q => (
@@ -283,11 +283,11 @@ export default function CaseStudy() {
                   <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--color-brand-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 16, fontWeight: 700, color: '#fff' }}>S</div>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>Sai Prasanna</div>
-                    <div style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Practising physician — informal conversation, not a formal research study</div>
+                    <div style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Practising physician · Informal conversation, not a formal research study</div>
                   </div>
                 </div>
                 <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 16 }}>
-                  To avoid designing in a vacuum, I spoke informally with my friend Sai Prasanna, who works as a doctor. This was not a usability test or a structured interview — it was a 30-minute honest conversation about what a shift actually looks like. I asked what they look at first, what they ignore, what makes them anxious in the first hour, and what information they have to actively hunt for.
+                  To avoid designing in a vacuum, I spoke informally with my friend Sai Prasanna, who works as a doctor. This was not a usability test or a structured interview. It was a 30-minute honest conversation about what a shift actually looks like. I asked what they look at first, what they ignore, what makes them anxious in the first hour, and what information they have to actively hunt for.
                 </p>
                 <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
                   That conversation gave me directional insight that no desk research could have provided. It confirmed some assumptions, killed others, and surfaced two things I had completely missed: the cognitive cost of inherited handover tasks, and the fact that knowing <em>who owns</em> a clinical item is as important as knowing what it is.
@@ -303,12 +303,12 @@ export default function CaseStudy() {
                   {
                     num: '01',
                     title: 'Immediate attention, not broad analytics',
-                    desc: 'At the start of a shift, the first 10 minutes are about triage — which patient needs me to act before they walk in. The analytics can wait.',
+                    desc: 'At the start of a shift, the first 10 minutes are about triage: which patient needs me to act before they walk in. The analytics can wait.',
                   },
                   {
                     num: '02',
                     title: 'Time, ownership, and urgency need to be together',
-                    desc: 'Seeing a lab result without knowing when it arrived, who flagged it, and what the expected action is — that is four screens I have to visit just to understand one piece of information.',
+                    desc: 'Seeing a lab result without knowing when it arrived, who flagged it, and what the expected action is. That is four screens I have to visit just to understand one piece of information.',
                   },
                   {
                     num: '03',
@@ -328,7 +328,7 @@ export default function CaseStudy() {
                   {
                     num: '06',
                     title: 'Safety red must stay rare',
-                    desc: 'If red means both "allergy alert" and "task overdue", you quickly learn to tune it out. It needs to mean one thing — patient safety — and nothing else.',
+                    desc: 'If red means both "allergy alert" and "task overdue", you quickly learn to tune it out. It needs to mean one thing: patient safety, and nothing else.',
                   },
                 ].map(r => (
                   <div key={r.num} className={styles.researchInsight}>
@@ -358,8 +358,8 @@ export default function CaseStudy() {
                 <div className={styles.modelTitle}>Immediate attention</div>
                 <div className={styles.modelDesc}>What requires clinical action before the next consultation. The highest-urgency surface in the product.</div>
                 <ul className={styles.modelItems}>
-                  <li>Meera Iyer — glucose 142 mg/dL, review due</li>
-                  <li>Rohan Das — Lisinopril refill, sign before 09:15</li>
+                  <li>Varsha Varadwaj: glucose 142 mg/dL, review due</li>
+                  <li>Sai Prasanna: Lisinopril refill, sign before 09:15</li>
                   <li>Abnormal lab results flagged since last visit</li>
                   <li>Handover tasks from night shift</li>
                 </ul>
@@ -369,9 +369,9 @@ export default function CaseStudy() {
                 <div className={styles.modelTitle}>Upcoming appointments</div>
                 <div className={styles.modelDesc}>The next 90 minutes of consultations with preparation status visible before the patient walks in.</div>
                 <ul className={styles.modelItems}>
-                  <li>09:30 — Arjun Nair, waiting 22m, room pending</li>
-                  <li>10:00 — Kavya Menon, new thyroid diagnostic report</li>
-                  <li>10:30 — Sita Krishnan, post-op follow-up</li>
+                  <li>09:30, Bhargav Sai, waiting 22m, room pending</li>
+                  <li>10:00, Sucheta Bharati, new thyroid diagnostic report</li>
+                  <li>10:30, Sita Krishnan, post-op follow-up</li>
                   <li>Preparation notes and delay status per slot</li>
                 </ul>
               </div>
@@ -381,8 +381,8 @@ export default function CaseStudy() {
                 <div className={styles.modelDesc}>What can be deferred without risk. Structured as workstreams, not individual alerts competing for attention.</div>
                 <ul className={styles.modelItems}>
                   <li>Pending prescription reviews</li>
-                  <li>Missed follow-up flag for Kavya Menon</li>
-                  <li>Operational Insights — queue pressure review</li>
+                  <li>Missed follow-up flag for Sucheta Bharati</li>
+                  <li>Operational Insights: queue pressure review</li>
                   <li>End-of-shift handover items</li>
                 </ul>
               </div>
@@ -443,7 +443,7 @@ export default function CaseStudy() {
                   nodes: [
                     { label: 'Login', type: 'start' },
                     { label: 'Shift Briefing', type: 'default' },
-                    { label: 'Meera priority card', type: 'crit' },
+                    { label: 'Varsha priority card', type: 'crit' },
                     { label: 'Patient profile', type: 'default' },
                     { label: 'Begin consultation', type: 'end' },
                   ],
@@ -481,7 +481,7 @@ export default function CaseStudy() {
                   label: 'Task completion',
                   nodes: [
                     { label: 'Tasks', type: 'default' },
-                    { label: 'Rohan refill · due now', type: 'warn' },
+                    { label: 'Sai Prasanna refill · due now', type: 'warn' },
                     { label: 'Task detail drawer', type: 'default' },
                     { label: 'Review record', type: 'default' },
                     { label: 'Mark complete', type: 'end' },
@@ -491,7 +491,7 @@ export default function CaseStudy() {
                   label: 'Medical records worklist',
                   nodes: [
                     { label: 'Medical Records', type: 'default' },
-                    { label: 'Kavya — new thyroid report', type: 'warn' },
+                    { label: 'Sucheta · new thyroid report', type: 'warn' },
                     { label: 'Record detail drawer', type: 'default' },
                     { label: 'Review & annotate', type: 'default' },
                     { label: 'Record updated', type: 'end' },
@@ -524,7 +524,7 @@ export default function CaseStudy() {
             <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>07</div>
             <h2 className={styles.sectionTitle} style={{ color: '#fff', marginBottom: 16 }}>Sketching the shift before designing the screens</h2>
             <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, maxWidth: 680, marginBottom: 32 }}>
-              Before touching any screens, I sketched the product as a story. I wanted to understand what actually happens across a shift — how it starts, what pulls for attention first, how different pieces of information connect, and how the loop closes at handover. The sketch helped me think about sequence and coordination rather than jumping straight into layout.
+              Before touching any screens, I sketched the product as a story. I wanted to understand what actually happens across a shift: how it starts, what pulls for attention first, how different pieces of information connect, and how the loop closes at handover. The sketch helped me think about sequence and coordination rather than jumping straight into layout.
             </p>
 
             <div style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', marginBottom: 24 }}>
@@ -536,13 +536,13 @@ export default function CaseStudy() {
             </div>
 
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, maxWidth: 640, margin: 0 }}>
-              The sketch above maps the shift arc from arrival through triage, consultation, review, and handover. What came out of it most clearly was that the Now / Next / Later model was not a feature — it was the fundamental structure of how clinical work actually unfolds.
+              The sketch above maps the shift arc from arrival through triage, consultation, review, and handover. What came out of it most clearly was that the Now / Next / Later model was not a feature. It was the fundamental structure of how clinical work actually unfolds.
             </p>
           </div>
         </div>
 
         {/* ══════════════════════════════════════════════════
-            DESIGN SYSTEM CREATION — CHAPTER OPENER
+            DESIGN SYSTEM CREATION  CHAPTER OPENER
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionDarkest}`}>
           <div className={styles.inner} style={{ textAlign: 'center' }}>
@@ -555,7 +555,7 @@ export default function CaseStudy() {
               <em style={{ color: 'var(--color-brand-300)' }}>Ready to act.</em>
             </p>
             <p className={styles.dsChapterSub}>
-              The first direction felt too familiar — blue surfaces, generic KPI cards, rounded widgets, and decorative charts. It looked like healthcare, but it did not feel operational. CareSync had to move from a dashboard you browse to a clinical workspace you act from. That required a new visual language, built deliberately from the product's clinical purpose.
+              The first direction felt too familiar: blue surfaces, generic KPI cards, rounded widgets, and decorative charts. It looked like healthcare, but it did not feel operational. CareSync had to move from a dashboard you browse to a clinical workspace you act from. That required a new visual language, built deliberately from the product's clinical purpose.
             </p>
           </div>
         </div>
@@ -566,21 +566,21 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>Visual direction</div>
             <h2 className={styles.sectionTitle}>Visual direction: what to avoid and what to move toward</h2>
             <p className={styles.sectionDesc}>
-              The design system started with a visual audit. Most healthcare SaaS tools share the same aesthetic vocabulary — blue trust signals, gradient headers, oversized KPI tiles, and generic patient cards. CareSync needed to look and feel different for a deliberate reason, not just aesthetic preference.
+              The design system started with a visual audit. Most healthcare SaaS tools share the same aesthetic vocabulary: blue trust signals, gradient headers, oversized KPI tiles, and generic patient cards. CareSync needed to look and feel different for a deliberate reason, not just aesthetic preference.
             </p>
             <div className={styles.directionGrid}>
               <div className={styles.directionPanel}>
-                <div className={`${styles.directionPanelHead} ${styles.directionPanelAvoid}`}>What I avoided — and why</div>
+                <div className={`${styles.directionPanelHead} ${styles.directionPanelAvoid}`}>What I avoided and why</div>
                 <ul className={styles.directionList}>
                   {[
-                    'Generic blue healthcare palette — makes every EHR and clinical SaaS look identical',
-                    'Large KPI tiles at equal visual weight — no triage priority, just data volume',
-                    'Glassmorphism and gradient cards — consumer aesthetic, not clinical workspace',
-                    'Pastel overload — too soft for information-dense clinical scanning',
+                    'Generic blue healthcare palette: makes every EHR and clinical SaaS look identical',
+                    'Large KPI tiles at equal visual weight: no triage priority, just data volume',
+                    'Glassmorphism and gradient cards: consumer aesthetic, not clinical workspace',
+                    'Pastel overload: too soft for information-dense clinical scanning',
                     'Decorative bar charts with no threshold, context, or narrative',
-                    'AI-generated looking rounded UI — no editorial character or system confidence',
-                    'Large hero welcome banners above the fold — clinicians need workflow, not a greeting',
-                    'Consumer-scale oversized rounded corners — wrong density signal',
+                    'AI-generated looking rounded UI: no editorial character or system confidence',
+                    'Large hero welcome banners above the fold: clinicians need workflow, not a greeting',
+                    'Consumer-scale oversized rounded corners: wrong density signal',
                     'Blue used as both brand colour and status indicator simultaneously',
                   ].map(item => (
                     <li key={item} className={`${styles.directionItem} ${styles.directionItemAvoid}`}>{item}</li>
@@ -588,18 +588,18 @@ export default function CaseStudy() {
                 </ul>
               </div>
               <div className={styles.directionPanel}>
-                <div className={`${styles.directionPanelHead} ${styles.directionPanelChosen}`}>Chosen direction — and why</div>
+                <div className={`${styles.directionPanelHead} ${styles.directionPanelChosen}`}>Chosen direction and why</div>
                 <ul className={styles.directionList}>
                   {[
-                    'Warm neutral canvas — off-white and warm greys reduce visual fatigue across a shift',
-                    'Strong but quiet aubergine identity — mature, enterprise, memorable, not generic',
-                    'Compact data surfaces — density that respects clinical workflow pace',
-                    'Clinical safety hierarchy — red protected exclusively for patient safety risk',
-                    'Semantic colour model — amber for urgency, green for stable, grey for routine',
-                    'Action-first components — every element makes the next step clear',
-                    'Repeatable table + drawer workflows — enterprise-grade scan, triage, and review',
-                    'Source, time, owner visible in the row — clinical context without extra navigation',
-                    'Border-based structure, minimal shadows — calm enterprise workspace, not consumer SaaS',
+                    'Warm neutral canvas: off-white and warm greys reduce visual fatigue across a shift',
+                    'Strong but quiet aubergine identity: mature, enterprise, memorable, not generic',
+                    'Compact data surfaces: density that respects clinical workflow pace',
+                    'Clinical safety hierarchy: red protected exclusively for patient safety risk',
+                    'Semantic colour model: amber for urgency, green for stable, grey for routine',
+                    'Action-first components: every element makes the next step clear',
+                    'Repeatable table + drawer workflows: enterprise-grade scan, triage, and review',
+                    'Source, time, owner visible in the row: clinical context without extra navigation',
+                    'Border-based structure, minimal shadows: calm enterprise workspace, not consumer SaaS',
                   ].map(item => (
                     <li key={item} className={`${styles.directionItem} ${styles.directionItemChosen}`}>{item}</li>
                   ))}
@@ -611,10 +611,10 @@ export default function CaseStudy() {
               <p style={{ fontSize: 'var(--font-size-label)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 14 }}>Mood reference sources</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
                 {[
-                  { cat: 'Enterprise SaaS', ref: 'Linear, Notion, Retool — warm neutrals, strong data hierarchy, confident type' },
+                  { cat: 'Enterprise SaaS', ref: 'Linear, Notion, Retool: warm neutrals, strong data hierarchy, confident type' },
                   { cat: 'Clinical operations', ref: 'EHR worklists, lab review panels, ICU dashboards, shift handover boards' },
-                  { cat: 'Command centres', ref: 'Air traffic control, surgical scheduling — calm, high density, visual authority' },
-                  { cat: 'Editorial warmth', ref: 'Stripe, Figma Docs — systematic consistency, confident scale, zero decoration' },
+                  { cat: 'Command centres', ref: 'Air traffic control, surgical scheduling: calm, high density, visual authority' },
+                  { cat: 'Editorial warmth', ref: 'Stripe, Figma Docs: systematic consistency, confident scale, zero decoration' },
                 ].map(m => (
                   <div key={m.cat} style={{ background: 'var(--color-surface-secondary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '14px 16px' }}>
                     <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-brand-600)', marginBottom: 6 }}>{m.cat}</div>
@@ -632,7 +632,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>The brand colour</div>
             <h2 className={styles.sectionTitle}>Why aubergine became the anchor colour</h2>
             <p className={styles.sectionDesc}>
-              Blue is common in healthcare UI because it suggests trust — but it also makes most healthcare dashboards look identical to each other. I chose aubergine because it still feels mature, serious, and trustworthy, but gives CareSync a more distinct enterprise identity. It works well with warm neutrals and supports a calm command-centre feel without becoming decorative.
+              Blue is common in healthcare UI because it suggests trust, but it also makes most healthcare dashboards look identical to each other. I chose aubergine because it still feels mature, serious, and trustworthy, but gives CareSync a more distinct enterprise identity. It works well with warm neutrals and supports a calm command-centre feel without becoming decorative.
             </p>
 
             <div className={styles.colorScaleGrid} style={{ marginBottom: 28 }}>
@@ -656,11 +656,11 @@ export default function CaseStudy() {
               <div style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '20px 24px' }}>
                 <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-brand-600)', marginBottom: 14 }}>Where aubergine appears in the product</div>
                 {[
-                  'Sidebar navigation background — the constant presence across every screen',
-                  'Active navigation item — the only selected state colour in the nav',
-                  'Primary action buttons — the main decision driver on each surface',
-                  'Focus rings — 3px aubergine glow on all keyboard-navigable elements',
-                  'Active row indicator — 3px left-inset on selected table rows',
+                  'Sidebar navigation background: the constant presence across every screen',
+                  'Active navigation item: the only selected state colour in the nav',
+                  'Primary action buttons: the main decision driver on each surface',
+                  'Focus rings: 3px aubergine glow on all keyboard-navigable elements',
+                  'Active row indicator: 3px left-inset on selected table rows',
                   'Section headers and anchor identifiers throughout the product',
                   'Brand wordmark and product identity moments',
                 ].map(item => (
@@ -673,14 +673,14 @@ export default function CaseStudy() {
               <div style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '20px 24px' }}>
                 <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 14 }}>What aubergine is NOT used for</div>
                 {[
-                  'Clinical severity states — red, amber, and green own those signals entirely',
-                  'Data visualisation bars — charts use aubergine only as a neutral data bar',
-                  'Warning or error messages — colour semantics are reserved',
+                  'Clinical severity states: red, amber, and green own those signals entirely',
+                  'Data visualisation bars: charts use aubergine only as a neutral data bar',
+                  'Warning or error messages: colour semantics are reserved',
                   'Decorative backgrounds or gradient surfaces',
-                  'Secondary badges or metadata labels — those stay neutral',
+                  'Secondary badges or metadata labels: those stay neutral',
                 ].map(item => (
                   <div key={item} style={{ fontSize: 12, color: 'var(--color-text-muted)', lineHeight: 1.5, paddingLeft: 14, position: 'relative', marginBottom: 8 }}>
-                    <span style={{ position: 'absolute', left: 0, color: '#9CA3AF' }}>—</span>
+                    <span style={{ position: 'absolute', left: 0, color: '#9CA3AF' }}>·</span>
                     {item}
                   </div>
                 ))}
@@ -720,7 +720,7 @@ export default function CaseStudy() {
               <div style={{ marginTop: 20, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
                 {[
                   { label: 'Why warm grey, not white', text: 'Pure white at scale creates harsh contrast in dense clinical lists. Warm grey lets the eyes relax while reading across rows.' },
-                  { label: 'Why borders, not shadows', text: 'Heavy box shadows feel consumer and decorative. Borders create clinical structure — precise, flat, professional.' },
+                  { label: 'Why borders, not shadows', text: 'Heavy box shadows feel consumer and decorative. Borders create clinical structure: precise, flat, professional.' },
                   { label: 'Why minimal shadows', text: 'Enterprise clinical UI is not a consumer SaaS product. Elevation and depth should come from layout hierarchy, not decorative shadow layers.' },
                 ].map(n => (
                   <div key={n.label} style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '14px 16px' }}>
@@ -739,7 +739,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>Colour semantics</div>
             <h2 className={styles.sectionTitle}>Colour semantics: separating safety from operational urgency</h2>
             <p className={styles.sectionDesc}>
-              I did not want every important thing to become red. In clinical interfaces, red should be protected for safety-critical moments — otherwise users become desensitised and stop responding to it. CareSync uses a strict semantic colour model with one principle at its centre.
+              I did not want every important thing to become red. In clinical interfaces, red should be protected for safety-critical moments. Otherwise users become desensitised and stop responding to it. CareSync uses a strict semantic colour model with one principle at its centre.
             </p>
 
             <div className={styles.principleQuote}>
@@ -844,12 +844,12 @@ export default function CaseStudy() {
                 <div className={styles.typoRole}>Purpose in CareSync</div>
               </div>
               {[
-                { role: 'Shift context', ex: { size: 20, weight: 700, text: 'Shift Briefing — Morning' }, purpose: 'Top-level screen identifier' },
-                { role: 'Section heading', ex: { size: 16, weight: 700, text: 'Priority patients — Now' }, purpose: 'Workflow grouping within screens' },
-                { role: 'Card title', ex: { size: 14, weight: 600, text: 'Meera Iyer — Glucose review' }, purpose: 'The primary action statement' },
+                { role: 'Shift context', ex: { size: 20, weight: 700, text: 'Shift Briefing · Morning' }, purpose: 'Top-level screen identifier' },
+                { role: 'Section heading', ex: { size: 16, weight: 700, text: 'Priority patients · Now' }, purpose: 'Workflow grouping within screens' },
+                { role: 'Card title', ex: { size: 14, weight: 600, text: 'Varsha Varadwaj · Glucose review' }, purpose: 'The primary action statement' },
                 { role: 'Body / table row', ex: { size: 13, weight: 400, text: 'Fasting glucose 142 mg/dL since Monday' }, purpose: 'Supporting clinical detail' },
                 { role: 'Metadata', ex: { size: 12, weight: 400, text: 'CP-10482 · Lab · 08:12 AM' }, purpose: 'Source, ID, timestamp' },
-                { role: 'Badge label', ex: { size: 11, weight: 700, text: 'REVIEW REQUIRED' }, purpose: 'Status state — always uppercase' },
+                { role: 'Badge label', ex: { size: 11, weight: 700, text: 'REVIEW REQUIRED' }, purpose: 'Status state: always uppercase' },
                 { role: 'Table header', ex: { size: 10, weight: 700, text: 'PATIENT / STATUS / TIMING' }, purpose: 'Column scanability label' },
               ].map(row => (
                 <div key={row.role} className={styles.typoRow}>
@@ -861,107 +861,107 @@ export default function CaseStudy() {
             </div>
 
             <div style={{ marginTop: 16, background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '14px 18px', fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
-              The typography avoids oversized marketing-style headings. This is not a landing page — it is a working interface. The largest element on any screen is a section heading, not a hero statement. Tabular numerals are used throughout for numeric data so columns scan cleanly in tables.
+              The typography avoids oversized marketing-style headings. This is not a landing page. It is a working interface. The largest element on any screen is a section heading, not a hero statement. Tabular numerals are used throughout for numeric data so columns scan cleanly in tables.
             </div>
 
             <div style={{ marginTop: 48 }}>
               <div className={styles.sectionLabel} style={{ marginBottom: 10 }}>Layout logic</div>
               <h2 className={styles.sectionTitle} style={{ marginBottom: 12 }}>The grid came from the workflow</h2>
               <p className={styles.sectionDesc}>
-                The layout system was not designed on a 12-column grid abstraction. It was designed around clinical work patterns — what information needs to be visible together and how the doctor moves through a shift.
+                The layout system was not designed on a 12-column grid abstraction. It was designed around clinical work patterns: what information needs to be visible together and how the doctor moves through a shift.
               </p>
               <div className={styles.layoutDiagramGrid}>
                 {/* 1: Briefing — work + rail */}
                 <div className={styles.layoutDiagram}>
-                  <div className={styles.layoutDiagramLabel}>Shift Briefing — work + operational rail</div>
+                  <div className={styles.layoutDiagramLabel}>Shift Briefing · work and operational rail</div>
                   <svg viewBox="0 0 240 130" className={styles.layoutDiagramSvg}>
-                    <rect x="0" y="0" width="40" height="130" fill="#251324"/>
-                    <text x="20" y="66" fontSize="6" fill="rgba(255,255,255,0.3)" textAnchor="middle" fontFamily="sans-serif">NAV</text>
+                    <rect x="0" y="0" width="40" height="130" fill="#C8C8C8"/>
+                    <text x="20" y="66" fontSize="6" fill="#B0B0B0" textAnchor="middle" fontFamily="sans-serif">NAV</text>
                     <rect x="40" y="0" width="132" height="130" fill="#FFFFFF"/>
-                    <text x="106" y="12" fontSize="6" fontWeight="700" fill="#9CA3AF" textAnchor="middle" fontFamily="sans-serif">MAIN WORK AREA</text>
-                    <rect x="44" y="18" width="38" height="72" rx="2" fill="#F9F0F9" stroke="#E0D0E0" strokeWidth="0.5"/>
-                    <text x="63" y="27" fontSize="5" fontWeight="700" fill="#B42318" textAnchor="middle" fontFamily="sans-serif">NOW</text>
-                    <rect x="46" y="32" width="34" height="10" rx="1" fill="#FEE2E2"/>
-                    <rect x="46" y="46" width="34" height="10" rx="1" fill="#FFFBEB"/>
+                    <text x="106" y="12" fontSize="6" fontWeight="700" fill="#AAAAAA" textAnchor="middle" fontFamily="sans-serif">MAIN WORK AREA</text>
+                    <rect x="44" y="18" width="38" height="72" rx="2" fill="#F5F5F5" stroke="#E2E2E2" strokeWidth="0.5"/>
+                    <text x="63" y="27" fontSize="5" fontWeight="700" fill="#A8A8A8" textAnchor="middle" fontFamily="sans-serif">NOW</text>
+                    <rect x="46" y="32" width="34" height="10" rx="1" fill="#F0F0F0"/>
+                    <rect x="46" y="46" width="34" height="10" rx="1" fill="#F5F5F5"/>
                     <rect x="46" y="60" width="34" height="10" rx="1" fill="#F5F5F5"/>
                     <rect x="88" y="18" width="38" height="72" rx="2" fill="#FAFAFA" stroke="#E5E5E5" strokeWidth="0.5"/>
-                    <text x="107" y="27" fontSize="5" fontWeight="700" fill="#8A5600" textAnchor="middle" fontFamily="sans-serif">NEXT</text>
+                    <text x="107" y="27" fontSize="5" fontWeight="700" fill="#AAAAAA" textAnchor="middle" fontFamily="sans-serif">NEXT</text>
                     {[0,1,2].map(i => <rect key={i} x="90" y={32+i*14} width="34" height="10" rx="1" fill="#F5F5F5"/>)}
                     <rect x="132" y="18" width="36" height="72" rx="2" fill="#FAFAFA" stroke="#E5E5E5" strokeWidth="0.5"/>
-                    <text x="150" y="27" fontSize="5" fontWeight="700" fill="#7A4A76" textAnchor="middle" fontFamily="sans-serif">LATER</text>
-                    {[0,1,2,3].map(i => <rect key={i} x="134" y={32+i*12} width="32" height="8" rx="1" fill="#F9F0F9"/>)}
-                    <rect x="172" y="0" width="68" height="130" fill="#F9F4F9"/>
-                    <line x1="172" y1="0" x2="172" y2="130" stroke="#E0D0E0" strokeWidth="0.5"/>
-                    <text x="206" y="14" fontSize="5.5" fontWeight="700" fill="#9CA3AF" textAnchor="middle" fontFamily="sans-serif">UPCOMING</text>
-                    {[0,1,2].map(i => <rect key={i} x="178" y={20+i*22} width="56" height="16" rx="2" fill="white" stroke="#E0D0E0" strokeWidth="0.5"/>)}
-                    <text x="206" y="92" fontSize="5" fill="#C0B0C0" textAnchor="middle" fontFamily="sans-serif">RECOMMENDED</text>
-                    <text x="206" y="100" fontSize="5" fill="#C0B0C0" textAnchor="middle" fontFamily="sans-serif">ACTIONS</text>
-                    {[0,1].map(i => <rect key={i} x="178" y={106+i*11} width="56" height="8" rx="2" fill="white" stroke="#E0D0E0" strokeWidth="0.5"/>)}
+                    <text x="150" y="27" fontSize="5" fontWeight="700" fill="#9A9A9A" textAnchor="middle" fontFamily="sans-serif">LATER</text>
+                    {[0,1,2,3].map(i => <rect key={i} x="134" y={32+i*12} width="32" height="8" rx="1" fill="#F5F5F5"/>)}
+                    <rect x="172" y="0" width="68" height="130" fill="#F5F5F5"/>
+                    <line x1="172" y1="0" x2="172" y2="130" stroke="#E2E2E2" strokeWidth="0.5"/>
+                    <text x="206" y="14" fontSize="5.5" fontWeight="700" fill="#AAAAAA" textAnchor="middle" fontFamily="sans-serif">UPCOMING</text>
+                    {[0,1,2].map(i => <rect key={i} x="178" y={20+i*22} width="56" height="16" rx="2" fill="white" stroke="#E2E2E2" strokeWidth="0.5"/>)}
+                    <text x="206" y="92" fontSize="5" fill="#C4C4C4" textAnchor="middle" fontFamily="sans-serif">RECOMMENDED</text>
+                    <text x="206" y="100" fontSize="5" fill="#C4C4C4" textAnchor="middle" fontFamily="sans-serif">ACTIONS</text>
+                    {[0,1].map(i => <rect key={i} x="178" y={106+i*11} width="56" height="8" rx="2" fill="white" stroke="#E2E2E2" strokeWidth="0.5"/>)}
                   </svg>
                 </div>
                 {/* 2: Table + drawer */}
                 <div className={styles.layoutDiagram}>
                   <div className={styles.layoutDiagramLabel}>Table + detail drawer overlay</div>
                   <svg viewBox="0 0 240 130" className={styles.layoutDiagramSvg}>
-                    <rect x="0" y="0" width="40" height="130" fill="#251324"/>
+                    <rect x="0" y="0" width="40" height="130" fill="#C8C8C8"/>
                     <rect x="40" y="0" width="200" height="130" fill="#FFFFFF"/>
-                    <rect x="40" y="0" width="200" height="16" fill="#F5EFF5"/>
-                    <rect x="44" y="5" width="60" height="6" rx="2" fill="#DDD0DC"/>
-                    <rect x="40" y="16" width="200" height="10" fill="#F0ECF0"/>
+                    <rect x="40" y="0" width="200" height="16" fill="#F2F2F2"/>
+                    <rect x="44" y="5" width="60" height="6" rx="2" fill="#D0D0D0"/>
+                    <rect x="40" y="16" width="200" height="10" fill="#EEEEEE"/>
                     {[0,1,2,3,4].map(i => (
                       <g key={i}>
-                        <rect x="40" y={26+i*18} width="200" height="16" fill={i===1 ? "#F0E8F0" : "white"} stroke="#F0E8F0" strokeWidth="0.5"/>
-                        {i===1 && <rect x="40" y={26+i*18} width="3" height="16" fill="#553052"/>}
-                        <circle cx="52" cy={34+i*18} r="4" fill={i===0 ? "#B42318" : i===1 ? "#553052" : i===2 ? "#8A5600" : "#9CA3AF"}/>
-                        <rect x="60" y={31+i*18} width="36" height="4" rx="1" fill="#9CA3AF"/>
+                        <rect x="40" y={26+i*18} width="200" height="16" fill={i===1 ? "#EEEEEE" : "white"} stroke="#EBEBEB" strokeWidth="0.5"/>
+                        {i===1 && <rect x="40" y={26+i*18} width="3" height="16" fill="#9A9A9A"/>}
+                        <circle cx="52" cy={34+i*18} r="4" fill={i===0 ? "#A8A8A8" : i===1 ? "#9A9A9A" : i===2 ? "#AAAAAA" : "#B4B4B4"}/>
+                        <rect x="60" y={31+i*18} width="36" height="4" rx="1" fill="#AAAAAA"/>
                       </g>
                     ))}
                     {/* Drawer overlay */}
-                    <rect x="152" y="0" width="88" height="130" fill="white" stroke="#E0D0E0" strokeWidth="1"/>
-                    <rect x="152" y="0" width="88" height="22" fill="#F5EFF5"/>
-                    <rect x="156" y="7" width="44" height="7" rx="2" fill="#DDD0DC"/>
-                    <text x="230" y="13" fontSize="8" fill="#9CA3AF" textAnchor="end" fontFamily="sans-serif">✕</text>
-                    {[0,1,2,3].map(i => <rect key={i} x="158" y={28+i*22} width="76" height="14" rx="2" fill="#F5F0F5"/>)}
-                    <rect x="158" y="118" width="38" height="10" rx="2" fill="#553052"/>
+                    <rect x="152" y="0" width="88" height="130" fill="white" stroke="#E2E2E2" strokeWidth="1"/>
+                    <rect x="152" y="0" width="88" height="22" fill="#F2F2F2"/>
+                    <rect x="156" y="7" width="44" height="7" rx="2" fill="#D0D0D0"/>
+                    <text x="230" y="13" fontSize="8" fill="#AAAAAA" textAnchor="end" fontFamily="sans-serif">✕</text>
+                    {[0,1,2,3].map(i => <rect key={i} x="158" y={28+i*22} width="76" height="14" rx="2" fill="#F5F5F5"/>)}
+                    <rect x="158" y="118" width="38" height="10" rx="2" fill="#9A9A9A"/>
                   </svg>
                 </div>
                 {/* 3: Messages 3-panel */}
                 <div className={styles.layoutDiagram}>
-                  <div className={styles.layoutDiagramLabel}>Messages — 3-panel layout</div>
+                  <div className={styles.layoutDiagramLabel}>Messages · 3-panel layout</div>
                   <svg viewBox="0 0 240 130" className={styles.layoutDiagramSvg}>
-                    <rect x="0" y="0" width="40" height="130" fill="#251324"/>
+                    <rect x="0" y="0" width="40" height="130" fill="#C8C8C8"/>
                     <rect x="40" y="0" width="70" height="130" fill="#FAFAFA"/>
-                    <line x1="110" y1="0" x2="110" y2="130" stroke="#E0D0E0" strokeWidth="0.5"/>
-                    <text x="75" y="12" fontSize="5.5" fontWeight="700" fill="#9CA3AF" textAnchor="middle" fontFamily="sans-serif">THREADS</text>
+                    <line x1="110" y1="0" x2="110" y2="130" stroke="#E2E2E2" strokeWidth="0.5"/>
+                    <text x="75" y="12" fontSize="5.5" fontWeight="700" fill="#AAAAAA" textAnchor="middle" fontFamily="sans-serif">THREADS</text>
                     {[
-                      { sev: "#B42318", active: true },
-                      { sev: "#8A5600", active: false },
-                      { sev: "#553052", active: false },
-                      { sev: "#9CA3AF", active: false },
+                      { sev: "#A8A8A8", active: true },
+                      { sev: "#AAAAAA", active: false },
+                      { sev: "#9A9A9A", active: false },
+                      { sev: "#B4B4B4", active: false },
                     ].map((t, i) => (
                       <g key={i}>
-                        <rect x="40" y={18+i*26} width="70" height="24" fill={t.active ? "#F0E8F0" : "transparent"}/>
-                        {t.active && <rect x="40" y={18+i*26} width="3" height="24" fill="#553052"/>}
+                        <rect x="40" y={18+i*26} width="70" height="24" fill={t.active ? "#EEEEEE" : "transparent"}/>
+                        {t.active && <rect x="40" y={18+i*26} width="3" height="24" fill="#9A9A9A"/>}
                         <circle cx="52" cy={30+i*26} r="4" fill={t.sev}/>
                         <rect x="60" y={26+i*26} width="38" height="4" rx="1" fill={t.active ? "#9CA3AF" : "#D1D5DB"}/>
                         <rect x="60" y={33+i*26} width="28" height="3" rx="1" fill="#E0D8E0"/>
                       </g>
                     ))}
                     <rect x="110" y="0" width="130" height="130" fill="#FFFFFF"/>
-                    <text x="175" y="12" fontSize="5.5" fontWeight="700" fill="#9CA3AF" textAnchor="middle" fontFamily="sans-serif">CONVERSATION</text>
-                    <rect x="116" y="18" width="70" height="16" rx="3" fill="#F0ECF0" stroke="#E0D0E0" strokeWidth="0.5"/>
-                    <rect x="174" y="42" width="60" height="14" rx="3" fill="#EDE0F0"/>
-                    <rect x="114" y="64" width="70" height="16" rx="3" fill="#FFF3CD" stroke="#F0E0B0" strokeWidth="0.5"/>
-                    <rect x="116" y="118" width="108" height="10" rx="2" fill="white" stroke="#E0D0E0" strokeWidth="0.75"/>
-                    <rect x="212" y="119" width="8" height="8" rx="1" fill="#553052"/>
+                    <text x="175" y="12" fontSize="5.5" fontWeight="700" fill="#AAAAAA" textAnchor="middle" fontFamily="sans-serif">CONVERSATION</text>
+                    <rect x="116" y="18" width="70" height="16" rx="3" fill="#EEEEEE" stroke="#E2E2E2" strokeWidth="0.5"/>
+                    <rect x="174" y="42" width="60" height="14" rx="3" fill="#EBEBEB"/>
+                    <rect x="114" y="64" width="70" height="16" rx="3" fill="#F5F5F5" stroke="#E0E0E0" strokeWidth="0.5"/>
+                    <rect x="116" y="118" width="108" height="10" rx="2" fill="white" stroke="#E2E2E2" strokeWidth="0.75"/>
+                    <rect x="212" y="119" width="8" height="8" rx="1" fill="#9A9A9A"/>
                   </svg>
                 </div>
               </div>
               <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
                 {[
-                  'Main work + operational rail — keeps NOW/NEXT/LATER always co-visible on the briefing screen',
-                  'Table + drawer — scan across all patients, review one in context, without leaving the list',
-                  '3-panel messages — severity-sorted thread list + conversation + patient context, all in one view',
+                  'Main work + operational rail: keeps NOW/NEXT/LATER always co-visible on the briefing screen',
+                  'Table + drawer: scan across all patients, review one in context, without leaving the list',
+                  '3-panel messages: severity-sorted thread list + conversation + patient context, all in one view',
                 ].map((text, i) => (
                   <div key={i} style={{ fontSize: 12, color: 'var(--color-text-muted)', lineHeight: 1.5, padding: '10px 12px', background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)' }}>{text}</div>
                 ))}
@@ -976,7 +976,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>Component origins</div>
             <h2 className={styles.sectionTitle}>Components were designed from recurring clinical decisions</h2>
             <p className={styles.sectionDesc}>
-              Every component in CareSync exists because a specific clinical decision-making pattern kept recurring across screens. I did not start from a UI kit and add clinical content — I started from the clinical task and designed the smallest reusable piece that could serve it.
+              Every component in CareSync exists because a specific clinical decision-making pattern kept recurring across screens. I did not start from a UI kit and add clinical content. I started from the clinical task and designed the smallest reusable piece that could serve it.
             </p>
             <div className={styles.originGrid}>
               {[
@@ -1040,13 +1040,13 @@ export default function CaseStudy() {
                   <div className={styles.evolutionCardTitle}>Dashboard styling</div>
                 </div>
                 <ul className={styles.evolutionList}>
-                  <li>Blue healthcare palette — visually identical to competitors</li>
+                  <li>Blue healthcare palette: visually identical to competitors</li>
                   <li>Generic dashboard cards at equal visual weight</li>
                   <li>Decorative charts with no clinical threshold or context</li>
-                  <li>Inconsistent badge colours — no semantic rules</li>
-                  <li>No clear clinical colour hierarchy — red used for warnings too</li>
+                  <li>Inconsistent badge colours: no semantic rules</li>
+                  <li>No clear clinical colour hierarchy: red used for warnings too</li>
                   <li>Patient data scattered across disconnected views</li>
-                  <li>Actions looked identical — no visual action hierarchy</li>
+                  <li>Actions looked identical: no visual action hierarchy</li>
                   <li>Status chips were display-only, not action-oriented</li>
                 </ul>
               </div>
@@ -1056,13 +1056,13 @@ export default function CaseStudy() {
                   <div className={styles.evolutionCardTitle}>System language</div>
                 </div>
                 <ul className={styles.evolutionList}>
-                  <li>Aubergine brand system — distinct, memorable, enterprise-grade</li>
-                  <li>Warm neutral surfaces — calm density that reads across a shift</li>
+                  <li>Aubergine brand system: distinct, memorable, enterprise-grade</li>
+                  <li>Warm neutral surfaces: calm density that reads across a shift</li>
                   <li>Charts with thresholds, narrative text, and accessible summaries</li>
-                  <li>4-dimension status architecture — severity, workflow, timing, ownership</li>
-                  <li>Clinical colour semantics — red = safety only, amber = urgency, green = stable</li>
+                  <li>4-dimension status architecture: severity, workflow, timing, ownership</li>
+                  <li>Clinical colour semantics: red = safety only, amber = urgency, green = stable</li>
                   <li>Source, time, owner co-located with the result in every row</li>
-                  <li>Action hierarchy — primary / secondary / ghost / danger clearly differentiated</li>
+                  <li>Action hierarchy: primary / secondary / ghost / danger clearly differentiated</li>
                   <li>Status chips paired with workflow next steps and ownership</li>
                 </ul>
               </div>
@@ -1077,20 +1077,20 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>Design notes</div>
             <h2 className={styles.sectionTitle}>Design decision notes</h2>
             <p className={styles.sectionDesc}>
-              These are the specific, deliberate choices that shaped the visual system — not rules invented for documentation, but decisions made in response to real product and clinical constraints.
+              These are the specific, deliberate choices that shaped the visual system, not rules invented for documentation, but decisions made in response to real product and clinical constraints.
             </p>
             <div className={styles.dsNoteGrid}>
               {[
-                'Used borders instead of heavy shadows — this maintains a clinical workspace feel rather than a consumer SaaS layer-cake aesthetic.',
-                'Kept cards slightly rounded (var --radius-card is 8px) but not overly soft — distinguishable from pure utility but not playful.',
-                'Avoided large hero greeting banners — clinicians need workflow clarity at shift start, not a personalised welcome screen.',
+                'Used borders instead of heavy shadows: this maintains a clinical workspace feel rather than a consumer SaaS layer-cake aesthetic.',
+                'Kept cards slightly rounded (var --radius-card is 8px) but not overly soft, distinguishable from pure utility but not playful.',
+                'Avoided large hero greeting banners: clinicians need workflow clarity at shift start, not a personalised welcome screen.',
                 'Used tables because enterprise clinical work is list-heavy and triage-heavy. Scanning across rows is the core clinical motion.',
-                'Used drawers to reduce unnecessary full-page navigation — clinicians should never lose their worklist position mid-review.',
+                'Used drawers to reduce unnecessary full-page navigation: clinicians should never lose their worklist position mid-review.',
                 'Protected red exclusively for allergy and clinical safety. Red for an overdue task trains users to ignore red.',
-                'Made action buttons specific to the context — "Review result", "Open profile", "Mark complete" — not generic labels.',
+                'Made action buttons specific to the context: "Review result", "Open profile", "Mark complete", not generic labels.',
                 'Kept metadata always visible in rows: source, timestamp, owner, and due time are not hidden behind clicks.',
-                'Used tabular-nums font variant throughout for numeric values — columns align cleanly when scanning multiple rows.',
-                'Gave every chart a narrative sentence and an accessible summary — charts do not stand alone in CareSync.',
+                'Used tabular-nums font variant throughout for numeric values: columns align cleanly when scanning multiple rows.',
+                'Gave every chart a narrative sentence and an accessible summary: charts do not stand alone in CareSync.',
               ].map(note => (
                 <div key={note} className={styles.dsNoteCard}>
                   <div className={styles.dsNoteDot} />
@@ -1103,17 +1103,17 @@ export default function CaseStudy() {
               <div className={styles.sectionLabel} style={{ marginBottom: 10 }}>Accessibility</div>
               <h2 className={styles.sectionTitle} style={{ marginBottom: 12 }}>Accessibility built into the system</h2>
               <p className={styles.sectionDesc}>
-                Accessibility was not a final checklist — it shaped the visual system from the beginning. Several design system decisions exist specifically because of accessibility requirements.
+                Accessibility was not a final checklist. It shaped the visual system from the beginning. Several design system decisions exist specifically because of accessibility requirements.
               </p>
               <div className={styles.a11ySystemGrid}>
                 {[
                   { label: 'Focus rings', text: 'All interactive elements show a 3px aubergine glow on focus. Visible against both light and dark backgrounds, and deliberately distinct from the clinical status colours.' },
-                  { label: 'Status labels always present', text: 'Severity indicators always include the text name alongside the coloured dot. No colour-only status — the label carries the meaning independently.' },
+                  { label: 'Status labels always present', text: 'Severity indicators always include the text name alongside the coloured dot. No colour-only status: the label carries the meaning independently.' },
                   { label: 'Touch targets', text: 'Primary buttons are 40–44px tall, supporting actions 36px, icon buttons 36×36px. Nothing clickable is smaller than a reachable touch area.' },
-                  { label: 'Chart summaries', text: 'Every chart includes an sr-only AccessibleChartSummary — a full narrative description of the data for screen readers, not just a title.' },
+                  { label: 'Chart summaries', text: 'Every chart includes an sr-only AccessibleChartSummary: a full narrative description of the data for screen readers, not just a title.' },
                   { label: 'Safety strip announcement', text: 'PatientSafetyStrip uses role="alert" so allergy information is read aloud by screen readers immediately when the patient surface loads.' },
-                  { label: 'Reduced motion', text: 'When prefers-reduced-motion is active, all transitions collapse to opacity only. Drawer slide animations disappear entirely — no vestibular triggers.' },
-                  { label: 'Drawer focus management', text: 'Opening a drawer traps focus inside it. Closing it returns focus to the row that triggered it — so keyboard users never lose their position.' },
+                  { label: 'Reduced motion', text: 'When prefers-reduced-motion is active, all transitions collapse to opacity only. Drawer slide animations disappear entirely: no vestibular triggers.' },
+                  { label: 'Drawer focus management', text: 'Opening a drawer traps focus inside it. Closing it returns focus to the row that triggered it, so keyboard users never lose their position.' },
                   { label: 'Never colour alone', text: 'Red is never used as the sole indicator of meaning. Every critical state also includes a text label, icon, or structural emphasis alongside the colour.' },
                 ].map(item => (
                   <div key={item.label} className={styles.a11ySystemItem}>
@@ -1138,7 +1138,7 @@ export default function CaseStudy() {
               its job is to help the doctor act <span className={styles.dsClosingAccent}>safely</span>."
             </p>
             <p style={{ marginTop: 32, fontSize: 15, color: 'rgba(255,255,255,0.5)', maxWidth: 580, margin: '32px auto 0', lineHeight: 1.7 }}>
-              The design system helped CareSync move from a set of screens into a reusable clinical product language — one that can be extended to new screens, new roles, and new workflows without re-inventing visual decisions.
+              The design system helped CareSync move from a set of screens into a reusable clinical product language: one that can be extended to new screens, new roles, and new workflows without re-inventing visual decisions.
             </p>
           </div>
         </div>
@@ -1151,7 +1151,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>Wireframes</div>
             <h2 className={styles.sectionTitle}>Rough layouts before any visual decisions</h2>
             <p className={styles.sectionDesc}>
-              Before thinking about colour or components, I mapped out the information hierarchy of each screen. These sketches are rough and intentional — the goal was to decide what belongs on each surface and in what order, not to make anything look finished.
+              Before thinking about colour or components, I mapped out the information hierarchy of each screen. These sketches are rough and intentional. The goal was to decide what belongs on each surface and in what order, not to make anything look finished.
             </p>
             <div className={styles.wfGrid}>
 
@@ -1162,36 +1162,36 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Shift Briefing</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Shift Briefing wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
-                  <rect x="10" y="24" width="32" height="5" rx="2" fill="#7A4A76"/>
-                  {[28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={33+i*17} width={w} height="4" rx="2" fill="#3A1D38"/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <rect x="60" y="7" width="72" height="7" rx="2" fill="#DDD0DC"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
+                  <rect x="10" y="24" width="32" height="5" rx="2" fill="#9A9A9A"/>
+                  {[28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={33+i*17} width={w} height="4" rx="2" fill="#BBBBBB"/>)}
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="60" y="7" width="72" height="7" rx="2" fill="#D0D0D0"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* NOW card */}
-                  <rect x="58" y="28" width="66" height="118" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
-                  <rect x="58" y="28" width="66" height="3" fill="#B42318"/>
-                  <text x="64" y="37" fontSize="5.5" fontWeight="700" fill="#9B4040">NOW</text>
-                  <rect x="62" y="40" width="58" height="12" rx="2" fill="#FEE2E2"/>
-                  <circle cx="66" cy="46" r="3" fill="#B42318"/>
-                  <rect x="72" y="43" width="28" height="3" rx="1" fill="#C08080"/>
-                  <rect x="72" y="49" width="20" height="2.5" rx="1" fill="#E0B0B0"/>
-                  <rect x="62" y="56" width="58" height="12" rx="2" fill="#FFFBEB"/>
-                  <circle cx="66" cy="62" r="3" fill="#8A5600"/>
-                  <rect x="72" y="59" width="24" height="3" rx="1" fill="#B09060"/>
-                  <rect x="62" y="72" width="58" height="12" rx="2" fill="#F5F0F5"/>
+                  <rect x="58" y="28" width="66" height="118" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
+                  <rect x="58" y="28" width="66" height="3" fill="#A8A8A8"/>
+                  <text x="64" y="37" fontSize="5.5" fontWeight="700" fill="#888888">NOW</text>
+                  <rect x="62" y="40" width="58" height="12" rx="2" fill="#F0F0F0"/>
+                  <circle cx="66" cy="46" r="3" fill="#A8A8A8"/>
+                  <rect x="72" y="43" width="28" height="3" rx="1" fill="#C0C0C0"/>
+                  <rect x="72" y="49" width="20" height="2.5" rx="1" fill="#D8D8D8"/>
+                  <rect x="62" y="56" width="58" height="12" rx="2" fill="#F5F5F5"/>
+                  <circle cx="66" cy="62" r="3" fill="#AAAAAA"/>
+                  <rect x="72" y="59" width="24" height="3" rx="1" fill="#BBBBBB"/>
+                  <rect x="62" y="72" width="58" height="12" rx="2" fill="#F5F5F5"/>
                   {/* NEXT card */}
-                  <rect x="130" y="28" width="66" height="118" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
-                  <rect x="130" y="28" width="66" height="3" fill="#8A5600"/>
-                  <text x="136" y="37" fontSize="5.5" fontWeight="700" fill="#8A6030">NEXT</text>
+                  <rect x="130" y="28" width="66" height="118" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
+                  <rect x="130" y="28" width="66" height="3" fill="#AAAAAA"/>
+                  <text x="136" y="37" fontSize="5.5" fontWeight="700" fill="#888888">NEXT</text>
                   {[0,1,2].map(i => <rect key={i} x="134" y={40+i*18} width="58" height="12" rx="2" fill="#F5F5F5"/>)}
                   {/* LATER card */}
-                  <rect x="202" y="28" width="70" height="118" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
-                  <rect x="202" y="28" width="70" height="3" fill="#7A4A76"/>
-                  <text x="208" y="37" fontSize="5.5" fontWeight="700" fill="#7A4A76">LATER</text>
-                  {[0,1,2,3].map(i => <rect key={i} x="206" y={40+i*16} width="62" height="10" rx="2" fill="#F9F0F9"/>)}
+                  <rect x="202" y="28" width="70" height="118" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
+                  <rect x="202" y="28" width="70" height="3" fill="#9A9A9A"/>
+                  <text x="208" y="37" fontSize="5.5" fontWeight="700" fill="#9A9A9A">LATER</text>
+                  {[0,1,2,3].map(i => <rect key={i} x="206" y={40+i*16} width="62" height="10" rx="2" fill="#F5F5F5"/>)}
                 </svg>
               </div>
 
@@ -1202,33 +1202,33 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Patients</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Patients wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
                   {[32, 28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={24+i*17} width={w} height="4" rx="2" fill={i===1 ? "#7A4A76" : "#3A1D38"}/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <rect x="60" y="7" width="52" height="7" rx="2" fill="#DDD0DC"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="60" y="7" width="52" height="7" rx="2" fill="#D0D0D0"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* Search bar */}
-                  <rect x="58" y="28" width="166" height="13" rx="3" fill="white" stroke="#E0D0E0" strokeWidth="0.75"/>
+                  <rect x="58" y="28" width="166" height="13" rx="3" fill="white" stroke="#E2E2E2" strokeWidth="0.75"/>
                   <rect x="64" y="33" width="50" height="3" rx="1" fill="#E0D8E0"/>
-                  <rect x="230" y="28" width="42" height="13" rx="3" fill="#F0E8F0" stroke="#D0B8D0" strokeWidth="0.75"/>
+                  <rect x="230" y="28" width="42" height="13" rx="3" fill="#EEEEEE" stroke="#D4D4D4" strokeWidth="0.75"/>
                   {/* Filter chips */}
-                  {[0,1,2].map(i => <rect key={i} x={58+i*52} y="46" width="46" height="10" rx="5" fill={i===0 ? "#F0E8F0" : "#FAFAFA"} stroke={i===0 ? "#C8A8C8" : "#E5E5E5"} strokeWidth="0.75"/>)}
+                  {[0,1,2].map(i => <rect key={i} x={58+i*52} y="46" width="46" height="10" rx="5" fill={i===0 ? "#EEEEEE" : "#FAFAFA"} stroke={i===0 ? "#D0D0D0" : "#E5E5E5"} strokeWidth="0.75"/>)}
                   {/* Table header */}
-                  <rect x="58" y="60" width="214" height="11" fill="#F0ECF0" stroke="#E0D0E0" strokeWidth="0.5"/>
+                  <rect x="58" y="60" width="214" height="11" fill="#EEEEEE" stroke="#E2E2E2" strokeWidth="0.5"/>
                   {/* 4 rows */}
                   {[
-                    { sev: "#B42318", bg: "#FEF0F0" },
-                    { sev: "#8A5600", bg: "#FFFBF0" },
-                    { sev: "#553052", bg: "#FAFAFA" },
-                    { sev: "#2D6A4F", bg: "#FAFAFA" },
+                    { sev: "#A8A8A8", bg: "#F0F0F0" },
+                    { sev: "#AAAAAA", bg: "#F5F5F5" },
+                    { sev: "#9A9A9A", bg: "#FAFAFA" },
+                    { sev: "#AAAAAA", bg: "#FAFAFA" },
                   ].map((r, i) => (
                     <g key={i}>
-                      <rect x="58" y={71+i*18} width="214" height="16" fill={r.bg} stroke="#F0E8F0" strokeWidth="0.5"/>
+                      <rect x="58" y={71+i*18} width="214" height="16" fill={r.bg} stroke="#EBEBEB" strokeWidth="0.5"/>
                       <circle cx="68" cy={79+i*18} r="4" fill={r.sev}/>
-                      <rect x="76" y={76+i*18} width="36" height="4" rx="1" fill="#9CA3AF"/>
-                      <rect x="116" y={76+i*18} width="22" height="4" rx="1" fill="#D1D5DB"/>
+                      <rect x="76" y={76+i*18} width="36" height="4" rx="1" fill="#AAAAAA"/>
+                      <rect x="116" y={76+i*18} width="22" height="4" rx="1" fill="#D4D4D4"/>
                       <rect x="234" y={75+i*18} width="32" height="7" rx="3" fill="#E8E0E8"/>
                     </g>
                   ))}
@@ -1242,31 +1242,31 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Appointments</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Appointments wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
                   {[32, 28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={24+i*17} width={w} height="4" rx="2" fill={i===2 ? "#7A4A76" : "#3A1D38"}/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <rect x="60" y="7" width="62" height="7" rx="2" fill="#DDD0DC"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="60" y="7" width="62" height="7" rx="2" fill="#D0D0D0"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* Time filter tabs */}
-                  <rect x="58" y="28" width="52" height="13" rx="3" fill="#F0E8F0" stroke="#C8A8C8" strokeWidth="1"/>
-                  <rect x="114" y="28" width="52" height="13" rx="3" fill="white" stroke="#E0D0E0" strokeWidth="0.75"/>
-                  <rect x="170" y="28" width="44" height="13" rx="3" fill="white" stroke="#E0D0E0" strokeWidth="0.75"/>
+                  <rect x="58" y="28" width="52" height="13" rx="3" fill="#EEEEEE" stroke="#D0D0D0" strokeWidth="1"/>
+                  <rect x="114" y="28" width="52" height="13" rx="3" fill="white" stroke="#E2E2E2" strokeWidth="0.75"/>
+                  <rect x="170" y="28" width="44" height="13" rx="3" fill="white" stroke="#E2E2E2" strokeWidth="0.75"/>
                   {/* Table header */}
-                  <rect x="58" y="45" width="214" height="12" fill="#F0ECF0" stroke="#E0D0E0" strokeWidth="0.5"/>
+                  <rect x="58" y="45" width="214" height="12" fill="#EEEEEE" stroke="#E2E2E2" strokeWidth="0.5"/>
                   {/* 3 appointment rows */}
                   {[
-                    { bg: "#FFFBEB", chipFill: "#FEF3C7", chipStroke: "#F59E0B" },
-                    { bg: "#FAFAFA", chipFill: "#EDE5F0", chipStroke: "#B79BB3" },
-                    { bg: "#FAFAFA", chipFill: "#EDE5F0", chipStroke: "#B79BB3" },
+                    { bg: "#F5F5F5", chipFill: "#F0F0F0", chipStroke: "#D0D0D0" },
+                    { bg: "#FAFAFA", chipFill: "#EBEBEB", chipStroke: "#D0D0D0" },
+                    { bg: "#FAFAFA", chipFill: "#EBEBEB", chipStroke: "#D0D0D0" },
                   ].map((r, i) => (
                     <g key={i}>
-                      <rect x="58" y={57+i*22} width="214" height="20" fill={r.bg} stroke="#F0E8F0" strokeWidth="0.5"/>
-                      <rect x="62" y={62+i*22} width="18" height="5" rx="1" fill="#C0B0C0"/>
-                      <rect x="84" y={62+i*22} width="36" height="5" rx="1" fill="#9CA3AF"/>
+                      <rect x="58" y={57+i*22} width="214" height="20" fill={r.bg} stroke="#EBEBEB" strokeWidth="0.5"/>
+                      <rect x="62" y={62+i*22} width="18" height="5" rx="1" fill="#C4C4C4"/>
+                      <rect x="84" y={62+i*22} width="36" height="5" rx="1" fill="#AAAAAA"/>
                       <rect x="164" y={61+i*22} width="48" height="8" rx="3" fill={r.chipFill} stroke={r.chipStroke} strokeWidth="0.75"/>
-                      <rect x="220" y={62+i*22} width="30" height="5" rx="1" fill="#D1D5DB"/>
+                      <rect x="220" y={62+i*22} width="30" height="5" rx="1" fill="#D4D4D4"/>
                     </g>
                   ))}
                 </svg>
@@ -1279,31 +1279,31 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Medical Records</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Medical Records wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
                   {[32, 28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={24+i*17} width={w} height="4" rx="2" fill={i===3 ? "#7A4A76" : "#3A1D38"}/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <rect x="60" y="7" width="70" height="7" rx="2" fill="#DDD0DC"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="60" y="7" width="70" height="7" rx="2" fill="#D0D0D0"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* Tabs */}
-                  <rect x="58" y="28" width="90" height="14" rx="2" fill="white" stroke="#E0D0E0" strokeWidth="0.75"/>
-                  <rect x="58" y="41" width="90" height="2" fill="#553052"/>
+                  <rect x="58" y="28" width="90" height="14" rx="2" fill="white" stroke="#E2E2E2" strokeWidth="0.75"/>
+                  <rect x="58" y="41" width="90" height="2" fill="#9A9A9A"/>
                   <rect x="152" y="28" width="80" height="14" rx="2" fill="#FAFAFA" stroke="#E5E5E5" strokeWidth="0.5"/>
                   {/* Header label */}
-                  <rect x="58" y="50" width="110" height="6" rx="2" fill="#DDD0DC"/>
-                  <rect x="232" y="49" width="38" height="8" rx="3" fill="#EDE5F0" stroke="#B79BB3" strokeWidth="0.75"/>
+                  <rect x="58" y="50" width="110" height="6" rx="2" fill="#D0D0D0"/>
+                  <rect x="232" y="49" width="38" height="8" rx="3" fill="#EBEBEB" stroke="#D0D0D0" strokeWidth="0.75"/>
                   {/* Table header */}
-                  <rect x="58" y="62" width="214" height="11" fill="#F0ECF0" stroke="#E0D0E0" strokeWidth="0.5"/>
+                  <rect x="58" y="62" width="214" height="11" fill="#EEEEEE" stroke="#E2E2E2" strokeWidth="0.5"/>
                   {/* 4 rows */}
                   {[0,1,2,3].map(i => (
                     <g key={i}>
-                      <rect x="58" y={73+i*18} width="214" height="16" fill={i<2 ? "#FDF0FD" : "white"} stroke="#F0E8F0" strokeWidth="0.5"/>
-                      {i < 2 && <rect x="58" y={73+i*18} width="3" height="16" fill="#553052"/>}
-                      <rect x="65" y={78+i*18} width="44" height="4" rx="1" fill="#9CA3AF"/>
-                      <rect x="115" y={78+i*18} width="36" height="4" rx="1" fill="#C0B0C0"/>
+                      <rect x="58" y={73+i*18} width="214" height="16" fill={i<2 ? "#F2F2F2" : "white"} stroke="#EEEEEE" strokeWidth="0.5"/>
+                      {i < 2 && <rect x="58" y={73+i*18} width="3" height="16" fill="#9A9A9A"/>}
+                      <rect x="65" y={78+i*18} width="44" height="4" rx="1" fill="#AAAAAA"/>
+                      <rect x="115" y={78+i*18} width="36" height="4" rx="1" fill="#C4C4C4"/>
                       {i < 2
-                        ? <rect x="228" y={77+i*18} width="36" height="7" rx="3" fill="#EDE5F0" stroke="#B79BB3" strokeWidth="0.5"/>
+                        ? <rect x="228" y={77+i*18} width="36" height="7" rx="3" fill="#EBEBEB" stroke="#D0D0D0" strokeWidth="0.5"/>
                         : <rect x="228" y={77+i*18} width="36" height="7" rx="3" fill="#F0F0F0" stroke="#E0E0E0" strokeWidth="0.5"/>
                       }
                     </g>
@@ -1318,42 +1318,42 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Messages</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Messages wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
                   {[32, 28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={24+i*17} width={w} height="4" rx="2" fill={i===4 ? "#7A4A76" : "#3A1D38"}/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* Thread list */}
                   <rect x="52" y="22" width="92" height="158" fill="#FAFAFA"/>
-                  <line x1="144" y1="22" x2="144" y2="180" stroke="#E0D0E0" strokeWidth="0.75"/>
-                  <rect x="56" y="26" width="52" height="6" rx="2" fill="#DDD0DC"/>
+                  <line x1="144" y1="22" x2="144" y2="180" stroke="#E2E2E2" strokeWidth="0.75"/>
+                  <rect x="56" y="26" width="52" height="6" rx="2" fill="#D0D0D0"/>
                   {[
-                    { sev: "#B42318", active: true },
-                    { sev: "#8A5600", active: false },
-                    { sev: "#553052", active: false },
-                    { sev: "#2D6A4F", active: false },
+                    { sev: "#A8A8A8", active: true },
+                    { sev: "#AAAAAA", active: false },
+                    { sev: "#9A9A9A", active: false },
+                    { sev: "#AAAAAA", active: false },
                   ].map((t, i) => (
                     <g key={i}>
-                      <rect x="52" y={36+i*32} width="92" height="30" fill={t.active ? "#F0E8F0" : "transparent"}/>
-                      {t.active && <rect x="52" y={36+i*32} width="3" height="30" fill="#553052"/>}
+                      <rect x="52" y={36+i*32} width="92" height="30" fill={t.active ? "#EEEEEE" : "transparent"}/>
+                      {t.active && <rect x="52" y={36+i*32} width="3" height="30" fill="#9A9A9A"/>}
                       <circle cx="64" cy={51+i*32} r="5" fill={t.sev}/>
                       <rect x="73" y={45+i*32} width="52" height="4" rx="1" fill={t.active ? "#9CA3AF" : "#D1D5DB"}/>
                       <rect x="73" y={53+i*32} width="38" height="3" rx="1" fill="#E0D8E0"/>
                     </g>
                   ))}
                   {/* Conversation */}
-                  <rect x="150" y="30" width="80" height="22" rx="3" fill="#F0ECF0" stroke="#E0D0E0" strokeWidth="0.5"/>
-                  <rect x="154" y="35" width="52" height="3" rx="1" fill="#9CA3AF"/>
-                  <rect x="154" y="41" width="38" height="3" rx="1" fill="#C0B0C0"/>
-                  <rect x="198" y="60" width="72" height="18" rx="3" fill="#EDE0F0"/>
-                  <rect x="202" y="65" width="50" height="3" rx="1" fill="#A078A8"/>
-                  <rect x="148" y="86" width="80" height="22" rx="3" fill="#FFF3CD" stroke="#F0E0B0" strokeWidth="0.5"/>
-                  <rect x="152" y="91" width="52" height="3" rx="1" fill="#B08040"/>
-                  <rect x="152" y="97" width="36" height="3" rx="1" fill="#D0A060"/>
-                  <rect x="148" y="162" width="122" height="14" rx="2" fill="white" stroke="#E0D0E0" strokeWidth="0.75"/>
+                  <rect x="150" y="30" width="80" height="22" rx="3" fill="#EEEEEE" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="154" y="35" width="52" height="3" rx="1" fill="#AAAAAA"/>
+                  <rect x="154" y="41" width="38" height="3" rx="1" fill="#C4C4C4"/>
+                  <rect x="198" y="60" width="72" height="18" rx="3" fill="#EBEBEB"/>
+                  <rect x="202" y="65" width="50" height="3" rx="1" fill="#B0B0B0"/>
+                  <rect x="148" y="86" width="80" height="22" rx="3" fill="#F5F5F5" stroke="#E0E0E0" strokeWidth="0.5"/>
+                  <rect x="152" y="91" width="52" height="3" rx="1" fill="#BBBBBB"/>
+                  <rect x="152" y="97" width="36" height="3" rx="1" fill="#C0C0C0"/>
+                  <rect x="148" y="162" width="122" height="14" rx="2" fill="white" stroke="#E2E2E2" strokeWidth="0.75"/>
                   <rect x="154" y="166" width="60" height="4" rx="1" fill="#E0D8E0"/>
-                  <rect x="256" y="163" width="12" height="12" rx="2" fill="#553052"/>
+                  <rect x="256" y="163" width="12" height="12" rx="2" fill="#9A9A9A"/>
                 </svg>
               </div>
 
@@ -1364,38 +1364,38 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Tasks</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Tasks wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
                   {[32, 28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={24+i*17} width={w} height="4" rx="2" fill={i===5 ? "#7A4A76" : "#3A1D38"}/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <rect x="60" y="7" width="36" height="7" rx="2" fill="#DDD0DC"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="60" y="7" width="36" height="7" rx="2" fill="#D0D0D0"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* NOW group */}
-                  <rect x="58" y="28" width="214" height="18" rx="2" fill="#FEF0F0"/>
-                  <circle cx="66" cy="37" r="4" fill="#B42318"/>
-                  <rect x="74" y="34" width="44" height="5" rx="1" fill="#C08080"/>
+                  <rect x="58" y="28" width="214" height="18" rx="2" fill="#F0F0F0"/>
+                  <circle cx="66" cy="37" r="4" fill="#A8A8A8"/>
+                  <rect x="74" y="34" width="44" height="5" rx="1" fill="#C0C0C0"/>
                   {/* 2 task rows */}
                   {[0,1].map(i => (
                     <g key={i}>
-                      <rect x="58" y={50+i*22} width="214" height="19" fill="white" stroke="#F0E8F0" strokeWidth="0.5"/>
-                      <rect x="62" y={54+i*22} width="30" height="10" rx="3" fill={i===0 ? "#FEE2E2" : "#FFFBEB"}/>
-                      <rect x="96" y={57+i*22} width="90" height="4" rx="1" fill="#9CA3AF"/>
-                      <rect x="234" y={55+i*22} width="32" height="8" rx="3" fill="#EDE5F0"/>
+                      <rect x="58" y={50+i*22} width="214" height="19" fill="white" stroke="#EBEBEB" strokeWidth="0.5"/>
+                      <rect x="62" y={54+i*22} width="30" height="10" rx="3" fill={i===0 ? "#F0F0F0" : "#F5F5F5"}/>
+                      <rect x="96" y={57+i*22} width="90" height="4" rx="1" fill="#AAAAAA"/>
+                      <rect x="234" y={55+i*22} width="32" height="8" rx="3" fill="#EBEBEB"/>
                     </g>
                   ))}
                   {/* Divider */}
-                  <line x1="58" y1="96" x2="272" y2="96" stroke="#E8E0E8" strokeWidth="0.75"/>
+                  <line x1="58" y1="96" x2="272" y2="96" stroke="#E4E4E4" strokeWidth="0.75"/>
                   {/* DUE THIS SHIFT group */}
                   <rect x="58" y="100" width="214" height="16" rx="2" fill="#FAFAFA"/>
-                  <circle cx="66" cy="108" r="4" fill="#8A5600"/>
-                  <rect x="74" y="105" width="64" height="5" rx="1" fill="#B09060"/>
+                  <circle cx="66" cy="108" r="4" fill="#AAAAAA"/>
+                  <rect x="74" y="105" width="64" height="5" rx="1" fill="#BBBBBB"/>
                   {/* 3 lighter rows */}
                   {[0,1,2].map(i => (
                     <g key={i}>
-                      <rect x="58" y={120+i*18} width="214" height="15" fill="white" stroke="#F0E8F0" strokeWidth="0.5"/>
-                      <rect x="62" y={124+i*18} width="26" height="7" rx="3" fill="#F5F0F5"/>
-                      <rect x="92" y={126+i*18} width="80" height="3" rx="1" fill="#C0B0C0"/>
+                      <rect x="58" y={120+i*18} width="214" height="15" fill="white" stroke="#EBEBEB" strokeWidth="0.5"/>
+                      <rect x="62" y={124+i*18} width="26" height="7" rx="3" fill="#F5F5F5"/>
+                      <rect x="92" y={126+i*18} width="80" height="3" rx="1" fill="#C4C4C4"/>
                       <rect x="234" y={124+i*18} width="32" height="7" rx="3" fill="#F0F0F0"/>
                     </g>
                   ))}
@@ -1409,33 +1409,33 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Operational Insights</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Operational Insights wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
                   {[32, 28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={24+i*17} width={w} height="4" rx="2" fill={i===6 ? "#7A4A76" : "#3A1D38"}/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <rect x="60" y="7" width="80" height="7" rx="2" fill="#DDD0DC"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="60" y="7" width="80" height="7" rx="2" fill="#D0D0D0"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* 3 insight cards */}
-                  <rect x="58" y="28" width="68" height="44" rx="3" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="1"/>
-                  <rect x="58" y="28" width="3" height="44" fill="#F59E0B"/>
-                  <rect x="66" y="34" width="28" height="12" rx="2" fill="#F5E0B0"/>
-                  <rect x="66" y="52" width="44" height="4" rx="1" fill="#C0A060"/>
-                  <rect x="132" y="28" width="68" height="44" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
+                  <rect x="58" y="28" width="68" height="44" rx="3" fill="#F0F0F0" stroke="#D0D0D0" strokeWidth="1"/>
+                  <rect x="58" y="28" width="3" height="44" fill="#C4C4C4"/>
+                  <rect x="66" y="34" width="28" height="12" rx="2" fill="#EBEBEB"/>
+                  <rect x="66" y="52" width="44" height="4" rx="1" fill="#C0C0C0"/>
+                  <rect x="132" y="28" width="68" height="44" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
                   <rect x="140" y="34" width="28" height="12" rx="2" fill="#E5E5E5"/>
-                  <rect x="140" y="52" width="44" height="4" rx="1" fill="#D1D5DB"/>
-                  <rect x="206" y="28" width="66" height="44" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
+                  <rect x="140" y="52" width="44" height="4" rx="1" fill="#D4D4D4"/>
+                  <rect x="206" y="28" width="66" height="44" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
                   <rect x="214" y="34" width="28" height="12" rx="2" fill="#E5E5E5"/>
-                  <rect x="214" y="52" width="44" height="4" rx="1" fill="#D1D5DB"/>
+                  <rect x="214" y="52" width="44" height="4" rx="1" fill="#D4D4D4"/>
                   {/* Bar chart */}
-                  <rect x="58" y="78" width="214" height="66" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
+                  <rect x="58" y="78" width="214" height="66" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
                   {[28,38,32,50,58,46,62,68,54,40,32,26].map((h, i) => (
-                    <rect key={i} x={62+i*16} y={138-h} width="11" height={h} rx="1" fill="#7A4A76" opacity="0.65"/>
+                    <rect key={i} x={62+i*16} y={138-h} width="11" height={h} rx="1" fill="#9A9A9A" opacity="0.65"/>
                   ))}
-                  <line x1="60" y1="118" x2="270" y2="118" stroke="#B42318" strokeWidth="1" strokeDasharray="4 2"/>
+                  <line x1="60" y1="118" x2="270" y2="118" stroke="#AAAAAA" strokeWidth="1" strokeDasharray="4 2"/>
                   {/* Table */}
-                  <rect x="58" y="150" width="214" height="10" fill="#F0ECF0" stroke="#E0D0E0" strokeWidth="0.5"/>
-                  {[0,1].map(i => <rect key={i} x="58" y={160+i*12} width="214" height="11" fill="white" stroke="#F0E8F0" strokeWidth="0.5"/>)}
+                  <rect x="58" y="150" width="214" height="10" fill="#EEEEEE" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  {[0,1].map(i => <rect key={i} x="58" y={160+i*12} width="214" height="11" fill="white" stroke="#EBEBEB" strokeWidth="0.5"/>)}
                 </svg>
               </div>
 
@@ -1446,16 +1446,16 @@ export default function CaseStudy() {
                   <div className={styles.wfCardTitle}>Settings</div>
                 </div>
                 <svg viewBox="0 0 280 180" className={styles.wfSvg} aria-label="Settings wireframe">
-                  <rect x="0" y="0" width="52" height="180" fill="#251324"/>
-                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#553052"/>
+                  <rect x="0" y="0" width="52" height="180" fill="#C8C8C8"/>
+                  <rect x="8" y="7" width="36" height="7" rx="2" fill="#9A9A9A"/>
                   {[32, 28, 30, 34, 26, 22, 36, 24].map((w, i) => <rect key={i} x="10" y={24+i*17} width={w} height="4" rx="2" fill={i===7 ? "#7A4A76" : "#3A1D38"}/>)}
-                  <rect x="52" y="0" width="228" height="22" fill="#F5EFF5"/>
-                  <line x1="52" y1="22" x2="280" y2="22" stroke="#DDD0DC" strokeWidth="0.5"/>
-                  <rect x="60" y="7" width="44" height="7" rx="2" fill="#DDD0DC"/>
-                  <circle cx="272" cy="11" r="7" fill="#DDD0DC"/>
+                  <rect x="52" y="0" width="228" height="22" fill="#F2F2F2"/>
+                  <line x1="52" y1="22" x2="280" y2="22" stroke="#E2E2E2" strokeWidth="0.5"/>
+                  <rect x="60" y="7" width="44" height="7" rx="2" fill="#D0D0D0"/>
+                  <circle cx="272" cy="11" r="7" fill="#D0D0D0"/>
                   {/* Secondary settings nav */}
-                  <rect x="52" y="22" width="90" height="158" fill="#FAF8FA"/>
-                  <line x1="142" y1="22" x2="142" y2="180" stroke="#E0D0E0" strokeWidth="0.75"/>
+                  <rect x="52" y="22" width="90" height="158" fill="#F7F7F7"/>
+                  <line x1="142" y1="22" x2="142" y2="180" stroke="#E2E2E2" strokeWidth="0.75"/>
                   {[
                     { label: "Overview", active: true, w: 52 },
                     { label: "Shift",    active: false, w: 36 },
@@ -1464,22 +1464,22 @@ export default function CaseStudy() {
                     { label: "Security", active: false, w: 46 },
                   ].map((item, i) => (
                     <g key={i}>
-                      <rect x="52" y={28+i*22} width="90" height="20" fill={item.active ? "#F0E8F0" : "transparent"}/>
-                      {item.active && <rect x="52" y={28+i*22} width="3" height="20" fill="#553052"/>}
+                      <rect x="52" y={28+i*22} width="90" height="20" fill={item.active ? "#EEEEEE" : "transparent"}/>
+                      {item.active && <rect x="52" y={28+i*22} width="3" height="20" fill="#9A9A9A"/>}
                       <rect x="60" y={35+i*22} width={item.w} height="5" rx="1" fill={item.active ? "#553052" : "#D1D5DB"}/>
                     </g>
                   ))}
                   {/* Right: summary cards */}
                   {[0,1].map(i => (
                     <g key={i}>
-                      <rect x="150" y={28+i*46} width="122" height="40" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
-                      <rect x="158" y={36+i*46} width="52" height="5" rx="1" fill="#C0A0C0"/>
-                      <rect x="158" y={44+i*46} width="40" height="14" rx="2" fill="#DDD0DC"/>
+                      <rect x="150" y={28+i*46} width="122" height="40" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
+                      <rect x="158" y={36+i*46} width="52" height="5" rx="1" fill="#C4C4C4"/>
+                      <rect x="158" y={44+i*46} width="40" height="14" rx="2" fill="#D0D0D0"/>
                     </g>
                   ))}
                   {/* Form fields */}
-                  <rect x="150" y="124" width="122" height="48" rx="3" fill="white" stroke="#E8E0E8" strokeWidth="0.75"/>
-                  {[0,1,2].map(i => <rect key={i} x="158" y={132+i*12} width="80" height="8" rx="2" fill="#F5F0F5"/>)}
+                  <rect x="150" y="124" width="122" height="48" rx="3" fill="white" stroke="#E4E4E4" strokeWidth="0.75"/>
+                  {[0,1,2].map(i => <rect key={i} x="158" y={132+i*12} width="80" height="8" rx="2" fill="#F5F5F5"/>)}
                 </svg>
               </div>
 
@@ -1493,9 +1493,9 @@ export default function CaseStudy() {
         <div className={styles.uiSection}>
           <div className={styles.inner}>
             <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>08</div>
-            <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>The final interface — live prototype</h2>
+            <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>The final interface: live prototype</h2>
             <p className={`${styles.sectionDesc} ${styles.sectionDescLight}`}>
-              Captured from the running prototype at 1440×900. Real patient data, real components, real design system tokens — not mock-ups.
+              Captured from the running prototype at 1440×900. Real patient data, real components, real design system tokens. Not mock-ups.
             </p>
           </div>
 
@@ -1506,17 +1506,17 @@ export default function CaseStudy() {
                 <span className={styles.uiHeroLetter}>A</span>
                 <div>
                   <div className={styles.uiHeroTitle}>Shift Briefing</div>
-                  <div className={styles.uiHeroTag}>The command centre — where every shift begins</div>
+                  <div className={styles.uiHeroTag}>The command centre, where every shift begins</div>
                 </div>
               </div>
               <div className={styles.uiHeroFrame}>
-                <img src="/ui/shift-briefing.png" alt="Shift Briefing — CareSync" className={styles.uiHeroImg} loading="lazy" />
+                <img src="/ui/shift-briefing.png" alt="Shift Briefing, CareSync" className={styles.uiHeroImg} loading="lazy" />
               </div>
               <div className={styles.uiHeroCallouts}>
                 {[
-                  { label: 'Now / Next / Later', detail: 'Three-column temporal model replaces a generic greeting banner — the first thing Dr. Rao sees is what needs attention before 09:00.' },
-                  { label: 'Priority patient card', detail: 'Meera Iyer surfaces at the top with glucose 142 mg/dL, severity, timing, and action — all in one glanceable block.' },
-                  { label: 'Operational rail', detail: 'Right-side rail shows upcoming queue, wait times, and recommended actions — without navigating away from the briefing view.' },
+                  { label: 'Now / Next / Later', detail: 'Three-column temporal model replaces a generic greeting banner: the first thing Dr. Rao sees is what needs attention before 09:00.' },
+                  { label: 'Priority patient card', detail: 'Varsha Varadwaj surfaces at the top with glucose 142 mg/dL, severity, timing, and action, all in one glanceable block.' },
+                  { label: 'Operational rail', detail: 'right-side rail shows upcoming queue, wait times, and recommended actions, without navigating away from the briefing view.' },
                 ].map(c => (
                   <div key={c.label} className={styles.uiCallout}>
                     <div className={styles.uiCalloutLabel}>{c.label}</div>
@@ -1534,12 +1534,12 @@ export default function CaseStudy() {
                 {
                   letter: 'B', title: 'Patients', file: 'patients',
                   tag: 'Scan → triage → review',
-                  note: 'Row click opens a quick-view drawer. The full profile is a deliberate secondary step — not the default on every touch.',
+                  note: 'Row click opens a quick-view drawer. The full profile is a deliberate secondary step, not the default on every touch.',
                 },
                 {
                   letter: 'C', title: 'Appointments', file: 'appointments',
                   tag: 'Outpatient queue with live prep status',
-                  note: 'Flow status is the primary column — where is this appointment in the clinical process, not just what type it is.',
+                  note: 'Flow status is the primary column: where is this appointment in the clinical process, not just what type it is.',
                 },
               ].map(s => (
                 <div key={s.letter} className={styles.uiDuoCard}>
@@ -1551,7 +1551,7 @@ export default function CaseStudy() {
                     </div>
                   </div>
                   <div className={styles.uiDuoFrame}>
-                    <img src={`/ui/${s.file}.png`} alt={`${s.title} — CareSync`} className={styles.uiDuoImg} loading="lazy" />
+                    <img src={`/ui/${s.file}.png`} alt={`${s.title}, CareSync`} className={styles.uiDuoImg} loading="lazy" />
                   </div>
                   <div className={styles.uiDuoNote}>{s.note}</div>
                 </div>
@@ -1566,17 +1566,17 @@ export default function CaseStudy() {
                 <span className={styles.uiHeroLetter} style={{ background: '#8A5600' }}>D</span>
                 <div>
                   <div className={styles.uiHeroTitle}>Medical Records</div>
-                  <div className={styles.uiHeroTag}>Shift-level worklist — the most consequential IA decision in the project</div>
+                  <div className={styles.uiHeroTag}>Shift-level worklist: the most consequential IA decision in the project</div>
                 </div>
               </div>
               <div className={styles.uiHeroFrame}>
-                <img src="/ui/medical-records.png" alt="Medical Records — CareSync" className={styles.uiHeroImg} loading="lazy" />
+                <img src="/ui/medical-records.png" alt="Medical Records, CareSync" className={styles.uiHeroImg} loading="lazy" />
               </div>
               <div className={styles.uiHeroCallouts}>
                 {[
-                  { label: 'Reframed from single-patient to shift-level', detail: 'Instead of "show me one patient\'s records", the question became "which records across all my patients need review this shift?" — completely different IA.' },
-                  { label: 'New results surfaced at top', detail: 'Meera\'s glucose change and Kavya\'s thyroid report appear at the top of the worklist — new results that need eyes on them before anything else.' },
-                  { label: 'Source + time always visible', detail: 'Lab, Imaging, or Clinical note — with timestamp and patient identity — visible in every row without any extra clicks.' },
+                  { label: 'Reframed from single-patient to shift-level', detail: 'Instead of "show me one patient\'s records", the question became "which records across all my patients need review this shift?" Completely different IA.' },
+                  { label: 'New results surfaced at top', detail: "Varsha's glucose change and Sucheta's thyroid report appear at the top of the worklist: new results that need eyes on them before anything else." },
+                  { label: 'Source + time always visible', detail: 'Lab, Imaging, or Clinical note, with timestamp and patient identity visible in every row without any extra clicks.' },
                 ].map(c => (
                   <div key={c.label} className={styles.uiCallout} style={{ borderLeftColor: '#8A5600' }}>
                     <div className={styles.uiCalloutLabel}>{c.label}</div>
@@ -1594,12 +1594,12 @@ export default function CaseStudy() {
                 {
                   letter: 'E', title: 'Messages', file: 'messages',
                   tag: 'Severity-sorted clinical inbox',
-                  note: 'Three-panel layout: thread nav + conversation + context. Sorted by severity, not time — safety-critical messages can never get buried.',
+                  note: 'Three-panel layout: thread nav + conversation + context. Sorted by severity, not time: safety-critical messages can never get buried.',
                 },
                 {
                   letter: 'F', title: 'Tasks', file: 'tasks',
                   tag: 'Shift handover and action tracking',
-                  note: 'Tasks grouped Now / Due this shift / Handed over — the time horizon makes it immediately clear what to touch first and what can wait.',
+                  note: 'Tasks grouped Now / Due this shift / Handed over: the time horizon makes it immediately clear what to touch first and what can wait.',
                 },
               ].map(s => (
                 <div key={s.letter} className={styles.uiDuoCard}>
@@ -1611,7 +1611,7 @@ export default function CaseStudy() {
                     </div>
                   </div>
                   <div className={styles.uiDuoFrame}>
-                    <img src={`/ui/${s.file}.png`} alt={`${s.title} — CareSync`} className={styles.uiDuoImg} loading="lazy" />
+                    <img src={`/ui/${s.file}.png`} alt={`${s.title}, CareSync`} className={styles.uiDuoImg} loading="lazy" />
                   </div>
                   <div className={styles.uiDuoNote}>{s.note}</div>
                 </div>
@@ -1626,12 +1626,12 @@ export default function CaseStudy() {
                 {
                   letter: 'G', title: 'Operational Insights', file: 'operational-insights',
                   tag: 'Queue analytics with thresholds',
-                  note: 'Charts include threshold lines and narrative text — so the chart isn\'t just visual decoration, it\'s a clinical signal with context.',
+                  note: 'Charts include threshold lines and narrative text, so the chart isn\'t just visual decoration, it\'s a clinical signal with context.',
                 },
                 {
                   letter: 'H', title: 'Settings', file: 'settings',
                   tag: 'Shift preferences and accessibility',
-                  note: 'Structured into clear categories: Shift, Notifications, Display, Security, Accessibility — not a flat list of toggles.',
+                  note: 'Structured into clear categories: Shift, Notifications, Display, Security, Accessibility, not a flat list of toggles.',
                 },
               ].map(s => (
                 <div key={s.letter} className={styles.uiDuoCard}>
@@ -1643,7 +1643,7 @@ export default function CaseStudy() {
                     </div>
                   </div>
                   <div className={styles.uiDuoFrame}>
-                    <img src={`/ui/${s.file}.png`} alt={`${s.title} — CareSync`} className={styles.uiDuoImg} loading="lazy" />
+                    <img src={`/ui/${s.file}.png`} alt={`${s.title}, CareSync`} className={styles.uiDuoImg} loading="lazy" />
                   </div>
                   <div className={styles.uiDuoNote}>{s.note}</div>
                 </div>
@@ -1681,7 +1681,7 @@ export default function CaseStudy() {
                 <div className={styles.screenCardBody}>
                   <div className={styles.screenCardDecision}>
                     <div className={styles.screenCardDecisionLabel}>Design decision</div>
-                    <div className={styles.screenCardDecisionText}>Replace the greeting hero with an operational priority rail. The first thing the doctor sees is what needs attention — not their name and today's date.</div>
+                    <div className={styles.screenCardDecisionText}>Replace the greeting hero with an operational priority rail. The first thing the doctor sees is what needs attention, not their name and today's date.</div>
                   </div>
                   <div className={styles.uiFragment}>
                     <div className={styles.uiFragHead}>
@@ -1691,13 +1691,13 @@ export default function CaseStudy() {
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowActive}`}>
                         <SeverityIndicator severity="high" compact />
-                        <span className={styles.uiFragName}>Meera Iyer</span>
+                        <span className={styles.uiFragName}>Varsha Varadwaj</span>
                         <span className={styles.uiFragMeta}>Glucose 142 · Review</span>
                         <TimingStatus timing="due-now" dueTime="09:00" compact />
                       </div>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
                         <SeverityIndicator severity="moderate" compact />
-                        <span className={styles.uiFragName}>Rohan Das</span>
+                        <span className={styles.uiFragName}>Sai Prasanna</span>
                         <span className={styles.uiFragMeta}>Lisinopril refill</span>
                         <TimingStatus timing="due-soon" dueTime="09:15" compact />
                       </div>
@@ -1725,7 +1725,7 @@ export default function CaseStudy() {
                 <div className={styles.screenCardBody}>
                   <div className={styles.screenCardDecision}>
                     <div className={styles.screenCardDecisionLabel}>Design decision</div>
-                    <div className={styles.screenCardDecisionText}>Row click opens a quick-view drawer. Opening the full profile is an explicit secondary action — not the default on every touch.</div>
+                    <div className={styles.screenCardDecisionText}>Row click opens a quick-view drawer. Opening the full profile is an explicit secondary action, not the default on every touch.</div>
                   </div>
                   <div className={styles.uiFragment}>
                     <div className={styles.uiFragHead}>
@@ -1733,9 +1733,9 @@ export default function CaseStudy() {
                     </div>
                     <div className={styles.uiFragBody}>
                       {[
-                        { name: 'Meera Iyer', id: 'CP-10482', sev: 'high' as const, active: true },
-                        { name: 'Rohan Das', id: 'CP-10118', sev: 'moderate' as const, active: false },
-                        { name: 'Arjun Nair', id: 'CP-10221', sev: 'routine' as const, active: false },
+                        { name: 'Varsha Varadwaj', id: 'CP-10482', sev: 'high' as const, active: true },
+                        { name: 'Sai Prasanna', id: 'CP-10118', sev: 'moderate' as const, active: false },
+                        { name: 'Bhargav Sai', id: 'CP-10221', sev: 'routine' as const, active: false },
                       ].map(p => (
                         <div key={p.id} className={`${styles.uiFragRow} ${p.active ? styles.uiFragRowActive : ''}`}>
                           <SeverityIndicator severity={p.sev} compact />
@@ -1751,7 +1751,7 @@ export default function CaseStudy() {
                       <span key={c} className={styles.screenCardChip}>{c}</span>
                     ))}
                   </div>
-                  <div className={styles.screenCardNote}>Active row state uses inset 3px aubergine left-accent — consistent with Tasks and Messages.</div>
+                  <div className={styles.screenCardNote}>Active row state uses inset 3px aubergine left-accent: consistent with Tasks and Messages.</div>
                 </div>
               </div>
 
@@ -1768,7 +1768,7 @@ export default function CaseStudy() {
                 <div className={styles.screenCardBody}>
                   <div className={styles.screenCardDecision}>
                     <div className={styles.screenCardDecisionLabel}>Design decision</div>
-                    <div className={styles.screenCardDecisionText}>Flow status replaces appointment "type" as the primary column — the question is not what the appointment is, but where it is in the clinical process.</div>
+                    <div className={styles.screenCardDecisionText}>Flow status replaces appointment "type" as the primary column: the question is not what the appointment is, but where it is in the clinical process.</div>
                   </div>
                   <div className={styles.uiFragment}>
                     <div className={styles.uiFragHead}>
@@ -1776,12 +1776,12 @@ export default function CaseStudy() {
                     </div>
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowActive}`}>
-                        <span className={styles.uiFragName}>Arjun Nair</span>
+                        <span className={styles.uiFragName}>Bhargav Sai</span>
                         <span className={styles.uiFragMeta}>09:30</span>
                         <Badge variant="warning" dot>Waiting 22m</Badge>
                       </div>
                       <div className={styles.uiFragRow}>
-                        <span className={styles.uiFragName}>Kavya Menon</span>
+                        <span className={styles.uiFragName}>Sucheta Bharati</span>
                         <span className={styles.uiFragMeta}>10:00</span>
                         <Badge variant="brand">Scheduled</Badge>
                       </div>
@@ -1792,7 +1792,7 @@ export default function CaseStudy() {
                       <span key={c} className={styles.screenCardChip}>{c}</span>
                     ))}
                   </div>
-                  <div className={styles.screenCardNote}>Preparation notes are visible before the patient enters — not after they're already in the room.</div>
+                  <div className={styles.screenCardNote}>Preparation notes are visible before the patient enters, not after they're already in the room.</div>
                 </div>
               </div>
 
@@ -1803,13 +1803,13 @@ export default function CaseStudy() {
                   <div className={styles.screenCardLetter} style={{ background: 'var(--color-warning-600)' }}>D</div>
                   <div className={styles.screenCardTitleGroup}>
                     <div className={styles.screenCardTitle}>Medical Records</div>
-                    <div className={styles.screenCardPurpose}>Shift-level records worklist — redesigned</div>
+                    <div className={styles.screenCardPurpose}>Shift-level records worklist, redesigned</div>
                   </div>
                 </div>
                 <div className={styles.screenCardBody}>
                   <div className={styles.screenCardDecision}>
                     <div className={styles.screenCardDecisionLabel}>Key design decision</div>
-                    <div className={styles.screenCardDecisionText}>Changed from a single-patient record viewer to a shift-level worklist across all patients. The question is "which records need review this shift" — not "show me one patient's records."</div>
+                    <div className={styles.screenCardDecisionText}>Changed from a single-patient record viewer to a shift-level worklist across all patients. The question is "which records need review this shift, not "show me one patient's records."</div>
                   </div>
                   <div className={styles.uiFragment}>
                     <div className={styles.uiFragHead}>
@@ -1818,12 +1818,12 @@ export default function CaseStudy() {
                     </div>
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
-                        <span className={styles.uiFragName}>Meera Iyer — Glucose</span>
+                        <span className={styles.uiFragName}>Varsha Varadwaj · Glucose</span>
                         <span className={styles.uiFragMeta}>142 mg/dL ↑</span>
                         <WorkflowStatus status="new" compact />
                       </div>
                       <div className={styles.uiFragRow}>
-                        <span className={styles.uiFragName}>Kavya Menon — Thyroid</span>
+                        <span className={styles.uiFragName}>Sucheta Bharati · Thyroid</span>
                         <span className={styles.uiFragMeta}>New report</span>
                         <WorkflowStatus status="new" compact />
                       </div>
@@ -1834,7 +1834,7 @@ export default function CaseStudy() {
                       <span key={c} className={styles.screenCardChip}>{c}</span>
                     ))}
                   </div>
-                  <div className={styles.screenCardNote}>This was the most consequential IA decision in the project — it reoriented an entire screen around shift workflow rather than patient hierarchy.</div>
+                  <div className={styles.screenCardNote}>This was the most consequential IA decision in the project: it reoriented an entire screen around shift workflow rather than patient hierarchy.</div>
                 </div>
               </div>
 
@@ -1860,12 +1860,12 @@ export default function CaseStudy() {
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
                         <SeverityIndicator severity="high" compact />
-                        <span className={styles.uiFragName}>Nurse Priya — Meera glucose</span>
+                        <span className={styles.uiFragName}>Nurse Priya · Varsha glucose</span>
                         <span className={styles.uiFragMeta}>08:30</span>
                       </div>
                       <div className={styles.uiFragRow}>
                         <SeverityIndicator severity="moderate" compact />
-                        <span className={styles.uiFragName}>Lab system — Kavya thyroid</span>
+                        <span className={styles.uiFragName}>Lab system · Sucheta thyroid</span>
                         <span className={styles.uiFragMeta}>08:15</span>
                       </div>
                     </div>
@@ -1875,7 +1875,7 @@ export default function CaseStudy() {
                       <span key={c} className={styles.screenCardChip}>{c}</span>
                     ))}
                   </div>
-                  <div className={styles.screenCardNote}>Patient context, result source, and severity all visible in the message list — not just subject lines.</div>
+                  <div className={styles.screenCardNote}>Patient context, result source, and severity all visible in the message list, not just subject lines.</div>
                 </div>
               </div>
 
@@ -1896,17 +1896,17 @@ export default function CaseStudy() {
                   </div>
                   <div className={styles.uiFragment}>
                     <div className={styles.uiFragHead}>
-                      <span className={styles.uiFragTitle}>Now — 2 tasks</span>
+                      <span className={styles.uiFragTitle}>Now: 2 tasks</span>
                     </div>
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
                         <TimingStatus timing="overdue" dueTime="09:00" compact />
-                        <span className={styles.uiFragName}>Review Meera glucose result</span>
+                        <span className={styles.uiFragName}>Review Varsha glucose result</span>
                         <OwnershipStatus status="assigned-to-me" compact />
                       </div>
                       <div className={styles.uiFragRow}>
                         <TimingStatus timing="due-now" dueTime="09:15" compact />
-                        <span className={styles.uiFragName}>Sign Rohan Lisinopril refill</span>
+                        <span className={styles.uiFragName}>Sign Sai Prasanna Lisinopril refill</span>
                         <OwnershipStatus status="assigned-to-me" compact />
                       </div>
                     </div>
@@ -1916,7 +1916,7 @@ export default function CaseStudy() {
                       <span key={c} className={styles.screenCardChip}>{c}</span>
                     ))}
                   </div>
-                  <div className={styles.screenCardNote}>Task groups use visual weight to indicate urgency — the "Now" group is never buried below a full list.</div>
+                  <div className={styles.screenCardNote}>Task groups use visual weight to indicate urgency: the "Now" group is never buried below a full list.</div>
                 </div>
               </div>
 
@@ -1933,11 +1933,11 @@ export default function CaseStudy() {
                 <div className={styles.screenCardBody}>
                   <div className={styles.screenCardDecision}>
                     <div className={styles.screenCardDecisionLabel}>Design decision</div>
-                    <div className={styles.screenCardDecisionText}>Each insight card shows a metric, an owner, and a recommended action. Charts don't stand alone — they're accompanied by a narrative sentence and a stat block.</div>
+                    <div className={styles.screenCardDecisionText}>Each insight card shows a metric, an owner, and a recommended action. Charts don't stand alone. They're accompanied by a narrative sentence and a stat block.</div>
                   </div>
                   <div className={styles.uiFragment}>
                     <div className={styles.uiFragHead}>
-                      <span className={styles.uiFragTitle}>Queue pressure — this shift</span>
+                      <span className={styles.uiFragTitle}>Queue pressure: this shift</span>
                     </div>
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
@@ -1955,7 +1955,7 @@ export default function CaseStudy() {
                       <span key={c} className={styles.screenCardChip}>{c}</span>
                     ))}
                   </div>
-                  <div className={styles.screenCardNote}>Bars are uniform aubergine. Red is only for the capacity threshold line — not for data.</div>
+                  <div className={styles.screenCardNote}>Bars are uniform aubergine. Red is only for the capacity threshold line, not for data.</div>
                 </div>
               </div>
 
@@ -1994,7 +1994,7 @@ export default function CaseStudy() {
                       <span key={c} className={styles.screenCardChip}>{c}</span>
                     ))}
                   </div>
-                  <div className={styles.screenCardNote}>2-column summary cards below account details — consistent with the data-dense enterprise pattern elsewhere.</div>
+                  <div className={styles.screenCardNote}>2-column summary cards below account details: consistent with the data-dense enterprise pattern elsewhere.</div>
                 </div>
               </div>
             </div>
@@ -2009,7 +2009,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>10</div>
             <h2 className={styles.sectionTitle}>Custom components, not a library off the shelf</h2>
             <p className={styles.sectionDesc}>
-              The interface was built entirely with custom React components and CSS Modules — no Material UI, no Tailwind, no component kit. Every component was written to spec, from Button to PatientSafetyStrip to the data tables. This was a deliberate choice: it let me build a system that matched the clinical context exactly, rather than inheriting the visual assumptions of a general-purpose library.
+              The interface was built entirely with custom React components and CSS Modules, no Material UI, no Tailwind, no component kit. Every component was written to spec, from Button to PatientSafetyStrip to the data tables. This was a deliberate choice: it let me build a system that matched the clinical context exactly, rather than inheriting the visual assumptions of a general-purpose library.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 32 }}>
@@ -2035,13 +2035,13 @@ export default function CaseStudy() {
               <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 14 }}>Key implementation decisions</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 28px' }}>
                 {[
-                  'CSS Modules (not global styles) — scoped, no cascade conflicts across components',
-                  'Design tokens as CSS custom properties — the system changes in one place',
-                  'All status components accept a compact prop — same component used in tables, cards, and drawers',
-                  'Focus management: drawers trap focus on open, restore on close — keyboard accessibility built in',
-                  'PatientSafetyStrip uses role="alert" — allergy announced immediately on screen render',
-                  'prefers-reduced-motion: animations collapse to opacity only — no vestibular triggers',
-                  'Recharts charts wrapped with AccessibleChartSummary — sr-only narrative for every chart',
+                  'CSS Modules (not global styles): scoped, no cascade conflicts across components',
+                  'Design tokens as CSS custom properties: the system changes in one place',
+                  'All status components accept a compact prop: same component used in tables, cards, and drawers',
+                  'Focus management: drawers trap focus on open, restore on close. Keyboard accessibility built in',
+                  'PatientSafetyStrip uses role="alert": allergy announced immediately on screen render',
+                  'prefers-reduced-motion: animations collapse to opacity only: no vestibular triggers',
+                  'Recharts charts wrapped with AccessibleChartSummary: sr-only narrative for every chart',
                   'Every table row is keyboard-accessible with Enter to open drawer and Escape to close',
                 ].map(item => (
                   <div key={item} style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.5, display: 'flex', gap: 8 }}>
@@ -2068,7 +2068,7 @@ export default function CaseStudy() {
 
             {/* Color tokens */}
             <div style={{ marginBottom: 28 }}>
-              <p style={{ fontSize: 'var(--font-size-label)', fontWeight: 600, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>Brand scale — Aubergine</p>
+              <p style={{ fontSize: 'var(--font-size-label)', fontWeight: 600, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>Brand scale · Aubergine</p>
               <div className={styles.dsTokenGrid}>
                 {[
                   { label: '50', val: 'var(--color-brand-50)' },
@@ -2149,8 +2149,8 @@ export default function CaseStudy() {
                 {[
                   { color: 'var(--color-brand-600)', text: 'Aubergine gives the product a distinct, clinical identity separate from the blue-dominated healthcare SaaS category.' },
                   { color: 'var(--color-critical-600)', text: 'Red is reserved exclusively for patient safety risk. Never used for warnings, errors, or low-priority states.' },
-                  { color: 'var(--color-warning-600)', text: 'Amber signals review required, urgency, or a rising trend — distinct from safety-critical states.' },
-                  { color: 'var(--color-success-600)', text: 'Green is only used for stable, completed, or cleared states — never aspirational or decorative.' },
+                  { color: 'var(--color-warning-600)', text: 'Amber signals review required, urgency, or a rising trend: distinct from safety-critical states.' },
+                  { color: 'var(--color-success-600)', text: 'Green is only used for stable, completed, or cleared states: never aspirational or decorative.' },
                 ].map((d, i) => (
                   <div key={i} className={styles.dsDecisionRow}>
                     <div className={styles.dsDecisionColor} style={{ background: d.color }} />
@@ -2170,7 +2170,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>11</div>
             <h2 className={styles.sectionTitle}>Dashboard-first vs Shift-first</h2>
             <p className={styles.sectionDesc}>
-              The transformation was not just visual — it was structural. Every before item represents
+              The transformation was not just visual. It was structural. Every before item represents
               a decision that prioritised appearance over clinical utility.
             </p>
 
@@ -2181,14 +2181,14 @@ export default function CaseStudy() {
                   <div className={styles.evolutionCardTitle}>Dashboard-first</div>
                 </div>
                 <ul className={styles.evolutionList}>
-                  <li>Blue healthcare SaaS aesthetic — instantly forgettable</li>
-                  <li>KPI tiles at equal weight — no clinical priority model</li>
+                  <li>Blue healthcare SaaS aesthetic: instantly forgettable</li>
+                  <li>KPI tiles at equal weight: no clinical priority model</li>
                   <li>Decorative bar charts with no threshold or context</li>
                   <li>Greeting hero with date and username above the fold</li>
-                  <li>AI-generated look — no typographic personality</li>
-                  <li>Colour used decoratively — not semantically</li>
+                  <li>AI-generated look: no typographic personality</li>
+                  <li>Colour used decoratively, not semantically</li>
                   <li>Fragmented screens with no shared interaction pattern</li>
-                  <li>Generic patient list — no shift-level filtering</li>
+                  <li>Generic patient list: no shift-level filtering</li>
                   <li>No visible ownership or timing on tasks</li>
                   <li>Medical Records showed one patient at a time</li>
                 </ul>
@@ -2200,12 +2200,12 @@ export default function CaseStudy() {
                   <div className={styles.evolutionCardTitle}>Shift-first</div>
                 </div>
                 <ul className={styles.evolutionList}>
-                  <li>Warm aubergine identity — distinctive and clinical</li>
-                  <li>Shift briefing command centre — clinical priority on first view</li>
+                  <li>Warm aubergine identity: distinctive and clinical</li>
+                  <li>Shift briefing command centre: clinical priority on first view</li>
                   <li>Charts with thresholds, narrative text, and accessible summaries</li>
-                  <li>Operational priority rail above the fold — no greeting</li>
-                  <li>Strong typographic hierarchy — 8-step scale, tabular numerals</li>
-                  <li>Semantic colour model — red = safety, amber = review, green = stable</li>
+                  <li>Operational priority rail above the fold: no greeting</li>
+                  <li>Strong typographic hierarchy: 8-step scale, tabular numerals</li>
+                  <li>Semantic colour model: red = safety, amber = review, green = stable</li>
                   <li>Row-click drawer pattern consistent across all tables</li>
                   <li>Shift-level patient filtering and status sorting</li>
                   <li>4-dimension status model: severity, workflow, timing, ownership</li>
@@ -2225,17 +2225,17 @@ export default function CaseStudy() {
             <h2 className={styles.sectionTitle}>Accessibility shaped the interaction model</h2>
             <p className={styles.sectionDesc}>
               Accessibility was not treated as a final checklist. It shaped interaction patterns from
-              the start — drawer focus behaviour, table keyboard navigation, button sizing, and
+              the start: drawer focus behaviour, table keyboard navigation, button sizing, and
               status label requirements.
             </p>
 
             <div className={styles.a11yGrid}>
               {[
                 { icon: '⌨', title: 'Keyboard navigation', desc: 'All interactive elements are keyboard operable. Drawers trap focus while open. Escape closes the drawer and returns focus to the triggering row.' },
-                { icon: '👁', title: 'No colour-only status', desc: 'Every status badge includes a visible text label. SeverityIndicator always shows a text name alongside the coloured dot — never dot alone.' },
+                { icon: '👁', title: 'No colour-only status: every status badge includes a visible text label. SeverityIndicator always shows a text name alongside the coloured dot, never the dot alone.' },
                 { icon: '🔲', title: 'Focus rings', desc: 'All interactive elements show a 3px aubergine glow focus ring: box-shadow: 0 0 0 3px rgba(85, 48, 82, 0.4). No element relies on browser default outline.' },
                 { icon: '📏', title: 'Touch target minimums', desc: 'Primary action buttons are 40–44px minimum height. Supporting actions are 36px minimum. Icon buttons are 36×36px.' },
-                { icon: '📊', title: 'Accessible charts', desc: 'Every recharts instance is accompanied by an AccessibleChartSummary component rendered with .sr-only — providing a full text description for screen readers.' },
+                { icon: '📊', title: 'Accessible charts', desc: 'Every recharts instance is accompanied by an AccessibleChartSummary component rendered with .sr-only, providing a full text description for screen readers.' },
                 { icon: '🚨', title: 'Live region alerts', desc: 'PatientSafetyStrip uses role="alert" to announce allergy information to screen readers when it appears on screen.' },
                 { icon: '⚡', title: 'Reduced motion', desc: 'Transitions collapse when prefers-reduced-motion: reduce is set. Drawer slide animations are replaced with instant opacity transitions.' },
                 { icon: '🎯', title: 'Table accessibility', desc: 'All tables include a visually-hidden <caption> for screen reader context. Column headers use scope="col" for correct reading order.' },
@@ -2251,7 +2251,7 @@ export default function CaseStudy() {
             </div>
 
             <div className={styles.a11yQuote}>
-              "The hardest part of clinical UX is controlled suppression — making the right things unmissable without making the wrong things alarming. The Now / Next / Later model is that discipline made structural."
+              "The hardest part of clinical UX is controlled suppression: making the right things unmissable without making the wrong things alarming. The Now / Next / Later model is that discipline made structural."
             </div>
           </div>
         </div>
@@ -2264,7 +2264,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>13</div>
             <h2 className={styles.sectionTitle}>AI as design critic and implementation partner</h2>
             <p className={styles.sectionDesc}>
-              AI was used throughout this project — but as a thinking partner and implementation
+              AI was used throughout this project, but as a thinking partner and implementation
               accelerator, not as a replacement for design judgement. Every decision was evaluated,
               questioned, and refined through multiple passes.
             </p>
@@ -2275,7 +2275,7 @@ export default function CaseStudy() {
                 { num: '2', label: 'Generate', desc: 'Generate the first implementation pass' },
                 { num: '3', label: 'Audit', desc: 'Review for visual, semantic, and clinical issues' },
                 { num: '4', label: 'Refine', desc: 'Multiple targeted refinement passes per screen' },
-                { num: '5', label: 'Freeze', desc: 'Mark screen complete — do not redesign' },
+                { num: '5', label: 'Freeze', desc: 'Mark screen complete: do not redesign' },
                 { num: '6', label: 'Systematise', desc: 'Extract to design system and document' },
               ].map(s => (
                 <div key={s.num} className={styles.aiStep}>
@@ -2294,7 +2294,7 @@ export default function CaseStudy() {
                 <span className={styles.aiQuoteStrong}>implementation partner</span>
                 , not as a replacement for design judgment. Every screen was audited section
                 by section against clinical credibility, token consistency, and accessibility
-                compliance — and revised until it was right."
+                compliance, and revised until it was right."
               </div>
             </div>
 
@@ -2329,11 +2329,11 @@ export default function CaseStudy() {
 
             <div className={styles.narrativeGrid}>
               {[
-                { title: 'Shift Briefing', desc: 'Gives the doctor a safe operational starting point. Patients, results, and tasks prioritised by clinical severity — not by arrival time.' },
+                { title: 'Shift Briefing', desc: 'Gives the doctor a safe operational starting point. Patients, results, and tasks prioritised by clinical severity, not by arrival time.' },
                 { title: 'Patients & Appointments', desc: 'Support fast review and controlled deeper investigation. Row-click drawers prevent premature full-page navigation.' },
-                { title: 'Medical Records & Messages', desc: 'Connect the clinical work — records as a shift worklist, messages sorted by severity rather than recency.' },
+                { title: 'Medical Records & Messages', desc: 'Connect the clinical work: records as a shift worklist, messages sorted by severity rather than recency.' },
                 { title: 'Tasks & Handovers', desc: 'Make inherited shift work visible and structured. Acknowledgement creates explicit continuity between shifts.' },
-                { title: 'Operational Insights', desc: 'Support staffing and queue decisions with action-oriented analytics — not decorative charts.' },
+                { title: 'Operational Insights', desc: 'Support staffing and queue decisions with action-oriented analytics, not decorative charts.' },
                 { title: 'Design System', desc: 'One token layer, one status architecture, 25+ components. Every screen speaks the same visual language.' },
               ].map(n => (
                 <div key={n.title} className={styles.narrativeCard}>
@@ -2353,7 +2353,7 @@ export default function CaseStudy() {
             <div className={styles.sectionLabel}>15</div>
             <h2 className={styles.sectionTitle}>The most important things I learned</h2>
             <p className={styles.sectionDesc}>
-              This project surprised me in a few ways. I went in thinking I was designing a healthcare dashboard. I came out having built something closer to a clinical workflow system. That shift in how I understood the problem changed everything downstream — the structure, the visual language, the components, and the way I talked about the work.
+              This project surprised me in a few ways. I went in thinking I was designing a healthcare dashboard. I came out having built something closer to a clinical workflow system. That shift in how I understood the problem changed everything downstream: the structure, the visual language, the components, and the way I talked about the work.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
@@ -2363,24 +2363,24 @@ export default function CaseStudy() {
                   body: 'A dashboard asks "what happened?". A shift system asks "what needs to happen next?". These are completely different mental models. Once I understood that, almost every design decision became clearer.',
                 },
                 {
-                  title: 'The best clinical interfaces are not the most decorated — they are the clearest',
-                  body: 'Every time I added visual richness without purpose, I made the product harder to use under pressure. The discipline of removing decoration and trusting structure was harder than adding it — and produced a better result.',
+                  title: 'The best clinical interfaces are not the most decorated. They are the clearest',
+                  body: 'Every time I added visual richness without purpose, I made the product harder to use under pressure. The discipline of removing decoration and trusting structure was harder than adding it, and produced a better result.',
                 },
                 {
                   title: 'System thinking matters as much as screen polish',
-                  body: 'Any individual screen of CareSync looks reasonable. What makes it work is that all eight screens speak the same visual language — the same status model, the same row pattern, the same drawer interaction. That consistency is the product.',
+                  body: 'Any individual screen of CareSync looks reasonable. What makes it work is that all eight screens speak the same visual language: the same status model, the same row pattern, the same drawer interaction. That consistency is the product.',
                 },
                 {
                   title: 'Storytelling helped me think better, not just present better',
-                  body: 'The Procreate storyboard was not a deliverable — it was a tool. Sketching the shift as a narrative forced me to think about sequence, urgency, and coordination in a way that wireframing alone wouldn\'t have.',
+                  body: 'The Procreate storyboard was not a deliverable. It was a tool. Sketching the shift as a narrative forced me to think about sequence, urgency, and coordination in a way that wireframing alone wouldn\'t have.',
                 },
                 {
                   title: 'Safety semantics are a design constraint, not a stylistic choice',
-                  body: 'Reserving red for patient safety — and only that — was not a visual preference. It was a product decision with real consequences. If red means too many things, clinicians stop responding to red.',
+                  body: 'Reserving red for patient safety, and only that, was not a visual preference. It was a product decision with real consequences. If red means too many things, clinicians stop responding to red.',
                 },
                 {
                   title: 'Visual design in enterprise products is about rhythm and repeatability',
-                  body: 'The goal was not beautiful screens. The goal was a system that felt trustworthy, legible, and consistent across hundreds of hours of shift use — in a stressful environment, under time pressure.',
+                  body: 'The goal was not beautiful screens. The goal was a system that felt trustworthy, legible, and consistent across hundreds of hours of shift use, in a stressful environment, under time pressure.',
                 },
               ].map(item => (
                 <div key={item.title} style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '20px 22px' }}>
@@ -2400,10 +2400,10 @@ export default function CaseStudy() {
               <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 16 }}>If this continued beyond the sprint</div>
               <div className={styles.improveGrid}>
                 {[
-                  { num: '01', title: 'Structured clinician testing', desc: 'Run sessions with GPs in outpatient settings to validate the Now / Next / Later model against real shift behaviour — not assumed scenarios.' },
-                  { num: '02', title: 'Clinical language review', desc: 'Every severity label, status chip, and alert copy reviewed with a clinical advisor — this is the highest-risk content in the product.' },
-                  { num: '03', title: 'Tablet and mobile flows', desc: 'Refine drawer widths, touch targets, and gesture support for bedside tablet use — a context where the current desktop patterns need significant adaptation.' },
-                  { num: '04', title: 'Role-based views', desc: 'Nurse, admin, and specialist views surface different priorities from the same shift data — same design system, different information hierarchy.' },
+                  { num: '01', title: 'Structured clinician testing', desc: 'Run sessions with GPs in outpatient settings to validate the Now / Next / Later model against real shift behaviour, not assumed scenarios.' },
+                  { num: '02', title: 'Clinical language review', desc: 'Every severity label, status chip, and alert copy reviewed with a clinical advisor: this is the highest-risk content in the product.' },
+                  { num: '03', title: 'Tablet and mobile flows', desc: 'Refine drawer widths, touch targets, and gesture support for bedside tablet use: a context where the current desktop patterns need significant adaptation.' },
+                  { num: '04', title: 'Role-based views', desc: 'Nurse, admin, and specialist views surface different priorities from the same shift data: same design system, different information hierarchy.' },
                 ].map(i => (
                   <div key={i.num} className={styles.improveCard}>
                     <div className={styles.improveCardNum}>{i.num}</div>
@@ -2425,12 +2425,12 @@ export default function CaseStudy() {
 
             <div className={styles.impactGrid}>
               {[
-                { strong: 'Clearer information hierarchy', text: ' across all eight product screens — no screen competes with another for the same type of attention.' },
-                { strong: 'Eliminated the generic dashboard feel', text: ' — CareSync does not look like any other healthcare SaaS product in the category.' },
-                { strong: 'Consistent visual system', text: ' — one token layer, one status model, 25+ reusable components. Any new screen inherits the language automatically.' },
-                { strong: 'Safer status semantics', text: ' — red means patient safety risk, nowhere else. Alert fatigue is structurally reduced by separating clinical and operational warnings.' },
-                { strong: 'Stronger product storytelling', text: ' — the NOW / NEXT / LATER model gives clinicians a mental framework that the interface reinforces at every touchpoint.' },
-                { strong: 'Enterprise-grade accessibility', text: ' — keyboard navigation, focus management, screen reader support, and live regions built into the component model from the start.' },
+                { strong: 'Clearer information hierarchy', text: ' across all eight product screens: no screen competes with another for the same type of attention.' },
+                { strong: 'Eliminated the generic dashboard feel', text: ', so CareSync does not look like any other healthcare SaaS product in the category.' },
+                { strong: 'Consistent visual system', text: ' : one token layer, one status model, 25+ reusable components. Any new screen inherits the language automatically.' },
+                { strong: 'Safer status semantics', text: ' : red means patient safety risk, nowhere else. Alert fatigue is structurally reduced by separating clinical and operational warnings.' },
+                { strong: 'Stronger product storytelling', text: ' : the NOW / NEXT / LATER model gives clinicians a mental framework that the interface reinforces at every touchpoint.' },
+                { strong: 'Enterprise-grade accessibility', text: ' : keyboard navigation, focus management, screen reader support, and live regions built into the component model from the start.' },
               ].map((c, i) => (
                 <div key={i} className={styles.impactCard}>
                   <div className={styles.impactCardText}>
@@ -2462,3 +2462,6 @@ export default function CaseStudy() {
     </div>
   )
 }
+
+
+
