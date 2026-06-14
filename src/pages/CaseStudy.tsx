@@ -108,41 +108,27 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>01 — The challenge</div>
-            <h2 className={styles.sectionTitle}>From dashboard assignment to design reframe</h2>
+            <div className={styles.sectionLabel}>01</div>
+            <h2 className={styles.sectionTitle}>I did not want to design another healthcare dashboard</h2>
             <p className={styles.sectionDesc}>
-              The brief said: design a modern healthcare provider dashboard for SaaS. Most solutions
-              to this brief look predictable — blue, KPI-heavy, AI-generated, visually generic. The
-              design challenge I set for myself was harder.
+              The brief was to design a modern healthcare provider dashboard. I spent the first part of the project questioning whether a dashboard was the right answer at all. Most healthcare SaaS products surface KPIs, appointment volumes, and aggregate metrics. But when I thought about what a doctor actually needs the moment they start a shift, none of those things came to mind first.
+            </p>
+            <p className={styles.sectionDesc} style={{ marginTop: 12 }}>
+              The question I kept returning to was simple: <em>what needs to happen before the next patient walks in?</em> That question changed the entire direction. CareSync is not built around showing data. It is built around making the next clinical action obvious.
             </p>
 
-            <div className={styles.challengeGrid}>
-              <div className={`${styles.challengeCard} ${styles.challengeBefore}`}>
-                <div className={styles.challengeCardLabel}>Generic dashboard asks</div>
-                <p className={styles.challengeQ}>"How many appointments do we have today?"</p>
-                <div className={styles.challengeCardLabel} style={{ marginTop: 16 }}>Generic dashboard shows</div>
-                <ul className={styles.challengeList}>
-                  <li>KPI tiles in a 4-up grid</li>
-                  <li>Blue bar charts for volume metrics</li>
-                  <li>Generic patient list tables</li>
-                  <li>Decorative gauge charts</li>
-                  <li>No clinical priority model</li>
-                </ul>
+            <div style={{ marginTop: 32, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div style={{ background: 'var(--color-bg-app)', border: '1px solid var(--color-border-strong)', borderRadius: 'var(--radius-card)', padding: '22px 24px' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 12 }}>The question I started from</div>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7, margin: 0 }}>
+                  "What does a doctor need to know in the first ten minutes of a shift, and what can wait?" Once I framed it that way, the structure of the product became much clearer. Priority, timing, and ownership had to be visible together, not scattered across separate modules.
+                </p>
               </div>
-
-              <div className={styles.challengeArrow}>→</div>
-
-              <div className={`${styles.challengeCard} ${styles.challengeAfter}`}>
-                <div className={`${styles.challengeCardLabel} ${styles.challengeCardLabelAfter}`}>CareSync asks</div>
-                <p className={styles.challengeQ}>"What needs attention before the next consultation?"</p>
-                <div className={`${styles.challengeCardLabel} ${styles.challengeCardLabelAfter}`} style={{ marginTop: 16 }}>CareSync shows</div>
-                <ul className={`${styles.challengeList} ${styles.challengeListAfter}`}>
-                  <li>Patients with abnormal lab changes</li>
-                  <li>Tasks handed over from night shift</li>
-                  <li>Upcoming appointments and their prep status</li>
-                  <li>Queue pressure and waiting delays</li>
-                  <li>Clinical ownership — who owns what</li>
-                </ul>
+              <div style={{ background: 'var(--color-bg-app)', border: '1px solid var(--color-border-strong)', borderRadius: 'var(--radius-card)', padding: '22px 24px' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 12 }}>The design decisions that followed</div>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.8, margin: 0 }}>
+                  Structure the product around the rhythm of a shift rather than around data categories. Make severity, timing, and ownership visible in every row. Build the Shift Briefing screen as an operational entry point rather than a homepage. Let the Now / Next / Later model guide attention instead of making everything compete equally.
+                </p>
               </div>
             </div>
           </div>
@@ -153,7 +139,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>02 — Problem framing</div>
+            <div className={styles.sectionLabel}>02</div>
             <h2 className={styles.sectionTitle}>A doctor starting a shift does not need a dashboard first</h2>
             <p className={styles.sectionDesc}>
               They need a safe operational briefing. The first minutes of a shift are the highest-risk
@@ -176,22 +162,52 @@ export default function CaseStudy() {
 
             <div className={styles.tensionDiagram}>
               <div className={styles.tensionStep}>
-                <div className={styles.tensionStepIcon}>⚡</div>
                 <div className={styles.tensionStepTitle}>Noise</div>
                 <div className={styles.tensionStepDesc}>Everything arriving at equal weight — lab results, admin, queue alerts, chat, reminders</div>
               </div>
               <div className={styles.tensionArrow}>→</div>
               <div className={styles.tensionStep}>
-                <div className={styles.tensionStepIcon}>🎯</div>
                 <div className={styles.tensionStepTitle}>Priority</div>
                 <div className={styles.tensionStepDesc}>Severity, timing, and ownership applied — critical items rise, safe items recede</div>
               </div>
               <div className={styles.tensionArrow}>→</div>
               <div className={styles.tensionStep}>
-                <div className={styles.tensionStepIcon}>✓</div>
                 <div className={styles.tensionStepTitle}>Action</div>
                 <div className={styles.tensionStepDesc}>The right action surface at the right moment — review, assign, acknowledge, defer</div>
               </div>
+            </div>
+
+            {/* WHY / HOW / WHAT */}
+            <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+              {[
+                {
+                  tag: 'WHY',
+                  tagColor: '#B42318',
+                  tagBg: '#FDECEA',
+                  title: 'Doctors begin a shift with scattered inputs and limited time.',
+                  body: 'Lab results, handover tasks, upcoming appointments, and abnormal flags all arrive together with no priority model. The first minutes of a shift are the highest-risk window.',
+                },
+                {
+                  tag: 'HOW',
+                  tagColor: '#8A5600',
+                  tagBg: '#FFF3DA',
+                  title: 'Structure information around urgency, responsibility, and sequence.',
+                  body: 'Apply a Now / Next / Later model. Make severity, timing, source, and ownership visible without navigation. Protect red for patient safety only.',
+                },
+                {
+                  tag: 'WHAT',
+                  tagColor: '#26734D',
+                  tagBg: '#E8F3EC',
+                  title: 'A shift-based clinical command centre, not a generic dashboard.',
+                  body: 'Eight connected screens. One mental model. Everything oriented around the rhythm of the shift, not the volume of the data.',
+                },
+              ].map(w => (
+                <div key={w.tag} style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '20px 22px' }}>
+                  <div style={{ display: 'inline-block', fontSize: 10, fontWeight: 800, letterSpacing: '0.1em', padding: '3px 10px', borderRadius: 4, background: w.tagBg, color: w.tagColor, marginBottom: 12 }}>{w.tag}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 8, lineHeight: 1.4 }}>{w.title}</div>
+                  <div style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>{w.body}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -201,66 +217,54 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>03 — Research &amp; discovery</div>
-            <h2 className={styles.sectionTitle}>What the research showed</h2>
+            <div className={styles.sectionLabel}>03</div>
+            <h2 className={styles.sectionTitle}>What shaped the direction</h2>
             <p className={styles.sectionDesc}>
-              No live clinician interviews — this was a design assignment sprint. Instead: desk
-              research, workflow assumption mapping, clinical SaaS heuristic review, and
-              scenario-based task analysis. Here is what shaped the design.
+              This was an assignment sprint, so I did not have access to live hospital sessions or usability studies. What I did have: a willingness to audit what already exists, a structured way of asking the right questions, and a genuine conversation with someone who actually does this work every day.
             </p>
 
-            <div className={styles.researchInsights}>
-              {[
-                {
-                  num: 'Insight 01',
-                  title: 'Healthcare dashboards over-index on metrics and under-support immediate clinical action',
-                  desc: 'Most reviewed products surface KPIs for administrators, not the operational context clinicians need at the start of a shift.',
-                },
-                {
-                  num: 'Insight 02',
-                  title: 'Doctors need patient context, result source, time, and ownership visible together',
-                  desc: 'When these four dimensions are split across tabs or screens, the cognitive load required to construct clinical context is too high.',
-                },
-                {
-                  num: 'Insight 03',
-                  title: 'Clinical safety states must be visually distinct from operational warning states',
-                  desc: 'Red should mean "patient safety risk". Amber should mean "review required". Mixing these signals creates alert fatigue and desensitises response.',
-                },
-                {
-                  num: 'Insight 04',
-                  title: 'Shift work needs continuity — inherited tasks and upcoming events must coexist',
-                  desc: 'A shift briefing view must simultaneously surface what was handed over (past), what is pending (now), and what is coming (future).',
-                },
-              ].map(r => (
-                <div key={r.num} className={styles.researchInsight}>
-                  <div className={styles.researchInsightNum}>{r.num}</div>
-                  <div className={styles.researchInsightTitle}>{r.title}</div>
-                  <div className={styles.researchInsightDesc}>{r.desc}</div>
-                </div>
-              ))}
+            {/* Personal voice intro */}
+            <div style={{ margin: '28px 0', padding: '24px 28px', background: 'var(--color-brand-50)', border: '1px solid var(--color-brand-100)', borderRadius: 'var(--radius-card)', borderLeft: '4px solid var(--color-brand-600)' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-brand-600)', marginBottom: 10 }}>I started by asking myself questions I couldn't easily answer from the brief</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 20px' }}>
+                {[
+                  'What does a doctor need in the first 30 seconds of a shift?',
+                  'What feels urgent vs what is simply important?',
+                  'How many times does a clinician switch screens before their first consultation?',
+                  'What information do they need to act — not just to be aware?',
+                  'When does red stop meaning "emergency" and start meaning "noise"?',
+                  'What does "handover" actually look like in an outpatient clinic?',
+                ].map(q => (
+                  <div key={q} style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.5, paddingLeft: 14, position: 'relative' }}>
+                    <span style={{ position: 'absolute', left: 0, color: 'var(--color-brand-600)' }}>·</span>
+                    {q}
+                  </div>
+                ))}
+              </div>
             </div>
 
+            {/* Method cards */}
             <div className={styles.artifactCards}>
               {[
                 {
-                  type: 'Workflow mapping',
-                  title: 'Shift start sequence',
-                  note: 'Login → briefing → triage → first consultation: 4 distinct mental modes in under 15 minutes.',
+                  type: 'Desk research',
+                  title: 'Healthcare SaaS landscape audit',
+                  note: 'I looked through publicly available demos, screenshots, and case studies from clinical SaaS products including Epic, Doximity, Healtheon, and a few smaller EHR tools. I was looking for what patterns got overused and what clinical context kept getting missed.',
                 },
                 {
                   type: 'Heuristic review',
                   title: 'Dashboard anti-patterns',
-                  note: 'Big greeting banners, equal-weight KPI tiles, and chart-first layouts all delay clinical action.',
+                  note: 'Big greeting banners, equal-weight KPI tiles, chart-first layouts, generic patient lists. I catalogued what felt wrong about each and used those findings as a kind of negative brief for CareSync.',
                 },
                 {
                   type: 'Pattern review',
-                  title: 'Enterprise SaaS conventions',
-                  note: 'Row-click drawers, sticky sidebar nav, and table-first layouts reduce training time for power users.',
+                  title: 'Enterprise SaaS references',
+                  note: 'I borrowed heavily from how Linear, Retool, Figma, and Stripe handle information density, table hierarchy, and action-adjacent metadata. Then I translated those patterns into a clinical context.',
                 },
                 {
-                  type: 'Safety analysis',
-                  title: 'Clinical colour semantics',
-                  note: 'Red reserved for patient safety. Amber for review/urgency. Green for stable/complete only.',
+                  type: 'Workflow mapping',
+                  title: 'Shift start sequence',
+                  note: 'Login, shift briefing, triage, first consultation: four distinct mental modes in under fifteen minutes. Mapping this sequence shaped the entire navigation order.',
                 },
               ].map(a => (
                 <div key={a.title} className={styles.artifactCard}>
@@ -270,6 +274,71 @@ export default function CaseStudy() {
                 </div>
               ))}
             </div>
+
+            {/* Sai Prasanna section */}
+            <div style={{ marginTop: 40 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 16 }}>Informal clinician input</div>
+              <div style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '24px 28px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 20 }}>
+                  <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--color-brand-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 16, fontWeight: 700, color: '#fff' }}>S</div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>Sai Prasanna</div>
+                    <div style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Practising physician — informal conversation, not a formal research study</div>
+                  </div>
+                </div>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 16 }}>
+                  To avoid designing in a vacuum, I spoke informally with my friend Sai Prasanna, who works as a doctor. This was not a usability test or a structured interview — it was a 30-minute honest conversation about what a shift actually looks like. I asked what they look at first, what they ignore, what makes them anxious in the first hour, and what information they have to actively hunt for.
+                </p>
+                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                  That conversation gave me directional insight that no desk research could have provided. It confirmed some assumptions, killed others, and surfaced two things I had completely missed: the cognitive cost of inherited handover tasks, and the fact that knowing <em>who owns</em> a clinical item is as important as knowing what it is.
+                </p>
+              </div>
+            </div>
+
+            {/* Insight cards from Sai */}
+            <div style={{ marginTop: 20 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 14 }}>Directional insights from informal clinician input</div>
+              <div className={styles.researchInsights}>
+                {[
+                  {
+                    num: '01',
+                    title: 'Immediate attention, not broad analytics',
+                    desc: 'At the start of a shift, the first 10 minutes are about triage — which patient needs me to act before they walk in. The analytics can wait.',
+                  },
+                  {
+                    num: '02',
+                    title: 'Time, ownership, and urgency need to be together',
+                    desc: 'Seeing a lab result without knowing when it arrived, who flagged it, and what the expected action is — that is four screens I have to visit just to understand one piece of information.',
+                  },
+                  {
+                    num: '03',
+                    title: 'Abnormal results without context are not enough',
+                    desc: '"Glucose 142" on its own means something different if it was 118 last week versus 98. The number needs the trend, the context, and the medication history alongside it.',
+                  },
+                  {
+                    num: '04',
+                    title: 'Inherited handovers carry hidden cognitive cost',
+                    desc: 'When you pick up tasks from the previous shift, you have to reconstruct context from notes you didn\'t write. That reconstruction is slow and error-prone.',
+                  },
+                  {
+                    num: '05',
+                    title: 'Fast scan + focused drill-down is the real workflow',
+                    desc: 'Doctors don\'t "browse" a dashboard. They triage the list, identify who needs attention, and then go deep on that person. The two modes need very different interfaces.',
+                  },
+                  {
+                    num: '06',
+                    title: 'Safety red must stay rare',
+                    desc: 'If red means both "allergy alert" and "task overdue", you quickly learn to tune it out. It needs to mean one thing — patient safety — and nothing else.',
+                  },
+                ].map(r => (
+                  <div key={r.num} className={styles.researchInsight}>
+                    <div className={styles.researchInsightNum}>{r.num}</div>
+                    <div className={styles.researchInsightTitle}>{r.title}</div>
+                    <div className={styles.researchInsightDesc}>{r.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -278,7 +347,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionDark}`}>
           <div className={styles.inner}>
-            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>04 — The design reframe</div>
+            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>04</div>
             <p className={styles.reframingStatement}>
               "I stopped designing a <span className={styles.reframingAccent}>dashboard</span> and started designing a <span className={styles.reframingAccent}>shift</span>."
             </p>
@@ -326,7 +395,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>05 — Information architecture</div>
+            <div className={styles.sectionLabel}>05</div>
             <h2 className={styles.sectionTitle}>Eight screens. One mental model.</h2>
             <p className={styles.sectionDesc}>
               Every nav item maps to a mode of clinical or operational attention. The order is deliberate:
@@ -360,7 +429,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>06 — User flows</div>
+            <div className={styles.sectionLabel}>06</div>
             <h2 className={styles.sectionTitle}>How the product moves</h2>
             <p className={styles.sectionDesc}>
               Six core task flows. Each designed to minimise context switching and keep the
@@ -370,7 +439,7 @@ export default function CaseStudy() {
             <div className={styles.flowSection}>
               {[
                 {
-                  label: 'Flow 1 — Shift start',
+                  label: 'Shift start',
                   nodes: [
                     { label: 'Login', type: 'start' },
                     { label: 'Shift Briefing', type: 'default' },
@@ -380,7 +449,7 @@ export default function CaseStudy() {
                   ],
                 },
                 {
-                  label: 'Flow 2 — Patient quick review',
+                  label: 'Patient quick review',
                   nodes: [
                     { label: 'Patients table', type: 'default' },
                     { label: 'Row click', type: 'default' },
@@ -389,7 +458,7 @@ export default function CaseStudy() {
                   ],
                 },
                 {
-                  label: 'Flow 3 — Appointment prep',
+                  label: 'Appointment prep',
                   nodes: [
                     { label: 'Appointments', type: 'default' },
                     { label: 'Row click', type: 'default' },
@@ -399,7 +468,7 @@ export default function CaseStudy() {
                   ],
                 },
                 {
-                  label: 'Flow 4 — Message → action',
+                  label: 'Message to action',
                   nodes: [
                     { label: 'Messages', type: 'default' },
                     { label: 'Abnormal glucose alert', type: 'crit' },
@@ -409,17 +478,17 @@ export default function CaseStudy() {
                   ],
                 },
                 {
-                  label: 'Flow 5 — Task completion',
+                  label: 'Task completion',
                   nodes: [
                     { label: 'Tasks', type: 'default' },
-                    { label: 'Rohan refill — due now', type: 'warn' },
+                    { label: 'Rohan refill · due now', type: 'warn' },
                     { label: 'Task detail drawer', type: 'default' },
                     { label: 'Review record', type: 'default' },
                     { label: 'Mark complete', type: 'end' },
                   ],
                 },
                 {
-                  label: 'Flow 6 — Medical records worklist',
+                  label: 'Medical records worklist',
                   nodes: [
                     { label: 'Medical Records', type: 'default' },
                     { label: 'Kavya — new thyroid report', type: 'warn' },
@@ -448,11 +517,36 @@ export default function CaseStudy() {
         </div>
 
         {/* ══════════════════════════════════════════════════
+            STORYBOARD
+        ══════════════════════════════════════════════════ */}
+        <div className={`${styles.section} ${styles.sectionDark}`}>
+          <div className={styles.inner}>
+            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>07</div>
+            <h2 className={styles.sectionTitle} style={{ color: '#fff', marginBottom: 16 }}>Sketching the shift before designing the screens</h2>
+            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, maxWidth: 680, marginBottom: 32 }}>
+              Before touching any screens, I sketched the product as a story. I wanted to understand what actually happens across a shift — how it starts, what pulls for attention first, how different pieces of information connect, and how the loop closes at handover. The sketch helped me think about sequence and coordination rather than jumping straight into layout.
+            </p>
+
+            <div style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', marginBottom: 24 }}>
+              <img
+                src="/story-chart.png"
+                alt="CareSync early storyboard sketch showing the arc of a clinical shift"
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
+            </div>
+
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, maxWidth: 640, margin: 0 }}>
+              The sketch above maps the shift arc from arrival through triage, consultation, review, and handover. What came out of it most clearly was that the Now / Next / Later model was not a feature — it was the fundamental structure of how clinical work actually unfolds.
+            </p>
+          </div>
+        </div>
+
+        {/* ══════════════════════════════════════════════════
             DESIGN SYSTEM CREATION — CHAPTER OPENER
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionDarkest}`}>
           <div className={styles.inner} style={{ textAlign: 'center' }}>
-            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`} style={{ textAlign: 'center', marginBottom: 28 }}>Design language — how and why</div>
+            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`} style={{ textAlign: 'center', marginBottom: 28 }}>Design language</div>
             <p className={styles.dsChapterQuote}>
               "The design system did not start with colours.<br />It started with a question."
             </p>
@@ -469,7 +563,7 @@ export default function CaseStudy() {
         {/* 1. VISUAL DIRECTION */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>Design language — 01</div>
+            <div className={styles.sectionLabel}>Visual direction</div>
             <h2 className={styles.sectionTitle}>Visual direction: what to avoid and what to move toward</h2>
             <p className={styles.sectionDesc}>
               The design system started with a visual audit. Most healthcare SaaS tools share the same aesthetic vocabulary — blue trust signals, gradient headers, oversized KPI tiles, and generic patient cards. CareSync needed to look and feel different for a deliberate reason, not just aesthetic preference.
@@ -535,7 +629,7 @@ export default function CaseStudy() {
         {/* 2 + 3: AUBERGINE + WARM NEUTRALS */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>Design language — 02</div>
+            <div className={styles.sectionLabel}>The brand colour</div>
             <h2 className={styles.sectionTitle}>Why aubergine became the anchor colour</h2>
             <p className={styles.sectionDesc}>
               Blue is common in healthcare UI because it suggests trust — but it also makes most healthcare dashboards look identical to each other. I chose aubergine because it still feels mature, serious, and trustworthy, but gives CareSync a more distinct enterprise identity. It works well with warm neutrals and supports a calm command-centre feel without becoming decorative.
@@ -599,7 +693,7 @@ export default function CaseStudy() {
             </div>
 
             <div style={{ marginTop: 48 }}>
-              <div className={styles.sectionLabel}>Design language — 03</div>
+              <div className={styles.sectionLabel}>Warm base</div>
               <h2 className={styles.sectionTitle} style={{ marginTop: 8 }}>A warmer base to reduce dashboard fatigue</h2>
               <p className={styles.sectionDesc}>
                 Most healthcare SaaS uses pure white surfaces. CareSync uses warm off-white and neutral tones throughout the page background because this is an information-dense product used across long shifts. Warm neutrals reduce eye strain and create a calmer reading environment for dense clinical lists.
@@ -642,7 +736,7 @@ export default function CaseStudy() {
         {/* 4. CLINICAL COLOR SEMANTICS */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>Design language — 04</div>
+            <div className={styles.sectionLabel}>Colour semantics</div>
             <h2 className={styles.sectionTitle}>Colour semantics: separating safety from operational urgency</h2>
             <p className={styles.sectionDesc}>
               I did not want every important thing to become red. In clinical interfaces, red should be protected for safety-critical moments — otherwise users become desensitised and stop responding to it. CareSync uses a strict semantic colour model with one principle at its centre.
@@ -737,7 +831,7 @@ export default function CaseStudy() {
         {/* 5 + 6: TYPOGRAPHY + LAYOUT */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>Design language — 05</div>
+            <div className={styles.sectionLabel}>Typography</div>
             <h2 className={styles.sectionTitle}>Readable density for clinical work</h2>
             <p className={styles.sectionDesc}>
               CareSync had to be data-dense without becoming cramped. I used a compact typography scale with clear role distinctions so clinicians can scan patient identity, status, source, and action in under two seconds per row.
@@ -771,7 +865,7 @@ export default function CaseStudy() {
             </div>
 
             <div style={{ marginTop: 48 }}>
-              <div className={styles.sectionLabel} style={{ marginBottom: 10 }}>Design language — 06</div>
+              <div className={styles.sectionLabel} style={{ marginBottom: 10 }}>Layout logic</div>
               <h2 className={styles.sectionTitle} style={{ marginBottom: 12 }}>The grid came from the workflow</h2>
               <p className={styles.sectionDesc}>
                 The layout system was not designed on a 12-column grid abstraction. It was designed around clinical work patterns — what information needs to be visible together and how the doctor moves through a shift.
@@ -879,7 +973,7 @@ export default function CaseStudy() {
         {/* 7. COMPONENT ORIGINS */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>Design language — 07</div>
+            <div className={styles.sectionLabel}>Component origins</div>
             <h2 className={styles.sectionTitle}>Components were designed from recurring clinical decisions</h2>
             <p className={styles.sectionDesc}>
               Every component in CareSync exists because a specific clinical decision-making pattern kept recurring across screens. I did not start from a UI kit and add clinical content — I started from the clinical task and designed the smallest reusable piece that could serve it.
@@ -934,7 +1028,7 @@ export default function CaseStudy() {
         {/* 8 + 9: BEFORE/AFTER + USAGE MATRIX */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>Design language — 08</div>
+            <div className={styles.sectionLabel}>Visual evolution</div>
             <h2 className={styles.sectionTitle}>From dashboard styling to system language</h2>
             <p className={styles.sectionDesc}>
               The transformation was not cosmetic. Every "before" item represents a structural decision that prioritised appearance over clinical utility. Every "after" item is a purposeful reversal.
@@ -974,57 +1068,13 @@ export default function CaseStudy() {
               </div>
             </div>
 
-            <div style={{ marginTop: 48 }}>
-              <div className={styles.sectionLabel} style={{ marginBottom: 10 }}>Design language — 09</div>
-              <h2 className={styles.sectionTitle} style={{ marginBottom: 12 }}>Component consistency across the product</h2>
-              <p className={styles.sectionDesc}>
-                Every component appears in multiple screens. The table below shows which components are used where — demonstrating that the design system scales across the full product without variation or inconsistency.
-              </p>
-              <div className={styles.usageTableWrapper}>
-                <table className={styles.usageMatrix}>
-                  <thead>
-                    <tr>
-                      <th className={styles.usageMatrixFirstCol}>Component</th>
-                      {['Shift Briefing', 'Patients', 'Appts', 'Records', 'Messages', 'Tasks', 'Insights', 'Settings'].map(col => (
-                        <th key={col}>{col}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { c: 'Patient identity block', vals: [1,1,1,1,1,1,0,0] },
-                      { c: 'Severity indicator',     vals: [1,1,1,1,1,1,0,0] },
-                      { c: 'Badge / status chip',    vals: [1,1,1,1,1,1,1,1] },
-                      { c: 'Table + row click',      vals: [1,1,1,1,1,1,1,0] },
-                      { c: 'Detail drawer',          vals: [1,1,1,1,0,1,0,0] },
-                      { c: 'Clinical warning card',  vals: [1,1,0,1,1,1,0,0] },
-                      { c: 'Timing status',          vals: [1,0,1,0,0,1,0,0] },
-                      { c: 'Workflow status',        vals: [1,1,1,1,1,1,0,0] },
-                      { c: 'Ownership status',       vals: [1,1,0,0,1,1,0,0] },
-                      { c: 'Patient safety strip',   vals: [1,1,1,1,0,0,0,0] },
-                      { c: 'Recharts + threshold',   vals: [0,0,0,0,0,0,1,0] },
-                      { c: 'Settings toggle / form', vals: [0,0,0,0,0,0,0,1] },
-                    ].map(row => (
-                      <tr key={row.c}>
-                        <td className={`${styles.usageMatrixFirstCol}`}>{row.c}</td>
-                        {row.vals.map((v, i) => (
-                          <td key={i}>
-                            {v ? <span className={styles.usageCheck}>✓</span> : <span className={styles.usageDash}>–</span>}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
 
         {/* 10 + 11: DESIGN NOTES + ACCESSIBILITY */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>Design language — 10</div>
+            <div className={styles.sectionLabel}>Design notes</div>
             <h2 className={styles.sectionTitle}>Design decision notes</h2>
             <p className={styles.sectionDesc}>
               These are the specific, deliberate choices that shaped the visual system — not rules invented for documentation, but decisions made in response to real product and clinical constraints.
@@ -1050,25 +1100,27 @@ export default function CaseStudy() {
             </div>
 
             <div style={{ marginTop: 48 }}>
-              <div className={styles.sectionLabel} style={{ marginBottom: 10 }}>Design language — 11</div>
+              <div className={styles.sectionLabel} style={{ marginBottom: 10 }}>Accessibility</div>
               <h2 className={styles.sectionTitle} style={{ marginBottom: 12 }}>Accessibility built into the system</h2>
               <p className={styles.sectionDesc}>
                 Accessibility was not a final checklist — it shaped the visual system from the beginning. Several design system decisions exist specifically because of accessibility requirements.
               </p>
               <div className={styles.a11ySystemGrid}>
                 {[
-                  { icon: '🔲', text: 'Focus rings use aubergine (box-shadow: 0 0 0 3px rgba(85,48,82,0.4)) — visible against both light and dark backgrounds, and unique from status colours.' },
-                  { icon: '🏷', text: 'Every badge includes a visible text label. Severity indicators always show the text name alongside the coloured dot — never a colour dot alone.' },
-                  { icon: '📏', text: 'Minimum touch targets: primary buttons 40–44px height, supporting actions 36px, icon buttons 36×36px. Never smaller.' },
-                  { icon: '📊', text: 'Every chart has an sr-only AccessibleChartSummary — a full narrative description of the chart data for screen readers.' },
-                  { icon: '🚨', text: 'PatientSafetyStrip uses role="alert" so allergy information is announced immediately when it appears on screen.' },
-                  { icon: '⚡', text: 'Transitions collapse to opacity-only when prefers-reduced-motion is active. Drawer slide animations disappear entirely.' },
-                  { icon: '⌨', text: 'Drawers trap focus while open and restore focus to the triggering row element on close — consistent keyboard flow.' },
-                  { icon: '🎯', text: 'Red is never used as the only visual indicator of meaning. Every critical state also includes a text label, icon, and/or structural emphasis.' },
+                  { label: 'Focus rings', text: 'All interactive elements show a 3px aubergine glow on focus. Visible against both light and dark backgrounds, and deliberately distinct from the clinical status colours.' },
+                  { label: 'Status labels always present', text: 'Severity indicators always include the text name alongside the coloured dot. No colour-only status — the label carries the meaning independently.' },
+                  { label: 'Touch targets', text: 'Primary buttons are 40–44px tall, supporting actions 36px, icon buttons 36×36px. Nothing clickable is smaller than a reachable touch area.' },
+                  { label: 'Chart summaries', text: 'Every chart includes an sr-only AccessibleChartSummary — a full narrative description of the data for screen readers, not just a title.' },
+                  { label: 'Safety strip announcement', text: 'PatientSafetyStrip uses role="alert" so allergy information is read aloud by screen readers immediately when the patient surface loads.' },
+                  { label: 'Reduced motion', text: 'When prefers-reduced-motion is active, all transitions collapse to opacity only. Drawer slide animations disappear entirely — no vestibular triggers.' },
+                  { label: 'Drawer focus management', text: 'Opening a drawer traps focus inside it. Closing it returns focus to the row that triggered it — so keyboard users never lose their position.' },
+                  { label: 'Never colour alone', text: 'Red is never used as the sole indicator of meaning. Every critical state also includes a text label, icon, or structural emphasis alongside the colour.' },
                 ].map(item => (
-                  <div key={item.icon} className={styles.a11ySystemItem}>
-                    <span style={{ fontSize: 16, flexShrink: 0 }}>{item.icon}</span>
-                    <div className={styles.a11ySystemText}>{item.text}</div>
+                  <div key={item.label} className={styles.a11ySystemItem}>
+                    <div className={styles.a11ySystemText}>
+                      <strong style={{ color: 'var(--color-text-primary)', display: 'block', marginBottom: 3 }}>{item.label}</strong>
+                      {item.text}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1079,7 +1131,7 @@ export default function CaseStudy() {
         {/* 12. DS CHAPTER CLOSING */}
         <div className={`${styles.section} ${styles.sectionDarkest}`}>
           <div className={styles.inner} style={{ textAlign: 'center' }}>
-            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`} style={{ textAlign: 'center', marginBottom: 24 }}>Design language — closing</div>
+            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`} style={{ textAlign: 'center', marginBottom: 24 }}>Design language</div>
             <p className={styles.dsClosingStatement}>
               "The system is intentionally <span className={styles.dsClosingAccent}>quiet</span>.<br />
               Its job is not to impress the doctor;<br />
@@ -1096,12 +1148,10 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>07 — Wireframes</div>
-            <h2 className={styles.sectionTitle}>Structural layout mapped before visual design</h2>
+            <div className={styles.sectionLabel}>Wireframes</div>
+            <h2 className={styles.sectionTitle}>Rough layouts before any visual decisions</h2>
             <p className={styles.sectionDesc}>
-              Eight lo-fi wireframes established the layout of each screen before colour, component
-              detail, or content was applied. Each frame solved the information hierarchy problem first —
-              what appears, in what order, at what scale.
+              Before thinking about colour or components, I mapped out the information hierarchy of each screen. These sketches are rough and intentional — the goal was to decide what belongs on each surface and in what order, not to make anything look finished.
             </p>
             <div className={styles.wfGrid}>
 
@@ -1442,34 +1492,160 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={styles.uiSection}>
           <div className={styles.inner}>
-            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>08 — Product screens (UI)</div>
+            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>08</div>
             <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>The final interface — live prototype</h2>
             <p className={`${styles.sectionDesc} ${styles.sectionDescLight}`}>
-              High-fidelity product screens captured from the running prototype at 1440×900.
-              Real patient data, real components, real design system tokens — not mock-ups.
+              Captured from the running prototype at 1440×900. Real patient data, real components, real design system tokens — not mock-ups.
             </p>
           </div>
+
+          {/* 1-up hero — Shift Briefing */}
+          <div className={styles.innerWide} style={{ paddingTop: 28 }}>
+            <div className={styles.uiHeroBlock}>
+              <div className={styles.uiHeroMeta}>
+                <span className={styles.uiHeroLetter}>A</span>
+                <div>
+                  <div className={styles.uiHeroTitle}>Shift Briefing</div>
+                  <div className={styles.uiHeroTag}>The command centre — where every shift begins</div>
+                </div>
+              </div>
+              <div className={styles.uiHeroFrame}>
+                <img src="/ui/shift-briefing.png" alt="Shift Briefing — CareSync" className={styles.uiHeroImg} loading="lazy" />
+              </div>
+              <div className={styles.uiHeroCallouts}>
+                {[
+                  { label: 'Now / Next / Later', detail: 'Three-column temporal model replaces a generic greeting banner — the first thing Dr. Rao sees is what needs attention before 09:00.' },
+                  { label: 'Priority patient card', detail: 'Meera Iyer surfaces at the top with glucose 142 mg/dL, severity, timing, and action — all in one glanceable block.' },
+                  { label: 'Operational rail', detail: 'Right-side rail shows upcoming queue, wait times, and recommended actions — without navigating away from the briefing view.' },
+                ].map(c => (
+                  <div key={c.label} className={styles.uiCallout}>
+                    <div className={styles.uiCalloutLabel}>{c.label}</div>
+                    <div className={styles.uiCalloutDetail}>{c.detail}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 2-up row */}
           <div className={styles.innerWide} style={{ paddingTop: 20 }}>
-            <div className={styles.uiGrid}>
+            <div className={styles.uiDuoGrid}>
               {[
-                { letter: 'A', title: 'Shift Briefing', file: 'shift-briefing',       tag: 'Command centre' },
-                { letter: 'B', title: 'Patients',       file: 'patients',             tag: 'Patient list' },
-                { letter: 'C', title: 'Appointments',   file: 'appointments',         tag: 'Outpatient queue' },
-                { letter: 'D', title: 'Medical Records',file: 'medical-records',      tag: 'Shift worklist' },
-                { letter: 'E', title: 'Messages',        file: 'messages',            tag: 'Clinical inbox' },
-                { letter: 'F', title: 'Tasks',           file: 'tasks',               tag: 'Handover workflow' },
-                { letter: 'G', title: 'Operational Insights', file: 'operational-insights', tag: 'Queue analytics' },
-                { letter: 'H', title: 'Settings',        file: 'settings',            tag: 'Shift preferences' },
+                {
+                  letter: 'B', title: 'Patients', file: 'patients',
+                  tag: 'Scan → triage → review',
+                  note: 'Row click opens a quick-view drawer. The full profile is a deliberate secondary step — not the default on every touch.',
+                },
+                {
+                  letter: 'C', title: 'Appointments', file: 'appointments',
+                  tag: 'Outpatient queue with live prep status',
+                  note: 'Flow status is the primary column — where is this appointment in the clinical process, not just what type it is.',
+                },
               ].map(s => (
-                <div key={s.letter} className={styles.uiCard}>
-                  <div className={styles.uiCardHead}>
+                <div key={s.letter} className={styles.uiDuoCard}>
+                  <div className={styles.uiDuoHead}>
                     <span className={styles.uiCardLetter}>{s.letter}</span>
-                    <span className={styles.uiCardTitle}>{s.title}</span>
-                    <span className={styles.uiCardTag}>{s.tag}</span>
+                    <div>
+                      <div className={styles.uiCardTitle}>{s.title}</div>
+                      <div className={styles.uiCardTag}>{s.tag}</div>
+                    </div>
                   </div>
-                  <div className={styles.uiFrame}>
-                    <img src={`/ui/${s.file}.png`} alt={`${s.title} — CareSync product screen`} className={styles.uiImg} loading="lazy" />
+                  <div className={styles.uiDuoFrame}>
+                    <img src={`/ui/${s.file}.png`} alt={`${s.title} — CareSync`} className={styles.uiDuoImg} loading="lazy" />
                   </div>
+                  <div className={styles.uiDuoNote}>{s.note}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Medical Records — hero (redesigned screen) */}
+          <div className={styles.innerWide} style={{ paddingTop: 20 }}>
+            <div className={styles.uiHeroBlock} style={{ borderColor: 'rgba(138,86,0,0.3)' }}>
+              <div className={styles.uiHeroMeta}>
+                <span className={styles.uiHeroLetter} style={{ background: '#8A5600' }}>D</span>
+                <div>
+                  <div className={styles.uiHeroTitle}>Medical Records</div>
+                  <div className={styles.uiHeroTag}>Shift-level worklist — the most consequential IA decision in the project</div>
+                </div>
+              </div>
+              <div className={styles.uiHeroFrame}>
+                <img src="/ui/medical-records.png" alt="Medical Records — CareSync" className={styles.uiHeroImg} loading="lazy" />
+              </div>
+              <div className={styles.uiHeroCallouts}>
+                {[
+                  { label: 'Reframed from single-patient to shift-level', detail: 'Instead of "show me one patient\'s records", the question became "which records across all my patients need review this shift?" — completely different IA.' },
+                  { label: 'New results surfaced at top', detail: 'Meera\'s glucose change and Kavya\'s thyroid report appear at the top of the worklist — new results that need eyes on them before anything else.' },
+                  { label: 'Source + time always visible', detail: 'Lab, Imaging, or Clinical note — with timestamp and patient identity — visible in every row without any extra clicks.' },
+                ].map(c => (
+                  <div key={c.label} className={styles.uiCallout} style={{ borderLeftColor: '#8A5600' }}>
+                    <div className={styles.uiCalloutLabel}>{c.label}</div>
+                    <div className={styles.uiCalloutDetail}>{c.detail}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 2-up: Messages + Tasks */}
+          <div className={styles.innerWide} style={{ paddingTop: 20 }}>
+            <div className={styles.uiDuoGrid}>
+              {[
+                {
+                  letter: 'E', title: 'Messages', file: 'messages',
+                  tag: 'Severity-sorted clinical inbox',
+                  note: 'Three-panel layout: thread nav + conversation + context. Sorted by severity, not time — safety-critical messages can never get buried.',
+                },
+                {
+                  letter: 'F', title: 'Tasks', file: 'tasks',
+                  tag: 'Shift handover and action tracking',
+                  note: 'Tasks grouped Now / Due this shift / Handed over — the time horizon makes it immediately clear what to touch first and what can wait.',
+                },
+              ].map(s => (
+                <div key={s.letter} className={styles.uiDuoCard}>
+                  <div className={styles.uiDuoHead}>
+                    <span className={styles.uiCardLetter}>{s.letter}</span>
+                    <div>
+                      <div className={styles.uiCardTitle}>{s.title}</div>
+                      <div className={styles.uiCardTag}>{s.tag}</div>
+                    </div>
+                  </div>
+                  <div className={styles.uiDuoFrame}>
+                    <img src={`/ui/${s.file}.png`} alt={`${s.title} — CareSync`} className={styles.uiDuoImg} loading="lazy" />
+                  </div>
+                  <div className={styles.uiDuoNote}>{s.note}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 2-up: Insights + Settings */}
+          <div className={styles.innerWide} style={{ paddingTop: 20, paddingBottom: 8 }}>
+            <div className={styles.uiDuoGrid}>
+              {[
+                {
+                  letter: 'G', title: 'Operational Insights', file: 'operational-insights',
+                  tag: 'Queue analytics with thresholds',
+                  note: 'Charts include threshold lines and narrative text — so the chart isn\'t just visual decoration, it\'s a clinical signal with context.',
+                },
+                {
+                  letter: 'H', title: 'Settings', file: 'settings',
+                  tag: 'Shift preferences and accessibility',
+                  note: 'Structured into clear categories: Shift, Notifications, Display, Security, Accessibility — not a flat list of toggles.',
+                },
+              ].map(s => (
+                <div key={s.letter} className={styles.uiDuoCard}>
+                  <div className={styles.uiDuoHead}>
+                    <span className={styles.uiCardLetter}>{s.letter}</span>
+                    <div>
+                      <div className={styles.uiCardTitle}>{s.title}</div>
+                      <div className={styles.uiCardTag}>{s.tag}</div>
+                    </div>
+                  </div>
+                  <div className={styles.uiDuoFrame}>
+                    <img src={`/ui/${s.file}.png`} alt={`${s.title} — CareSync`} className={styles.uiDuoImg} loading="lazy" />
+                  </div>
+                  <div className={styles.uiDuoNote}>{s.note}</div>
                 </div>
               ))}
             </div>
@@ -1481,7 +1657,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>09 — Screen stories</div>
+            <div className={styles.sectionLabel}>09</div>
             <h2 className={styles.sectionTitle}>Each screen solves a specific clinical moment</h2>
             <p className={styles.sectionDesc}>
               Eight screens. Each with a clear problem it solves, a design decision, the key
@@ -1826,11 +2002,64 @@ export default function CaseStudy() {
         </div>
 
         {/* ══════════════════════════════════════════════════
+            COMPONENT IMPLEMENTATION
+        ══════════════════════════════════════════════════ */}
+        <div className={`${styles.section} ${styles.sectionLight}`}>
+          <div className={styles.inner}>
+            <div className={styles.sectionLabel}>10</div>
+            <h2 className={styles.sectionTitle}>Custom components, not a library off the shelf</h2>
+            <p className={styles.sectionDesc}>
+              The interface was built entirely with custom React components and CSS Modules — no Material UI, no Tailwind, no component kit. Every component was written to spec, from Button to PatientSafetyStrip to the data tables. This was a deliberate choice: it let me build a system that matched the clinical context exactly, rather than inheriting the visual assumptions of a general-purpose library.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 32 }}>
+              {[
+                { layer: 'Design tokens', items: ['CSS custom properties in tokens.css', 'Colour semantics (brand / critical / warning / success)', 'Typography scale + spacing', 'Border radius + shadow scale'] },
+                { layer: 'Base components', items: ['Button (primary / secondary / ghost / danger)', 'Badge (variant + dot model)', 'SeverityIndicator', 'PatientSafetyStrip (role=alert)'] },
+                { layer: 'Status system', items: ['WorkflowStatus (8 states)', 'TimingStatus (5 timing states)', 'OwnershipStatus (assigned / shared)', 'All paired: text + colour + icon'] },
+                { layer: 'Product surfaces', items: ['Data tables with row-click + drawer', 'Detail drawers (focus-trapped)', 'Priority cards (shift briefing)', 'Charts with AccessibleChartSummary'] },
+              ].map(l => (
+                <div key={l.layer} style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '16px 18px' }}>
+                  <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-brand-600)', marginBottom: 12 }}>{l.layer}</div>
+                  {l.items.map(item => (
+                    <div key={item} style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.5, paddingLeft: 12, position: 'relative', marginBottom: 6 }}>
+                      <span style={{ position: 'absolute', left: 0, color: 'var(--color-text-muted)' }}>·</span>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+
+            <div style={{ background: 'var(--color-surface-secondary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '20px 24px' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 14 }}>Key implementation decisions</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 28px' }}>
+                {[
+                  'CSS Modules (not global styles) — scoped, no cascade conflicts across components',
+                  'Design tokens as CSS custom properties — the system changes in one place',
+                  'All status components accept a compact prop — same component used in tables, cards, and drawers',
+                  'Focus management: drawers trap focus on open, restore on close — keyboard accessibility built in',
+                  'PatientSafetyStrip uses role="alert" — allergy announced immediately on screen render',
+                  'prefers-reduced-motion: animations collapse to opacity only — no vestibular triggers',
+                  'Recharts charts wrapped with AccessibleChartSummary — sr-only narrative for every chart',
+                  'Every table row is keyboard-accessible with Enter to open drawer and Escape to close',
+                ].map(item => (
+                  <div key={item} style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.5, display: 'flex', gap: 8 }}>
+                    <span style={{ color: 'var(--color-brand-600)', flexShrink: 0, fontWeight: 700 }}>→</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ══════════════════════════════════════════════════
             9. DESIGN SYSTEM
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>10 — Design system</div>
+            <div className={styles.sectionLabel}>11</div>
             <h2 className={styles.sectionTitle}>Making the product feel consistent, safe, and scalable</h2>
             <p className={styles.sectionDesc}>
               One token layer drives the entire product. Every colour decision is a safety decision.
@@ -1938,7 +2167,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>11 — Visual evolution</div>
+            <div className={styles.sectionLabel}>11</div>
             <h2 className={styles.sectionTitle}>Dashboard-first vs Shift-first</h2>
             <p className={styles.sectionDesc}>
               The transformation was not just visual — it was structural. Every before item represents
@@ -1992,7 +2221,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>12 — Accessibility</div>
+            <div className={styles.sectionLabel}>12</div>
             <h2 className={styles.sectionTitle}>Accessibility shaped the interaction model</h2>
             <p className={styles.sectionDesc}>
               Accessibility was not treated as a final checklist. It shaped interaction patterns from
@@ -2032,7 +2261,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>13 — AI-assisted design</div>
+            <div className={styles.sectionLabel}>13</div>
             <h2 className={styles.sectionTitle}>AI as design critic and implementation partner</h2>
             <p className={styles.sectionDesc}>
               AI was used throughout this project — but as a thinking partner and implementation
@@ -2095,7 +2324,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionDark}`}>
           <div className={styles.inner}>
-            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>14 — Final product</div>
+            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`}>14</div>
             <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>CareSync became less about showing everything and more about showing the right thing at the right moment</h2>
 
             <div className={styles.narrativeGrid}>
@@ -2117,32 +2346,72 @@ export default function CaseStudy() {
         </div>
 
         {/* ══════════════════════════════════════════════════
-            14. WHAT I'D IMPROVE
+            14. REFLECTION
         ══════════════════════════════════════════════════ */}
         <div className={`${styles.section} ${styles.sectionWarm}`}>
           <div className={styles.inner}>
-            <div className={styles.sectionLabel}>15 — Reflection</div>
-            <h2 className={styles.sectionTitle}>What I would do next</h2>
+            <div className={styles.sectionLabel}>15</div>
+            <h2 className={styles.sectionTitle}>The most important things I learned</h2>
             <p className={styles.sectionDesc}>
-              A mature product never stops evolving. These are the next most valuable improvements
-              if this continued beyond the assignment sprint.
+              This project surprised me in a few ways. I went in thinking I was designing a healthcare dashboard. I came out having built something closer to a clinical workflow system. That shift in how I understood the problem changed everything downstream — the structure, the visual language, the components, and the way I talked about the work.
             </p>
 
-            <div className={styles.improveGrid}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
               {[
-                { num: '01', title: 'Clinician usability testing', desc: 'Run structured sessions with GPs in outpatient settings to validate the NOW / NEXT / LATER model against real shift behaviour.' },
-                { num: '02', title: 'Validate clinical language', desc: 'Review every severity label, status chip, and alert copy with a clinical advisor — this is the highest-risk content in the product.' },
-                { num: '03', title: 'Density preference testing', desc: 'Test compact vs default row height with power users. Clinical interfaces often benefit from higher information density than general software.' },
-                { num: '04', title: 'Mobile / tablet flow', desc: 'Refine the interaction patterns for bedside tablet use — drawer widths, touch target sizes, and gesture support need specific attention.' },
-                { num: '05', title: 'Role-based views', desc: 'Nurse, admin, and specialist views would surface different primary contexts — the same shift data with different priority models.' },
-                { num: '06', title: 'AI-generated shift summaries', desc: 'The typed data layer and structured status model make CareSync ready for AI-generated briefing narratives at shift start.' },
-              ].map(i => (
-                <div key={i.num} className={styles.improveCard}>
-                  <div className={styles.improveCardNum}>{i.num}</div>
-                  <div className={styles.improveCardTitle}>{i.title}</div>
-                  <div className={styles.improveCardDesc}>{i.desc}</div>
+                {
+                  title: 'Designing for a shift is not the same as designing for a dashboard',
+                  body: 'A dashboard asks "what happened?". A shift system asks "what needs to happen next?". These are completely different mental models. Once I understood that, almost every design decision became clearer.',
+                },
+                {
+                  title: 'The best clinical interfaces are not the most decorated — they are the clearest',
+                  body: 'Every time I added visual richness without purpose, I made the product harder to use under pressure. The discipline of removing decoration and trusting structure was harder than adding it — and produced a better result.',
+                },
+                {
+                  title: 'System thinking matters as much as screen polish',
+                  body: 'Any individual screen of CareSync looks reasonable. What makes it work is that all eight screens speak the same visual language — the same status model, the same row pattern, the same drawer interaction. That consistency is the product.',
+                },
+                {
+                  title: 'Storytelling helped me think better, not just present better',
+                  body: 'The Procreate storyboard was not a deliverable — it was a tool. Sketching the shift as a narrative forced me to think about sequence, urgency, and coordination in a way that wireframing alone wouldn\'t have.',
+                },
+                {
+                  title: 'Safety semantics are a design constraint, not a stylistic choice',
+                  body: 'Reserving red for patient safety — and only that — was not a visual preference. It was a product decision with real consequences. If red means too many things, clinicians stop responding to red.',
+                },
+                {
+                  title: 'Visual design in enterprise products is about rhythm and repeatability',
+                  body: 'The goal was not beautiful screens. The goal was a system that felt trustworthy, legible, and consistent across hundreds of hours of shift use — in a stressful environment, under time pressure.',
+                },
+              ].map(item => (
+                <div key={item.title} style={{ background: 'var(--color-surface-primary)', border: '1px solid var(--color-border-default)', borderRadius: 'var(--radius-card)', padding: '20px 22px' }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 8, lineHeight: 1.4 }}>{item.title}</div>
+                  <div style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>{item.body}</div>
                 </div>
               ))}
+            </div>
+
+            <div style={{ padding: '20px 24px', background: 'var(--color-brand-50)', border: '1px solid var(--color-brand-100)', borderRadius: 'var(--radius-card)', borderLeft: '4px solid var(--color-brand-600)' }}>
+              <p style={{ fontSize: 14, color: 'var(--color-brand-800)', lineHeight: 1.7, margin: 0, fontStyle: 'italic' }}>
+                "This project became strongest when I stopped designing pages and started designing the rhythm of a clinical shift."
+              </p>
+            </div>
+
+            <div style={{ marginTop: 40 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-text-muted)', marginBottom: 16 }}>If this continued beyond the sprint</div>
+              <div className={styles.improveGrid}>
+                {[
+                  { num: '01', title: 'Structured clinician testing', desc: 'Run sessions with GPs in outpatient settings to validate the Now / Next / Later model against real shift behaviour — not assumed scenarios.' },
+                  { num: '02', title: 'Clinical language review', desc: 'Every severity label, status chip, and alert copy reviewed with a clinical advisor — this is the highest-risk content in the product.' },
+                  { num: '03', title: 'Tablet and mobile flows', desc: 'Refine drawer widths, touch targets, and gesture support for bedside tablet use — a context where the current desktop patterns need significant adaptation.' },
+                  { num: '04', title: 'Role-based views', desc: 'Nurse, admin, and specialist views surface different priorities from the same shift data — same design system, different information hierarchy.' },
+                ].map(i => (
+                  <div key={i.num} className={styles.improveCard}>
+                    <div className={styles.improveCardNum}>{i.num}</div>
+                    <div className={styles.improveCardTitle}>{i.title}</div>
+                    <div className={styles.improveCardDesc}>{i.desc}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -2152,7 +2421,7 @@ export default function CaseStudy() {
         ══════════════════════════════════════════════════ */}
         <div className={styles.impactSection}>
           <div className={styles.inner}>
-            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`} style={{ textAlign: 'center', marginBottom: 32 }}>16 — Design impact</div>
+            <div className={`${styles.sectionLabel} ${styles.sectionLabelLight}`} style={{ textAlign: 'center', marginBottom: 32 }}>16</div>
 
             <div className={styles.impactGrid}>
               {[
