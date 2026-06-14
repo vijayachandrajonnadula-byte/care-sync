@@ -1803,6 +1803,22 @@
 }
 
 /* ── Responsive ── */
+@media (max-width: 480px) {
+  .inner, .innerWide { padding: 0 16px; }
+  .heroTitle { font-size: 26px; }
+  .heroSubtitle { font-size: 15px; }
+  .heroMeta { grid-template-columns: 1fr; }
+  .problemQuestions { grid-template-columns: 1fr; }
+  .artifactCards { grid-template-columns: 1fr; }
+  .iaGrid { grid-template-columns: 1fr; }
+  .dsTokenGrid { grid-template-columns: repeat(2, 1fr); }
+  .colorScaleGrid { grid-template-columns: repeat(3, 1fr); }
+  .tokenPillGrid { grid-template-columns: repeat(2, 1fr); }
+  .semanticRow { grid-template-columns: 28px 1fr; }
+  .typoRow { grid-template-columns: 1fr; }
+  .sectionLabel { font-size: 10px; }
+}
+
 @media (max-width: 860px) {
   .inner, .innerWide { padding: 0 24px; }
   .heroTitle { font-size: 36px; }

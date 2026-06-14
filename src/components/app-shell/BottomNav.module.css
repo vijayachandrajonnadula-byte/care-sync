@@ -1,0 +1,73 @@
+.nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--color-surface-primary);
+    border-top: 1px solid var(--color-border-default);
+    z-index: 50;
+    /* Safe area for iPhone home indicator */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 4px 4px;
+    transition: color 0.12s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tab:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .tabActive {
+    color: var(--color-brand-600);
+  }
+
+  .iconWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 8px;
+    background: var(--color-critical-600, #d0362a);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .label {
+    font-size: 10px;
+    line-height: 1;
+  }
+}

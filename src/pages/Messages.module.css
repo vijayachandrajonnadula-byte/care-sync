@@ -689,3 +689,28 @@
   .col1 { display: none; }
   .col2 { width: 210px; min-width: 210px; }
 }
+
+@media (max-width: 500px) {
+  /* Stack layout: conversation list on top, thread below */
+  .layout {
+    flex-direction: column;
+    margin: calc(-1 * 16px) calc(-1 * 16px) 0; /* bottom margin handled by content padding */
+  }
+
+  .col2 {
+    width: 100%;
+    min-width: 0;
+    height: 220px;
+    min-height: 220px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-default);
+    flex-shrink: 0;
+  }
+
+  .col3 { flex: 1; min-height: 0; }
+
+  .composerHint { display: none; }
+  .thread { padding: 12px; }
+  .convPanelHeader { padding: 10px 12px 0; }
+  .composer { padding: 0 12px 10px; }
+}
