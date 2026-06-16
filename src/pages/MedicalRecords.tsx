@@ -201,6 +201,7 @@ export default function MedicalRecords() {
           </div>
         ))}
       </div>
+      <p className={styles.filterHelp}>Showing records assigned to today's outpatient shift.</p>
 
       {/* Filter tabs */}
       <div className={styles.controlRow}>
@@ -286,11 +287,6 @@ export default function MedicalRecords() {
                   })}
                 </tbody>
               </table>
-            </div>
-            <div className={styles.tableFooter} aria-live="polite">
-              {filteredRecords.length} record{filteredRecords.length !== 1 ? 's' : ''} shown
-              <span className={styles.tableFooterSep} aria-hidden="true">·</span>
-              Last updated {CURRENT_USER.currentTime}
             </div>
           </>
         ) : (

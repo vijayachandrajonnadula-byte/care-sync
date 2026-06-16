@@ -113,10 +113,56 @@
   width: 264px;
   min-width: 264px;
   border-right: 1px solid var(--color-border-default);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   flex-shrink: 0;
   background: var(--color-surface-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.convList {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.listFooter {
+  padding: 8px 14px;
+  border-top: 1px solid var(--color-border-default);
+  background: var(--color-surface-secondary);
+  flex-shrink: 0;
+}
+
+.viewAllAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 10px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-button);
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-brand-600);
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.viewAllAction:hover {
+  background: var(--color-brand-50);
+  border-color: var(--color-brand-300);
+  color: var(--color-brand-700);
+}
+
+.viewAllAction svg { transition: transform 0.12s; }
+
+.viewAllAction:hover svg { transform: translateX(2px); }
+
+.viewAllAction:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 .convRow {

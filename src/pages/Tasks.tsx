@@ -52,14 +52,7 @@ export default function Tasks() {
     <div className={styles.page}>
       <PageHeader
         title="Tasks and handovers"
-        subtitle="Shift handover · Generated 07:45"
-        actions={
-          <div className={styles.summaryPills}>
-            <span className={styles.pillDone}>3 completed</span>
-            <span className={styles.pillContinuing}>2 continuing</span>
-            <span className={styles.pillEscalation}>1 escalation</span>
-          </div>
-        }
+        subtitle="Shift handover generated at 07:45. Tasks are grouped by urgency, ownership, and dependency."
       />
 
       <div className={styles.tableWrapper}>

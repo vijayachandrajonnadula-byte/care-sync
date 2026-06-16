@@ -6,41 +6,21 @@
   flex: 1;
   min-height: 0;
   width: 100%;
-}
-
-/* ── Pressure chips ── */
-.pressureChips {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.pressureChip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  height: 28px;
-  padding: 0 10px;
-  background: var(--color-surface-primary);
-  border: 1px solid var(--color-border-default);
-  border-radius: 4px;
-  font-size: var(--font-size-supporting);
-  color: var(--color-text-secondary);
-}
-
-.pressureChipWarning {
-  background: var(--color-warning-50);
-  border-color: var(--color-warning-200);
-  color: var(--color-warning-700);
+  padding-top: 8px;
 }
 
 /* ── Shift change summary strip ── */
 .changeSummaryStrip {
   display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.changeSummaryRow {
+  display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
@@ -60,19 +40,14 @@
 .changeSummaryItem {
   display: inline-flex;
   align-items: center;
-  height: 28px;
-  padding: 0 10px;
+  height: 26px;
+  padding: 0 14px;
   border-radius: var(--radius-pill);
   font-size: var(--font-size-supporting);
   font-weight: 500;
-  cursor: pointer;
   border: 1px solid transparent;
   font-family: var(--font-family);
-  transition: opacity 0.15s;
 }
-
-.changeSummaryItem:hover { opacity: 0.82; }
-.changeSummaryItem:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
 .changeSummaryItem_warning {
   background: var(--color-warning-50);
@@ -80,22 +55,17 @@
   border-color: var(--color-warning-200);
 }
 
-.changeSummaryItem_info {
-  background: var(--color-info-50);
-  color: var(--color-info-700);
-  border-color: var(--color-info-200);
-}
-
-.changeSummaryItem_brand {
-  background: var(--color-brand-100);
-  color: var(--color-brand-700);
-  border-color: var(--color-brand-300);
-}
-
 .changeSummaryItem_default {
   background: var(--color-surface-subtle);
   color: var(--color-text-secondary);
   border-color: var(--color-border-default);
+}
+
+.changeSummaryDetail {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* ── Layout grid ── */
@@ -139,8 +109,43 @@
 
 .sectionSubheading {
   font-size: var(--font-size-supporting);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   margin: 0;
+}
+
+/* ── Attention section: grouped parent container ── */
+.attentionSection {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.attentionSectionHeader {
+  padding: 12px 16px 10px;
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* Featured card inside the section: strip outer card treatment */
+.attentionSection .featuredCard {
+  border: none;
+  border-bottom: 1px solid var(--color-border-default);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.otherAttentionHeader {
+  padding: 7px 16px;
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.otherAttentionLabel {
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-text-muted);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -172,7 +177,7 @@
 
 /* Zone A — Identity: white background */
 .featuredIdentityZone {
-  padding: 12px 16px 10px;
+  padding: 10px 16px 8px;
   border-bottom: 1px solid var(--color-border-default);
 }
 
@@ -189,7 +194,7 @@
   font-weight: 600;
   color: var(--color-text-primary);
   line-height: 1.35;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 
 .highAttentionChip {
@@ -212,7 +217,7 @@
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .featuredMetaRow {
@@ -484,6 +489,22 @@
   padding: 1px 7px;
 }
 
+/* Completed state — replaces the ghost Acknowledge button once actioned */
+.acknowledgedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 10px;
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-success-700);
+  background: var(--color-success-50);
+  border: 1px solid var(--color-success-200);
+  border-radius: var(--radius-button);
+  font-family: var(--font-family);
+}
+
 /* Actions footer */
 .featuredActionsZone {
   display: flex;
@@ -590,6 +611,34 @@
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
+}
+
+/* Tertiary action — quieter than secondary, but clearly a button */
+.notifyAction {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-button);
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: var(--font-family);
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.notifyAction:hover {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+}
+
+.notifyAction:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 .tabular {
@@ -714,8 +763,9 @@
 }
 
 .followNextAction:hover {
-  background: var(--color-brand-50);
-  border-color: var(--color-brand-300);
+  background: var(--color-surface-subtle);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
 }
 
 .followNextAction:focus-visible {
@@ -723,14 +773,91 @@
   box-shadow: var(--focus-ring);
 }
 
+/* ── Attention queue rows (lives inside .attentionSection) ── */
+.attentionQueue {
+  overflow: hidden;
+}
+
+/* Strip individual card styling from rows inside the group */
+.attentionQueue .queueRow {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Divider only between consecutive rows, not after the last one */
+.attentionQueue .queueRow + .queueRow {
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* ── View all overflow actions ── */
+.viewAllRow {
+  display: flex;
+  align-items: center;
+}
+
+/* Footer treatment for attention queue and follow-through card */
+.attentionQueue .viewAllRow,
+.followSection .viewAllRow {
+  padding: 10px 14px;
+  border-top: 1px solid var(--color-border-default);
+  background: var(--color-surface-secondary);
+}
+
+/* Attention footer: CTA right-aligned */
+.attentionQueue .viewAllRow {
+  justify-content: flex-end;
+}
+
+/* Follow-through footer: CTA right-aligned */
+.followSection .viewAllRow {
+  justify-content: flex-end;
+}
+
+.viewAllMeta {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+/* Section-footer action — tertiary link-style, quieter than row actions */
+.viewAllAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 10px;
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-brand-600);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.viewAllAction svg {
+  transition: transform 0.12s;
+}
+
+.viewAllAction:hover {
+  background: var(--color-brand-50);
+  border-color: var(--color-brand-300);
+  color: var(--color-brand-700);
+}
+
+.viewAllAction:hover svg {
+  transform: translateX(2px);
+}
+
+.viewAllAction:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
 /* ═══════════════════════════════════════════════════════════
    RIGHT RAIL — NEXT 90 MINUTES
 ═══════════════════════════════════════════════════════════ */
 
-/* Inside unified .sideCol — only needs separator from recommended panel */
-.timelinePanel {
-  border-bottom: 1px solid var(--color-border-default);
-}
+.timelinePanel {}
 
 .timelinePanelHeader {
   padding: 12px 14px 10px;
@@ -739,6 +866,14 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
+}
+
+.timelinePanelFooter {
+  padding: 8px 14px;
+  border-top: 1px solid var(--color-border-default);
+  background: var(--color-surface-secondary);
+  display: flex;
+  justify-content: flex-end;
 }
 
 .timelinePanelTitle {
@@ -858,7 +993,7 @@
 .recommendedPanel {}
 
 .recommendedHeader {
-  padding: 12px 14px 10px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--color-border-default);
 }
 
@@ -866,6 +1001,12 @@
   font-size: var(--font-size-card-title);
   font-weight: 600;
   color: var(--color-text-primary);
+}
+
+.recommendedSubtitle {
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+  margin: 2px 0 0;
 }
 
 .recommendedList {
@@ -925,6 +1066,92 @@
   font-size: var(--font-size-label);
   color: var(--color-text-muted);
 }
+
+/* ── Attention items drawer content ── */
+.attDrawerSubtitle {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.attList {
+  display: flex;
+  flex-direction: column;
+}
+
+.attItem {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.attItem:first-child { padding-top: 0; }
+.attItem:last-child { border-bottom: none; padding-bottom: 0; }
+
+.attItemNum {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-brand-50);
+  border: 1.5px solid var(--color-brand-200);
+  color: var(--color-brand-700);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.attItemContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attItemHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.attItemName {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.attItemId {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.attItemIssue {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.attItemMeta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--font-size-label);
+  color: var(--color-text-muted);
+}
+
+.attItemMeta svg { flex-shrink: 0; }
+
+.attItemMetaSep { color: var(--color-border-strong); }
+
+.attItemActions { margin-top: 4px; }
 
 @media (max-width: 1024px) {
   .grid { grid-template-columns: 1fr; }

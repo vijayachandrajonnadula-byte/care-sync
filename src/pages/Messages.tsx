@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  AlertCircle, CheckCircle, ChevronRight, FileText, Paperclip, Send,
+  AlertCircle, ArrowRight, CheckCircle, ChevronRight, FileText, Paperclip, Send,
 } from 'lucide-react'
 import {
   MESSAGES, MEERA_IYER, MEERA_VITALS, ALL_PATIENTS, type Message,
@@ -84,40 +84,50 @@ export default function Messages() {
       </div>
 
       {/* ── Column 2: Conversation list ── */}
-      <div className={styles.col2} role="list" aria-label="Conversations">
-        {MESSAGES.map(msg => {
-          const isActive = activeMessage.id === msg.id
-          return (
-            <div
-              key={msg.id}
-              className={[
-                styles.convRow,
-                isActive ? styles.convRowActive : '',
-                !msg.read ? styles.convRowUnread : '',
-              ].filter(Boolean).join(' ')}
-              onClick={() => setActiveMessage(msg)}
-              role="listitem"
-              tabIndex={0}
-              onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setActiveMessage(msg)}
-              aria-current={isActive}
-            >
-              <div className={styles.convHeader}>
-                <span className={styles.convFrom}>{msg.from}</span>
-                <span className={styles.convTime}>{msg.time}</span>
-              </div>
-              {msg.patientName && (
-                <div className={styles.convPatient}>{msg.patientName}</div>
-              )}
-              <div className={styles.convSubject}>{msg.subject}</div>
-              <div className={styles.convTags}>
-                {msg.severity && (
-                  <SeverityIndicator severity={msg.severity} compact showDot={false} />
+      <div className={styles.col2}>
+        <div className={styles.convList} role="list" aria-label="Conversations">
+          {MESSAGES.map(msg => {
+            const isActive = activeMessage.id === msg.id
+            return (
+              <div
+                key={msg.id}
+                className={[
+                  styles.convRow,
+                  isActive ? styles.convRowActive : '',
+                  !msg.read ? styles.convRowUnread : '',
+                ].filter(Boolean).join(' ')}
+                onClick={() => setActiveMessage(msg)}
+                role="listitem"
+                tabIndex={0}
+                onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setActiveMessage(msg)}
+                aria-current={isActive}
+              >
+                <div className={styles.convHeader}>
+                  <span className={styles.convFrom}>{msg.from}</span>
+                  <span className={styles.convTime}>{msg.time}</span>
+                </div>
+                {msg.patientName && (
+                  <div className={styles.convPatient}>{msg.patientName}</div>
                 )}
-                <WorkflowStatus status={getWorkflow(msg)} compact />
+                <div className={styles.convSubject}>{msg.subject}</div>
+                <div className={styles.convTags}>
+                  {msg.severity && (
+                    <SeverityIndicator severity={msg.severity} compact showDot={false} />
+                  )}
+                  <WorkflowStatus status={getWorkflow(msg)} compact />
+                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
+        {(activeInbox === 'action' || activeInbox === 'unread') && (
+          <div className={styles.listFooter}>
+            <button type="button" className={styles.viewAllAction}>
+              View all {activeInbox === 'action' ? 'needs-action' : 'unread'} messages
+              <ArrowRight size={13} aria-hidden="true" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ── Column 3: Active conversation ── */}

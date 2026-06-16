@@ -109,12 +109,23 @@ export interface Task {
   acknowledged?: boolean
 }
 
-// ── Primary patient: Varsha Varadwaj ──────────────────────────────────
+export interface AttentionItem {
+  id: string
+  patientId: string
+  patientName: string
+  issue: string
+  dueTime: string
+  severity: ClinicalSeverity
+  source: string
+  action: string
+}
+
+// ── Primary patient: Meera Iyer ──────────────────────────────────
 
 export const MEERA_IYER: Patient = {
-  id: 'varsha-varadwaj',
+  id: 'meera-iyer',
   patientId: 'CP-10482',
-  name: 'Varsha Varadwaj',
+  name: 'Meera Iyer',
   age: 42,
   sex: 'Female',
   bloodGroup: 'B+',
@@ -226,9 +237,9 @@ export const MEERA_APPOINTMENT: Appointment = {
 // ── Secondary patients ───────────────────────────────────────────
 
 export const ARJUN_NAIR: Patient = {
-  id: 'bhargav-sai',
+  id: 'arjun-nair',
   patientId: 'CP-10221',
-  name: 'Bhargav Sai',
+  name: 'Arjun Nair',
   age: 34,
   sex: 'Male',
   bloodGroup: 'O+',
@@ -254,9 +265,9 @@ export const ARJUN_APPOINTMENT: Appointment = {
 }
 
 export const ROHAN_DAS: Patient = {
-  id: 'sai-prasanna',
+  id: 'rohan-das',
   patientId: 'CP-10118',
-  name: 'Sai Prasanna',
+  name: 'Rohan Das',
   age: 52,
   sex: 'Male',
   bloodGroup: 'A+',
@@ -269,9 +280,9 @@ export const ROHAN_DAS: Patient = {
 }
 
 export const KAVYA_MENON: Patient = {
-  id: 'sucheta-bharati',
+  id: 'kavya-menon',
   patientId: 'CP-10301',
-  name: 'Sucheta Bharati',
+  name: 'Kavya Menon',
   age: 29,
   sex: 'Female',
   bloodGroup: 'AB+',
@@ -306,6 +317,59 @@ export const STABLE_PATIENT: Patient = {
   severity: 'stable',
 }
 
+export const ATTENTION_ITEMS: AttentionItem[] = [
+  {
+    id: 'att-1',
+    patientId: 'CP-10482',
+    patientName: 'Meera Iyer',
+    issue: 'Fasting glucose elevated — above target range',
+    dueTime: 'Before 09:00',
+    severity: 'high',
+    source: 'Lab Result #492',
+    action: 'Review patient record',
+  },
+  {
+    id: 'att-2',
+    patientId: 'CP-10221',
+    patientName: 'Arjun Nair',
+    issue: 'Waiting 22m · Room pending · Delay +12m',
+    dueTime: 'Now',
+    severity: 'routine',
+    source: 'Appointment queue',
+    action: 'Open visit',
+  },
+  {
+    id: 'att-3',
+    patientId: 'CP-10118',
+    patientName: 'Rohan Das',
+    issue: 'Lisinopril 10 mg refill approval pending',
+    dueTime: '09:15',
+    severity: 'moderate',
+    source: 'Nurse Priya',
+    action: 'Review prescription',
+  },
+  {
+    id: 'att-4',
+    patientId: 'CP-10301',
+    patientName: 'Kavya Menon',
+    issue: 'New thyroid diagnostic report available',
+    dueTime: 'Before 10:00',
+    severity: 'routine',
+    source: 'Lab system',
+    action: 'Review report',
+  },
+  {
+    id: 'att-5',
+    patientId: 'CP-10099',
+    patientName: 'Sita Krishnan',
+    issue: 'Post-operative follow-up note needs acknowledgement',
+    dueTime: 'This shift',
+    severity: 'routine',
+    source: 'Clinical record',
+    action: 'Acknowledge',
+  },
+]
+
 export const ALL_PATIENTS: Patient[] = [
   MEERA_IYER,
   ARJUN_NAIR,
@@ -328,9 +392,9 @@ export const MESSAGES: Message[] = [
     id: 'msg-1',
     from: 'Nurse Priya',
     patientId: 'CP-10482',
-    patientName: 'Varsha Varadwaj',
+    patientName: 'Meera Iyer',
     subject: 'Abnormal glucose result',
-    body: "Varsha Varadwaj's fasting glucose returned at 142 mg/dL, increased from 118 mg/dL. Please review the result before her 09:00 follow-up.",
+    body: "Meera Iyer's fasting glucose returned at 142 mg/dL, increased from 118 mg/dL. Please review the result before her 09:00 follow-up.",
     time: '07:48 AM',
     severity: 'high',
     workflow: 'new',
@@ -342,9 +406,9 @@ export const MESSAGES: Message[] = [
     id: 'msg-2',
     from: 'Nurse Priya',
     patientId: 'CP-10118',
-    patientName: 'Sai Prasanna',
+    patientName: 'Rohan Das',
     subject: 'Lisinopril 10 mg refill request',
-    body: 'Sai Prasanna is requesting a refill of Lisinopril 10 mg. He has been waiting 18 minutes. Please approve before 09:15.',
+    body: 'Rohan Das is requesting a refill of Lisinopril 10 mg. He has been waiting 18 minutes. Please approve before 09:15.',
     time: '08:30 AM',
     severity: 'moderate',
     workflow: 'pending-approval',
@@ -355,9 +419,9 @@ export const MESSAGES: Message[] = [
     id: 'msg-3',
     from: 'Lab System',
     patientId: 'CP-10301',
-    patientName: 'Sucheta Bharati',
+    patientName: 'Kavya Menon',
     subject: 'New diagnostic report available',
-    body: 'A new thyroid panel report has been uploaded for Sucheta Bharati. Review is required before the 10:00 consultation.',
+    body: 'A new thyroid panel report has been uploaded for Kavya Menon. Review is required before the 10:00 consultation.',
     time: '08:15 AM',
     severity: 'routine',
     workflow: 'new',
@@ -385,7 +449,7 @@ export const TASKS: Task[] = [
     id: 'task-1',
     title: 'Review fasting glucose result before 09:00 consultation',
     patientId: 'CP-10482',
-    patientName: 'Varsha Varadwaj',
+    patientName: 'Meera Iyer',
     source: 'Lab Result #492',
     owner: 'Dr. Ananya Rao',
     dueTime: '09:00',
@@ -398,7 +462,7 @@ export const TASKS: Task[] = [
     id: 'task-2',
     title: 'Approve Lisinopril 10 mg prescription refill',
     patientId: 'CP-10118',
-    patientName: 'Sai Prasanna',
+    patientName: 'Rohan Das',
     source: 'Nurse Priya',
     owner: 'Dr. Ananya Rao',
     dueTime: '09:15',
@@ -411,7 +475,7 @@ export const TASKS: Task[] = [
     id: 'task-3',
     title: 'Review new diagnostic report before consultation',
     patientId: 'CP-10301',
-    patientName: 'Sucheta Bharati',
+    patientName: 'Kavya Menon',
     source: 'Lab system',
     owner: 'Dr. Ananya Rao',
     dueTime: 'Before 10:00',
@@ -541,20 +605,27 @@ export const AUDIT_LOG = [
 // ── Shift briefing summary ────────────────────────────────────────
 
 export const SHIFT_SUMMARY = {
-  immediateActions: 3,
-  dueThisShift: 4,
-  briefingStrip: '1 abnormal result · 2 new patient messages · 1 medication update · 3 inherited tasks',
+  immediateActions: 5,
+  dueThisShift: 10,
+  handoverTasks: 3,
+  briefingStrip: '2 abnormal lab results, 3 patient messages, 2 medication-related updates',
   followThrough: [
-    { workstream: 'Missed follow-ups', items: 2, oldest: 'Oldest 4 days', owner: 'Care coordination', risk: 'Moderate', nextAction: 'Review list' },
-    { workstream: 'Pending lab reviews', items: 4, oldest: 'Oldest 2 days', owner: 'Dr. Ananya Rao', risk: 'High', nextAction: 'Open lab queue' },
-    { workstream: 'Handover tasks', items: 3, oldest: 'From night shift', owner: 'Morning shift team', risk: 'Moderate', nextAction: 'Acknowledge all' },
-    { workstream: 'No-show change', items: '+2 percentage points', oldest: 'This week', owner: 'Admin team', risk: 'Low', nextAction: 'View pattern' },
+    { workstream: 'Pending lab reviews',       items: 4,        oldest: 'Oldest 2 days',   owner: 'Dr. Ananya Rao',     risk: 'High',     nextAction: 'Open lab queue' },
+    { workstream: 'Prescription approvals',    items: 2,        oldest: 'Oldest 30m',      owner: 'Dr. Ananya Rao',     risk: 'High',     nextAction: 'Review queue' },
+    { workstream: 'Missed follow-ups',         items: 2,        oldest: 'Oldest 4 days',   owner: 'Care coordination',  risk: 'Moderate', nextAction: 'Review list' },
+    { workstream: 'Handover tasks',            items: 3,        oldest: 'From night shift', owner: 'Morning shift team', risk: 'Moderate', nextAction: 'Acknowledge all' },
+    { workstream: 'Discharge notes pending',   items: 3,        oldest: 'Oldest 1 day',    owner: 'Dr. Ananya Rao',     risk: 'Moderate', nextAction: 'Review notes' },
+    { workstream: 'Patient recalls overdue',   items: 5,        oldest: 'Oldest 7 days',   owner: 'Admin team',         risk: 'Moderate', nextAction: 'Initiate recalls' },
+    { workstream: 'Referral acknowledgements', items: 2,        oldest: 'Oldest 2 days',   owner: 'Care coordination',  risk: 'Low',      nextAction: 'Acknowledge' },
+    { workstream: 'Patient callbacks pending', items: 4,        oldest: 'Oldest 3 days',   owner: 'Nurse Priya',        risk: 'Low',      nextAction: 'Schedule callbacks' },
+    { workstream: 'No-show change',            items: '+2 pp',  oldest: 'This week',       owner: 'Admin team',         risk: 'Low',      nextAction: 'View pattern' },
+    { workstream: 'Queue overflow buffer',     items: 3,        oldest: 'This session',    owner: 'Morning shift team',  risk: 'Low',      nextAction: 'Review options' },
   ],
 }
 
 export const NEXT_90_MIN = [
-  { time: '09:00', patient: 'Varsha Varadwaj', patientId: 'CP-10482', visit: 'Diabetes & HTN follow-up', note: 'Review required', severity: 'high' as ClinicalSeverity },
-  { time: '09:30', patient: 'Bhargav Sai', patientId: 'CP-10221', visit: 'General consultation', note: 'Checked in, waiting', severity: 'routine' as ClinicalSeverity },
-  { time: '10:00', patient: 'Sucheta Bharati', patientId: 'CP-10301', visit: 'Thyroid follow-up', note: 'Report available', severity: 'routine' as ClinicalSeverity },
+  { time: '09:00', patient: 'Meera Iyer', patientId: 'CP-10482', visit: 'Diabetes & HTN follow-up', note: 'Review required', severity: 'high' as ClinicalSeverity },
+  { time: '09:30', patient: 'Arjun Nair', patientId: 'CP-10221', visit: 'General consultation', note: 'Checked in, waiting', severity: 'routine' as ClinicalSeverity },
+  { time: '10:00', patient: 'Kavya Menon', patientId: 'CP-10301', visit: 'Thyroid follow-up', note: 'Report available', severity: 'routine' as ClinicalSeverity },
 ]
 

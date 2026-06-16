@@ -16,8 +16,79 @@ export default function DesignSystem() {
     <div className={styles.longPage}>
       <h1 className={styles.pageTitle}>Design Components</h1>
       <p className={styles.pageSub}>
-        All components used across CareSync. Built with React and CSS Modules.
+        All components used across CareSync. Built entirely with custom React components and CSS Modules — no Material UI, no Tailwind, no component kit. Every component was written to spec so the system matches clinical context exactly.
       </p>
+
+      {/* Color system */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Color system</h2>
+        <p className={styles.sectionDesc}>
+          Every color in CareSync carries a semantic meaning. The aubergine palette was chosen specifically to resist the generic blue healthcare aesthetic while maintaining clinical authority. Red is reserved exclusively for allergy and patient-safety contexts so it never loses its meaning.
+        </p>
+
+        <div className={styles.preview}>
+          <div className={styles.colorGroup}>
+            <div className={styles.colorGroupLabel}>Brand — Aubergine</div>
+            <div className={styles.colorGrid}>
+              {[
+                { name: 'Brand 50',  val: '--color-brand-50' },
+                { name: 'Brand 100', val: '--color-brand-100' },
+                { name: 'Brand 300', val: '--color-brand-300' },
+                { name: 'Brand 600', val: '--color-brand-600' },
+                { name: 'Brand 700', val: '--color-brand-700' },
+              ].map(c => (
+                <div key={c.val} className={styles.colorSwatch}>
+                  <div className={styles.colorBlock} style={{ background: `var(${c.val})` }} />
+                  <div className={styles.colorName}>{c.name}</div>
+                  <div className={styles.colorVar}>{c.val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.colorGroup} style={{ marginBottom: 0 }}>
+            <div className={styles.colorGroupLabel}>Semantic — Critical / Warning / Success</div>
+            <div className={styles.colorGrid}>
+              {[
+                { name: 'Critical 600', val: '--color-critical-600' },
+                { name: 'Warning 600',  val: '--color-warning-600' },
+                { name: 'Success 600',  val: '--color-success-600' },
+              ].map(c => (
+                <div key={c.val} className={styles.colorSwatch}>
+                  <div className={styles.colorBlock} style={{ background: `var(${c.val})` }} />
+                  <div className={styles.colorName}>{c.name}</div>
+                  <div className={styles.colorVar}>{c.val}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.preview} style={{ padding: 0, overflow: 'hidden' }}>
+          <table className={styles.tokenTable}>
+            <thead>
+              <tr>
+                <th className={styles.tokenTh}>Color role</th>
+                <th className={styles.tokenTh}>Use for</th>
+                <th className={styles.tokenTh}>Never use for</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { role: 'Aubergine (brand)',  use: 'Brand identity, primary actions, active selection, focus ring', never: 'Patient risk or severity' },
+                { role: 'Red (critical)',     use: 'Allergy flags and patient safety events only', never: 'General attention or UI errors' },
+                { role: 'Amber (warning)',    use: 'Values needing review, elevated risk, pressure readings', never: 'Error states unrelated to clinical review' },
+                { role: 'Green (success)',    use: 'Completed tasks, stable patient status, resolved items', never: 'Binary good/bad judgements without text label' },
+              ].map(row => (
+                <tr key={row.role} className={styles.tokenTr}>
+                  <td className={styles.tokenTd}><strong>{row.role}</strong></td>
+                  <td className={styles.tokenTd}>{row.use}</td>
+                  <td className={styles.tokenTd} style={{ color: 'var(--color-text-muted)' }}>{row.never}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       {/* Typography */}
       <section className={styles.section}>
@@ -487,6 +558,50 @@ export default function DesignSystem() {
             <button className={styles.timeFilter} aria-pressed="false">Today</button>
             <button className={styles.timeFilter} aria-pressed="false">Last 7 days</button>
           </div>
+        </div>
+      </section>
+
+      {/* Inspirations */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Inspirations</h2>
+        <p className={styles.sectionDesc}>
+          Five reference categories shaped the visual language — chosen to move CareSync away from generic healthcare SaaS toward a workspace that feels operationally serious.
+        </p>
+
+        <div className={styles.principleGrid} style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+          {[
+            {
+              num: '01',
+              title: 'Enterprise command centres',
+              desc: 'Bloomberg Terminal, aircraft cockpit HUDs, and ATC displays. Visual density in service of operational awareness — no decorative whitespace when the data matters.',
+            },
+            {
+              num: '02',
+              title: 'EHR density',
+              desc: 'EPIC and Cerner clinical note layouts. Tight typography, tabular data, minimum chrome. Not beautiful, but deeply functional — a benchmark for what belongs on screen.',
+            },
+            {
+              num: '03',
+              title: 'Shift handover boards',
+              desc: 'Physical ward whiteboards and nursing handover sheets. The original progressive disclosure model: critical items large and immediate, secondary context smaller and below.',
+            },
+            {
+              num: '04',
+              title: 'Operational queue management',
+              desc: 'Airport gate displays, dispatch boards, ER triage screens. Sorted by urgency, not entry order. Status visible at a glance across the room.',
+            },
+            {
+              num: '05',
+              title: 'Warm editorial SaaS',
+              desc: 'Linear, Notion, and Craft — warm neutrals and careful typographic rhythm as a counter to cold blue enterprise defaults. Legibility and focus over decoration.',
+            },
+          ].map(c => (
+            <div key={c.num} className={styles.principleCard}>
+              <div className={styles.principleNum}>{c.num}</div>
+              <div className={styles.principleTitle}>{c.title}</div>
+              <div className={styles.principleDesc}>{c.desc}</div>
+            </div>
+          ))}
         </div>
       </section>
     </div>

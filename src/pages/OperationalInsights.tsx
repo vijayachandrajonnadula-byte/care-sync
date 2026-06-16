@@ -3,6 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
   ReferenceLine, ResponsiveContainer, ReferenceArea,
 } from 'recharts'
+import { ArrowRight } from 'lucide-react'
 import { ARRIVALS_DATA, DEPT_WORKLOAD, CURRENT_USER } from '../data/careSyncData'
 import PageHeader from '../components/shared/PageHeader'
 import AccessibleChartSummary from '../components/clinical/AccessibleChartSummary'
@@ -227,6 +228,13 @@ export default function OperationalInsights() {
               ))}
             </tbody>
           </table>
+          <div className={styles.tableFooterRow}>
+            <span className={styles.tableFooterCount}>{DEPT_WORKLOAD.length} departments shown</span>
+            <button type="button" className={styles.viewAllAction}>
+              Open operational report
+              <ArrowRight size={13} aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

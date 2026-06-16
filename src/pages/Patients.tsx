@@ -137,6 +137,7 @@ export default function Patients() {
       <div className={styles.toolbar}>
         <FilterBar filters={FILTERS} active={filter} onChange={setFilter} label="Patient filters" />
       </div>
+      <p className={styles.filterHelp}>Showing {CURRENT_USER.department} patients · Morning shift</p>
 
       <DataTable
         columns={columns}
@@ -147,11 +148,6 @@ export default function Patients() {
         caption="Patient list"
       />
 
-      <div className={styles.tableFooter} aria-live="polite">
-        {filtered.length} patient{filtered.length !== 1 ? 's' : ''} shown
-        <span className={styles.tableFooterSep} aria-hidden="true">·</span>
-        Last updated {CURRENT_USER.currentTime}
-      </div>
 
       <Drawer
         open={drawerPatient !== null}

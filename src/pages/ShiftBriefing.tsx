@@ -4,45 +4,51 @@ import { AlertTriangle, ArrowRight, CheckCircle, Clock, Pill, User, Users } from
 import {
   CURRENT_USER, MEERA_IYER, MEERA_VITALS,
   ARJUN_NAIR, ARJUN_APPOINTMENT, ROHAN_DAS,
-  SHIFT_SUMMARY, NEXT_90_MIN,
+  KAVYA_MENON, KAVYA_APPOINTMENT,
+  SHIFT_SUMMARY, NEXT_90_MIN, ATTENTION_ITEMS,
+  type AttentionItem,
 } from '../data/careSyncData'
 import PageHeader from '../components/shared/PageHeader'
 import SeverityIndicator from '../components/status/SeverityIndicator'
 import WorkflowStatus from '../components/status/WorkflowStatus'
 import TimingStatus from '../components/status/TimingStatus'
 import Button from '../components/buttons/Button'
+import Drawer from '../components/drawers/Drawer'
 import styles from './ShiftBriefing.module.css'
 
 function ShiftChangeSummary() {
-  const items = [
-    { key: 'result', label: '1 abnormal result', mod: 'warning' },
-    { key: 'messages', label: '2 new patient messages', mod: 'info' },
-    { key: 'medication', label: '1 medication update', mod: 'brand' },
-    { key: 'tasks', label: '3 inherited tasks', mod: 'default' },
-  ]
   return (
-    <div className={styles.changeSummaryStrip} role="status" aria-label="Shift changes since 07:00">
-      <span className={styles.changeSummaryLabel}>Since 07:00</span>
-      <div className={styles.changeSummaryItems}>
-        {items.map(item => (
-          <button
-            type="button"
-            key={item.key}
-            className={`${styles.changeSummaryItem} ${styles[`changeSummaryItem_${item.mod}`]}`}
-          >
-            {item.label}
-          </button>
-        ))}
+    <div className={styles.changeSummaryStrip} role="status" aria-label="Shift summary">
+      <div className={styles.changeSummaryRow}>
+        <span className={styles.changeSummaryLabel}>Since 07:00</span>
+        <div className={styles.changeSummaryItems}>
+          <span className={`${styles.changeSummaryItem} ${styles.changeSummaryItem_warning}`}>
+            {SHIFT_SUMMARY.immediateActions} attention items
+          </span>
+          <span className={`${styles.changeSummaryItem} ${styles.changeSummaryItem_default}`}>
+            {SHIFT_SUMMARY.dueThisShift} follow-through items
+          </span>
+          <span className={`${styles.changeSummaryItem} ${styles.changeSummaryItem_default}`}>
+            {SHIFT_SUMMARY.handoverTasks} handover tasks
+          </span>
+        </div>
       </div>
+      <p className={styles.changeSummaryDetail}>
+        Includes 2 abnormal lab results, 3 patient messages, and 2 medication-related updates.
+      </p>
     </div>
   )
 }
+
+const ATTENTION_DISPLAY_LIMIT = 4   // featured card + 3 queue rows
+const FOLLOW_THROUGH_DISPLAY_LIMIT = 4
 
 const TIMELINE_ACTIONS = ['Open', 'Open visit', 'Review report']
 
 export default function ShiftBriefing() {
   const navigate = useNavigate()
   const [meeraWorkflow, setMeeraWorkflow] = useState<'new' | 'acknowledged'>('new')
+  const [attentionDrawerOpen, setAttentionDrawerOpen] = useState(false)
 
   const prevGlucose = MEERA_VITALS.fastingGlucose.previous
   const currGlucose = MEERA_VITALS.fastingGlucose.current
@@ -57,32 +63,20 @@ export default function ShiftBriefing() {
       <PageHeader
         title="Morning shift briefing"
         meta={`${CURRENT_USER.currentTime} · ${CURRENT_USER.department} · ${CURRENT_USER.name}`}
-        actions={
-          <div className={styles.pressureChips}>
-            <div className={`${styles.pressureChip} ${styles.pressureChipWarning}`}>
-              <AlertTriangle size={12} aria-hidden="true" />
-              <span><strong>3</strong> immediate actions</span>
-            </div>
-            <div className={styles.pressureChip}>
-              <Clock size={12} aria-hidden="true" />
-              <span><strong>4</strong> due this shift</span>
-            </div>
-          </div>
-        }
       />
 
       <ShiftChangeSummary />
 
-      <div className={styles.sectionHeadingBlock}>
-        <h2 className={styles.sectionHeading}>Needs action before first consultation</h2>
-        <p className={styles.sectionSubheading}>
-          Review Meera Iyer's glucose results and acknowledge the prescription request before 09:00
-        </p>
-      </div>
-
       <div className={styles.grid}>
         {/* ── Left: immediate clinical attention ── */}
         <div className={styles.mainCol}>
+
+          {/* ── Attention section: Meera + compact rows, grouped ── */}
+          <section className={styles.attentionSection} aria-labelledby="attention-section-heading">
+            <div className={styles.attentionSectionHeader}>
+              <h2 id="attention-section-heading" className={styles.sectionHeading}>Needs action before first consultation</h2>
+              <p className={styles.sectionSubheading}>Highest-priority items are shown first.</p>
+            </div>
 
           {/* ── Meera Iyer — featured clinical case ── */}
           <article
@@ -246,23 +240,37 @@ export default function ShiftBriefing() {
                 Review patient record
               </Button>
               <Button
-                variant="secondary"
+                variant="ghost"
                 size="sm"
                 icon={<Users size={14} />}
               >
                 Assign to Nurse Priya
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                icon={<CheckCircle size={14} />}
-                onClick={() => setMeeraWorkflow('acknowledged')}
-                disabled={meeraWorkflow === 'acknowledged'}
-              >
-                {meeraWorkflow === 'acknowledged' ? 'Acknowledged' : 'Acknowledge'}
-              </Button>
+              {meeraWorkflow === 'acknowledged' ? (
+                <span className={styles.acknowledgedBadge} role="status" aria-label="Review acknowledged">
+                  <CheckCircle size={13} aria-hidden="true" />
+                  Acknowledged
+                </span>
+              ) : (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  icon={<CheckCircle size={14} />}
+                  onClick={() => setMeeraWorkflow('acknowledged')}
+                >
+                  Acknowledge
+                </Button>
+              )}
             </div>
           </article>
+
+          {/* ── Other attention items ── */}
+          <div className={styles.otherAttentionHeader}>
+            <span className={styles.otherAttentionLabel}>Other attention items</span>
+          </div>
+
+          {/* ── Compact attention rows ── */}
+          <div className={styles.attentionQueue}>
 
           {/* ── Arjun Nair — queue delay ── */}
           <div className={styles.queueRow} role="region" aria-label="Arjun Nair — queue delay">
@@ -291,8 +299,8 @@ export default function ShiftBriefing() {
               </div>
             </div>
             <div className={styles.queueRowActions}>
+              <button type="button" className={styles.notifyAction}>Notify patient</button>
               <Button variant="secondary" size="sm">Open visit</Button>
-              <Button variant="ghost" size="sm">Notify patient</Button>
             </div>
           </div>
 
@@ -317,15 +325,56 @@ export default function ShiftBriefing() {
               </div>
             </div>
             <div className={styles.queueRowActions}>
-              <Button variant="primary" size="sm">Review prescription</Button>
+              <Button variant="secondary" size="sm">Review prescription</Button>
             </div>
           </div>
+
+          {/* ── Kavya Menon — diagnostic report ── */}
+          <div className={styles.queueRow} role="region" aria-label="Kavya Menon — diagnostic report">
+            <div className={styles.queueRowLeft}>
+              <div className={styles.queueRowHeader}>
+                <SeverityIndicator severity={KAVYA_MENON.severity} compact />
+                <span className={styles.queueRowName}>{KAVYA_MENON.name}</span>
+                <span className={styles.queueRowId}>{KAVYA_MENON.patientId}</span>
+                <span className={styles.queueRowDot} aria-hidden="true">·</span>
+                <span className={styles.queueRowMeta}>{KAVYA_MENON.age}F</span>
+              </div>
+              <div className={styles.queueRowDetails}>
+                <span>{KAVYA_APPOINTMENT.visitReason}</span>
+                <span className={styles.queueRowDot} aria-hidden="true">·</span>
+                <span>New diagnostic report available</span>
+                <span className={styles.queueRowDot} aria-hidden="true">·</span>
+                <TimingStatus timing="due-soon" dueTime="Review before 10:00" compact />
+                <WorkflowStatus status="new" compact />
+              </div>
+            </div>
+            <div className={styles.queueRowActions}>
+              <Button variant="secondary" size="sm">Review report</Button>
+            </div>
+          </div>
+
+          {SHIFT_SUMMARY.immediateActions > ATTENTION_DISPLAY_LIMIT && (
+            <div className={styles.viewAllRow}>
+              <button
+                type="button"
+                className={styles.viewAllAction}
+                onClick={() => setAttentionDrawerOpen(true)}
+              >
+                View full attention list
+                <ArrowRight size={13} aria-hidden="true" />
+              </button>
+            </div>
+          )}
+
+          </div>{/* end attentionQueue */}
+
+          </section>{/* end attentionSection */}
 
           {/* ── Shift follow-through ── */}
           <div className={styles.followSection}>
             <div className={styles.followSectionHeader}>
               <h3 className={styles.followSectionTitle}>Shift follow-through</h3>
-              <span className={styles.followSectionSub}>Inherited and ongoing workstreams</span>
+              <span className={styles.followSectionSub}>Highest-risk workstreams are shown first.</span>
             </div>
             <div className={styles.followTableWrapper}>
               <table className={styles.followTable} aria-label="Shift follow-through workstreams">
@@ -337,7 +386,7 @@ export default function ShiftBriefing() {
                   </tr>
                 </thead>
                 <tbody>
-                  {SHIFT_SUMMARY.followThrough.map(row => (
+                  {SHIFT_SUMMARY.followThrough.slice(0, FOLLOW_THROUGH_DISPLAY_LIMIT).map(row => (
                     <tr key={row.workstream} className={styles.followTr}>
                       <td className={`${styles.followTd} ${styles.followTdWorkstream}`}>{row.workstream}</td>
                       <td className={`${styles.followTd} ${styles.tabular}`}>{row.items}</td>
@@ -356,6 +405,18 @@ export default function ShiftBriefing() {
                 </tbody>
               </table>
             </div>
+            {SHIFT_SUMMARY.followThrough.length > FOLLOW_THROUGH_DISPLAY_LIMIT && (
+              <div className={styles.viewAllRow}>
+                <button
+                  type="button"
+                  className={styles.viewAllAction}
+                  onClick={() => navigate('/tasks')}
+                >
+                  View all follow-through items
+                  <ArrowRight size={13} aria-hidden="true" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -396,39 +457,56 @@ export default function ShiftBriefing() {
                 </div>
               ))}
             </div>
+            <div className={styles.timelinePanelFooter}>
+              <button
+                type="button"
+                className={styles.viewAllAction}
+                onClick={() => navigate('/appointments')}
+              >
+                View full shift overview
+                <ArrowRight size={13} aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
-          {/* Recommended next steps */}
-          <div className={styles.recommendedPanel}>
-            <div className={styles.recommendedHeader}>
-              <h3 className={styles.recommendedTitle}>Recommended next steps</h3>
-            </div>
-            <ol className={styles.recommendedList} aria-label="Recommended next steps">
-              <li className={styles.recommendedItem} tabIndex={0} role="button">
-                <span className={styles.recommendedNum} aria-hidden="true">1</span>
-                <div className={styles.recommendedContent}>
-                  <span className={styles.recommendedText}>Review Meera Iyer's glucose record</span>
-                  <span className={styles.recommendedMeta}>Before 09:00 · High priority</span>
-                </div>
-              </li>
-              <li className={styles.recommendedItem} tabIndex={0} role="button">
-                <span className={styles.recommendedNum} aria-hidden="true">2</span>
-                <div className={styles.recommendedContent}>
-                  <span className={styles.recommendedText}>Approve Rohan Das prescription</span>
-                  <span className={styles.recommendedMeta}>Due 09:15 · Waiting 18 min</span>
-                </div>
-              </li>
-              <li className={styles.recommendedItem} tabIndex={0} role="button">
-                <span className={styles.recommendedNum} aria-hidden="true">3</span>
-                <div className={styles.recommendedContent}>
-                  <span className={styles.recommendedText}>Acknowledge handover tasks</span>
-                  <span className={styles.recommendedMeta}>3 items from night shift</span>
-                </div>
-              </li>
-            </ol>
-          </div>
         </div>
       </div>
+
+      <Drawer
+        open={attentionDrawerOpen}
+        onClose={() => setAttentionDrawerOpen(false)}
+        title="Attention items"
+        closeLabel="Close attention items panel"
+        width={480}
+      >
+        <p className={styles.attDrawerSubtitle}>
+          {SHIFT_SUMMARY.immediateActions} items need attention before or during the first consultation window.
+        </p>
+        <div className={styles.attList}>
+          {ATTENTION_ITEMS.map((item: AttentionItem, i: number) => (
+            <div key={item.id} className={styles.attItem}>
+              <div className={styles.attItemNum} aria-hidden="true">{i + 1}</div>
+              <div className={styles.attItemContent}>
+                <div className={styles.attItemHeader}>
+                  <span className={styles.attItemName}>{item.patientName}</span>
+                  <span className={styles.attItemId}>{item.patientId}</span>
+                  <SeverityIndicator severity={item.severity} compact />
+                </div>
+                <p className={styles.attItemIssue}>{item.issue}</p>
+                <div className={styles.attItemMeta}>
+                  <Clock size={11} aria-hidden="true" />
+                  <span>Due: {item.dueTime}</span>
+                  <span className={styles.attItemMetaSep} aria-hidden="true">·</span>
+                  <span>Source: {item.source}</span>
+                </div>
+                <div className={styles.attItemActions}>
+                  <Button variant="secondary" size="sm">{item.action}</Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Drawer>
     </div>
   )
 }
