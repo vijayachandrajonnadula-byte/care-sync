@@ -68,18 +68,18 @@ export default function CaseStudy() {
                 <div className={styles.miniCardBody}>
                   <div className={`${styles.miniPatientRow} ${styles.miniPatientRowCrit}`}>
                     <span className={`${styles.miniChip} ${styles.miniChipCrit}`}>High</span>
-                    <span className={styles.miniPatientName}>Varsha Varadwaj</span>
+                    <span className={styles.miniPatientName}>Meera Iyer</span>
                     <span className={styles.miniPatientNote}>Glucose 142 mg/dL · Review before 09:00</span>
                     <span className={`${styles.miniChip} ${styles.miniChipWarn}`}>Due now</span>
                   </div>
                   <div className={styles.miniPatientRow}>
                     <span className={`${styles.miniChip} ${styles.miniChipWarn}`}>Due</span>
-                    <span className={styles.miniPatientName}>Sai Prasanna</span>
+                    <span className={styles.miniPatientName}>Rohan Das</span>
                     <span className={styles.miniPatientNote}>Lisinopril refill, sign before 09:15</span>
                   </div>
                   <div className={styles.miniPatientRow}>
                     <span className={`${styles.miniChip} ${styles.miniChipBrand}`}>Waiting</span>
-                    <span className={styles.miniPatientName}>Bhargav Sai</span>
+                    <span className={styles.miniPatientName}>Arjun Nair</span>
                     <span className={styles.miniPatientNote}>22m wait · Room pending</span>
                   </div>
                 </div>
@@ -358,8 +358,8 @@ export default function CaseStudy() {
                 <div className={styles.modelTitle}>Immediate attention</div>
                 <div className={styles.modelDesc}>What requires clinical action before the next consultation. The highest-urgency surface in the product.</div>
                 <ul className={styles.modelItems}>
-                  <li>Varsha Varadwaj: glucose 142 mg/dL, review due</li>
-                  <li>Sai Prasanna: Lisinopril refill, sign before 09:15</li>
+                  <li>Meera Iyer: glucose 142 mg/dL, review due</li>
+                  <li>Rohan Das: Lisinopril refill, sign before 09:15</li>
                   <li>Abnormal lab results flagged since last visit</li>
                   <li>Handover tasks from night shift</li>
                 </ul>
@@ -369,8 +369,8 @@ export default function CaseStudy() {
                 <div className={styles.modelTitle}>Upcoming appointments</div>
                 <div className={styles.modelDesc}>The next 90 minutes of consultations with preparation status visible before the patient walks in.</div>
                 <ul className={styles.modelItems}>
-                  <li>09:30, Bhargav Sai, waiting 22m, room pending</li>
-                  <li>10:00, Sucheta Bharati, new thyroid diagnostic report</li>
+                  <li>09:30, Arjun Nair, waiting 22m, room pending</li>
+                  <li>10:00, Kavya Menon, new thyroid diagnostic report</li>
                   <li>10:30, Sita Krishnan, post-op follow-up</li>
                   <li>Preparation notes and delay status per slot</li>
                 </ul>
@@ -381,7 +381,7 @@ export default function CaseStudy() {
                 <div className={styles.modelDesc}>What can be deferred without risk. Structured as workstreams, not individual alerts competing for attention.</div>
                 <ul className={styles.modelItems}>
                   <li>Pending prescription reviews</li>
-                  <li>Missed follow-up flag for Sucheta Bharati</li>
+                  <li>Missed follow-up flag for Kavya Menon</li>
                   <li>Operational Insights: queue pressure review</li>
                   <li>End-of-shift handover items</li>
                 </ul>
@@ -481,7 +481,7 @@ export default function CaseStudy() {
                   label: 'Task completion',
                   nodes: [
                     { label: 'Tasks', type: 'default' },
-                    { label: 'Sai Prasanna refill · due now', type: 'warn' },
+                    { label: 'Rohan Das refill · due now', type: 'warn' },
                     { label: 'Task detail drawer', type: 'default' },
                     { label: 'Review record', type: 'default' },
                     { label: 'Mark complete', type: 'end' },
@@ -536,7 +536,8 @@ export default function CaseStudy() {
             </div>
 
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, maxWidth: 640, margin: 0 }}>
-              The sketch above maps the shift arc from arrival through triage, consultation, review, and handover. What came out of it most clearly was that the Now / Next / Later model was not a feature. It was the fundamental structure of how clinical work actually unfolds.
+              The sketch above maps the shift arc from arrival through triage, consultation, review, and handover. What came out of it most clearly was that the Now / Next / Later model was not a feature. It was the fundamental structure of how clinical work actually unfolds.{' '}
+              <span style={{ color: 'rgba(255,255,255,0.25)' }}>Sketched in Procreate on iPad.</span>
             </p>
           </div>
         </div>
@@ -846,7 +847,7 @@ export default function CaseStudy() {
               {[
                 { role: 'Shift context', ex: { size: 20, weight: 700, text: 'Shift Briefing · Morning' }, purpose: 'Top-level screen identifier' },
                 { role: 'Section heading', ex: { size: 16, weight: 700, text: 'Priority patients · Now' }, purpose: 'Workflow grouping within screens' },
-                { role: 'Card title', ex: { size: 14, weight: 600, text: 'Varsha Varadwaj · Glucose review' }, purpose: 'The primary action statement' },
+                { role: 'Card title', ex: { size: 14, weight: 600, text: 'Meera Iyer · Glucose review' }, purpose: 'The primary action statement' },
                 { role: 'Body / table row', ex: { size: 13, weight: 400, text: 'Fasting glucose 142 mg/dL since Monday' }, purpose: 'Supporting clinical detail' },
                 { role: 'Metadata', ex: { size: 12, weight: 400, text: 'CP-10482 · Lab · 08:12 AM' }, purpose: 'Source, ID, timestamp' },
                 { role: 'Badge label', ex: { size: 11, weight: 700, text: 'REVIEW REQUIRED' }, purpose: 'Status state: always uppercase' },
@@ -1515,7 +1516,7 @@ export default function CaseStudy() {
               <div className={styles.uiHeroCallouts}>
                 {[
                   { label: 'Now / Next / Later', detail: 'Three-column temporal model replaces a generic greeting banner: the first thing Dr. Rao sees is what needs attention before 09:00.' },
-                  { label: 'Priority patient card', detail: 'Varsha Varadwaj surfaces at the top with glucose 142 mg/dL, severity, timing, and action, all in one glanceable block.' },
+                  { label: 'Priority patient card', detail: 'Meera Iyer surfaces at the top with glucose 142 mg/dL, severity, timing, and action, all in one glanceable block.' },
                   { label: 'Operational rail', detail: 'right-side rail shows upcoming queue, wait times, and recommended actions, without navigating away from the briefing view.' },
                 ].map(c => (
                   <div key={c.label} className={styles.uiCallout}>
@@ -1691,13 +1692,13 @@ export default function CaseStudy() {
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowActive}`}>
                         <SeverityIndicator severity="high" compact />
-                        <span className={styles.uiFragName}>Varsha Varadwaj</span>
+                        <span className={styles.uiFragName}>Meera Iyer</span>
                         <span className={styles.uiFragMeta}>Glucose 142 · Review</span>
                         <TimingStatus timing="due-now" dueTime="09:00" compact />
                       </div>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
                         <SeverityIndicator severity="moderate" compact />
-                        <span className={styles.uiFragName}>Sai Prasanna</span>
+                        <span className={styles.uiFragName}>Rohan Das</span>
                         <span className={styles.uiFragMeta}>Lisinopril refill</span>
                         <TimingStatus timing="due-soon" dueTime="09:15" compact />
                       </div>
@@ -1733,9 +1734,9 @@ export default function CaseStudy() {
                     </div>
                     <div className={styles.uiFragBody}>
                       {[
-                        { name: 'Varsha Varadwaj', id: 'CP-10482', sev: 'high' as const, active: true },
-                        { name: 'Sai Prasanna', id: 'CP-10118', sev: 'moderate' as const, active: false },
-                        { name: 'Bhargav Sai', id: 'CP-10221', sev: 'routine' as const, active: false },
+                        { name: 'Meera Iyer', id: 'CP-10482', sev: 'high' as const, active: true },
+                        { name: 'Rohan Das', id: 'CP-10118', sev: 'moderate' as const, active: false },
+                        { name: 'Arjun Nair', id: 'CP-10221', sev: 'routine' as const, active: false },
                       ].map(p => (
                         <div key={p.id} className={`${styles.uiFragRow} ${p.active ? styles.uiFragRowActive : ''}`}>
                           <SeverityIndicator severity={p.sev} compact />
@@ -1776,12 +1777,12 @@ export default function CaseStudy() {
                     </div>
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowActive}`}>
-                        <span className={styles.uiFragName}>Bhargav Sai</span>
+                        <span className={styles.uiFragName}>Arjun Nair</span>
                         <span className={styles.uiFragMeta}>09:30</span>
                         <Badge variant="warning" dot>Waiting 22m</Badge>
                       </div>
                       <div className={styles.uiFragRow}>
-                        <span className={styles.uiFragName}>Sucheta Bharati</span>
+                        <span className={styles.uiFragName}>Kavya Menon</span>
                         <span className={styles.uiFragMeta}>10:00</span>
                         <Badge variant="brand">Scheduled</Badge>
                       </div>
@@ -1818,12 +1819,12 @@ export default function CaseStudy() {
                     </div>
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
-                        <span className={styles.uiFragName}>Varsha Varadwaj · Glucose</span>
+                        <span className={styles.uiFragName}>Meera Iyer · Glucose</span>
                         <span className={styles.uiFragMeta}>142 mg/dL ↑</span>
                         <WorkflowStatus status="new" compact />
                       </div>
                       <div className={styles.uiFragRow}>
-                        <span className={styles.uiFragName}>Sucheta Bharati · Thyroid</span>
+                        <span className={styles.uiFragName}>Kavya Menon · Thyroid</span>
                         <span className={styles.uiFragMeta}>New report</span>
                         <WorkflowStatus status="new" compact />
                       </div>
@@ -1901,12 +1902,12 @@ export default function CaseStudy() {
                     <div className={styles.uiFragBody}>
                       <div className={`${styles.uiFragRow} ${styles.uiFragRowWarn}`}>
                         <TimingStatus timing="overdue" dueTime="09:00" compact />
-                        <span className={styles.uiFragName}>Review Varsha glucose result</span>
+                        <span className={styles.uiFragName}>Review Meera glucose result</span>
                         <OwnershipStatus status="assigned-to-me" compact />
                       </div>
                       <div className={styles.uiFragRow}>
                         <TimingStatus timing="due-now" dueTime="09:15" compact />
-                        <span className={styles.uiFragName}>Sign Sai Prasanna Lisinopril refill</span>
+                        <span className={styles.uiFragName}>Sign Rohan Das Lisinopril refill</span>
                         <OwnershipStatus status="assigned-to-me" compact />
                       </div>
                     </div>

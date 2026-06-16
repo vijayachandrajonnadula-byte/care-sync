@@ -7,6 +7,27 @@
   gap: 6px;
 }
 
+/* Primary group chips — map directly to table groups */
+.pillGroup {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 13px;
+  font-size: var(--font-size-supporting);
+  font-weight: 600;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-subtle);
+  color: var(--color-text-secondary);
+}
+
+/* Secondary helper line — shift status summary */
+.headerHelper {
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  margin: -8px 0 16px;
+}
+
 .pillDone, .pillContinuing, .pillEscalation {
   display: inline-flex;
   align-items: center;
@@ -348,3 +369,45 @@
 }
 
 .modalActions { display: flex; gap: 8px; }
+
+/* ── Group footer rows ("View all…") ── */
+.groupFooterRow {
+  background: var(--color-surface-secondary);
+}
+
+.groupFooterCell {
+  padding: 7px 14px;
+  border-top: 1px solid var(--color-border-default);
+}
+
+.viewAllAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 10px;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-button);
+  font-size: var(--font-size-supporting);
+  font-weight: 500;
+  color: var(--color-brand-600);
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.viewAllAction:hover {
+  background: var(--color-brand-50);
+  border-color: var(--color-brand-300);
+  color: var(--color-brand-700);
+}
+
+.viewAllAction svg { transition: transform 0.12s; }
+
+.viewAllAction:hover svg { transform: translateX(2px); }
+
+.viewAllAction:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
