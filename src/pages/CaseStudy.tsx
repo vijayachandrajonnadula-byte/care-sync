@@ -407,7 +407,7 @@ export default function CaseStudy() {
                 { nav: 'Shift Briefing', title: 'Command centre', desc: 'Start-of-shift operational view. Now / Next / Later.', primary: true, highlight: false, note: '' },
                 { nav: 'Patients', title: 'Patient list', desc: 'Search, scan, and review. Row click opens quick view drawer.', primary: true, highlight: false, note: '' },
                 { nav: 'Appointments', title: 'Outpatient queue', desc: 'Live consultation readiness. Flow status, wait time, room, prep.', primary: true, highlight: false, note: '' },
-                { nav: 'Medical Records', title: 'Shift records worklist', desc: 'Review lab results and records across all patients on shift.', primary: false, highlight: true, note: '↑ Redesigned from single-patient record to shift-level worklist' },
+                { nav: 'Medical Records', title: 'Shift records worklist', desc: 'Review lab results and records across all patients on shift.', primary: false, highlight: false, note: '' },
                 { nav: 'Messages', title: 'Clinical inbox', desc: 'Severity-aware message triage. Not a generic chat interface.', primary: false, highlight: false, note: '' },
                 { nav: 'Tasks', title: 'Handover workflow', desc: 'Inherited shift tasks, due actions, handover structure.', primary: false, highlight: false, note: '' },
                 { nav: 'Operational Insights', title: 'Queue analytics', desc: 'Arrivals vs expected, workload table, capacity threshold.', primary: false, highlight: false, note: '' },
