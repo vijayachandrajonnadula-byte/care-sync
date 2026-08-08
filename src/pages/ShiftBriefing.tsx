@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AlertTriangle, ArrowRight, CheckCircle, Clock, Pill, User, Users } from 'lucide-react'
+import { AlertTriangle, ArrowRight, CheckCircle, Clock, Pill, TrendingUp, User, Users } from 'lucide-react'
 import {
   CURRENT_USER, MEERA_IYER, MEERA_VITALS,
   ARJUN_NAIR, ARJUN_APPOINTMENT, ROHAN_DAS,
@@ -44,6 +44,12 @@ const ATTENTION_DISPLAY_LIMIT = 4   // featured card + 3 queue rows
 const FOLLOW_THROUGH_DISPLAY_LIMIT = 4
 
 const TIMELINE_ACTIONS = ['Open', 'Open visit', 'Review report']
+
+const RISK_CLASS: Record<string, string> = {
+  High: styles.risk_high,
+  Moderate: styles.risk_moderate,
+  Low: styles.risk_low,
+}
 
 export default function ShiftBriefing() {
   const navigate = useNavigate()
@@ -142,7 +148,10 @@ export default function ShiftBriefing() {
                         {currGlucose} mg/dL
                       </td>
                       <td className={`${styles.metricsTd} ${styles.tabular}`}>
-                        <span className={styles.changeBadgeUp}>+{glucoseChange} mg/dL</span>
+                        <span className={`${styles.trendChip} ${styles.trendUp}`}>
+                          <TrendingUp size={11} aria-hidden="true" />
+                          +{glucoseChange} mg/dL
+                        </span>
                       </td>
                     </tr>
                     <tr className={styles.metricsDataRow}>
@@ -154,7 +163,10 @@ export default function ShiftBriefing() {
                         {currSys}/{currDia} mmHg
                       </td>
                       <td className={`${styles.metricsTd} ${styles.tabular}`}>
-                        <span className={styles.changeBadgeUp}>Rising</span>
+                        <span className={`${styles.trendChip} ${styles.trendUp}`}>
+                          <TrendingUp size={11} aria-hidden="true" />
+                          Rising
+                        </span>
                       </td>
                     </tr>
                   </tbody>
@@ -393,7 +405,7 @@ export default function ShiftBriefing() {
                       <td className={`${styles.followTd} ${styles.followTdMuted} ${styles.tabular}`}>{row.oldest}</td>
                       <td className={`${styles.followTd} ${styles.followTdMuted}`}>{row.owner}</td>
                       <td className={styles.followTd}>
-                        <span className={`${styles.riskBadge} ${styles[`risk_${row.risk.toLowerCase()}`]}`}>
+                        <span className={`${styles.riskBadge} ${RISK_CLASS[row.risk] ?? styles.risk_low}`}>
                           {row.risk}
                         </span>
                       </td>
